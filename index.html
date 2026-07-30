@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VStudios Tools</title>
     <style>
-        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +19,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== LOADING SCREEN ===== */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -138,7 +136,6 @@
             transition: width 0.3s ease;
         }
 
-        /* ===== MAIN CONTENT ===== */
         #main-content {
             display: none;
             opacity: 0;
@@ -150,7 +147,6 @@
             opacity: 1;
         }
 
-        /* ===== NAVBAR ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -209,7 +205,6 @@
             color: white;
         }
 
-        /* ===== BANNER ===== */
         .banner-section {
             padding: 60px 2rem 0;
             width: 100%;
@@ -257,7 +252,6 @@
             font-weight: 300;
         }
 
-        /* ===== TOOLS SECTION ===== */
         .tools-section {
             padding: 2rem 2rem 4rem;
             background: rgba(0, 0, 0, 0.2);
@@ -411,7 +405,6 @@
             cursor: not-allowed;
         }
 
-        /* ===== TOOL PAGE ===== */
         .tool-page {
             display: none;
             padding: 80px 2rem 4rem;
@@ -547,7 +540,6 @@
             stroke-width: 2;
         }
 
-        /* Loading inline */
         .loader-inline {
             display: none;
             text-align: center;
@@ -574,7 +566,6 @@
             font-size: 0.9rem;
         }
 
-        /* Result */
         .result-box {
             display: none;
             background: rgba(255, 255, 255, 0.03);
@@ -589,17 +580,119 @@
             animation: fadeUp 0.4s ease;
         }
 
-        .result-box video {
+        /* Video Container with Cover */
+        .video-wrapper {
+            position: relative;
             width: 100%;
             border-radius: 12px;
+            overflow: hidden;
             background: #0a0418;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
             max-height: 450px;
+        }
+
+        .video-wrapper .cover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .video-wrapper .cover-img.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-wrapper .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 70px;
+            height: 70px;
+            background: rgba(108, 43, 217, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .video-wrapper .play-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(108, 43, 217, 0.9);
+        }
+
+        .video-wrapper .play-overlay svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        .video-wrapper .play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Video Info */
+        .video-info {
+            padding: 1rem 0.5rem 0.5rem;
+        }
+
+        .video-info .title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: white;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-info .stats {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: #a78bfa;
+        }
+
+        .video-info .stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .video-info .stats .stat-icon {
+            opacity: 0.6;
+        }
+
+        .video-info .author {
+            color: #7a6b9a;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
         }
 
         .result-actions {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .result-actions .save-btn {
@@ -632,7 +725,6 @@
             stroke-width: 2;
         }
 
-        /* ===== FOOTER ===== */
         .footer {
             background: rgba(0, 0, 0, 0.3);
             padding: 1.5rem;
@@ -647,70 +739,34 @@
             letter-spacing: 2px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .banner-overlay h1 {
-                font-size: 2rem;
-            }
-            .banner-overlay p {
-                font-size: 0.9rem;
-                letter-spacing: 4px;
-            }
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .input-group {
-                flex-direction: column;
-            }
-            .input-group .action-btn {
-                justify-content: center;
-            }
-            .tool-page {
-                padding: 75px 1rem 3rem;
-            }
-            .navbar {
-                padding: 0 1rem;
-            }
-            .tools-header h2 {
-                font-size: 1.4rem;
-            }
-            .tool-card {
-                min-height: 160px;
-                padding: 1.5rem;
-            }
-            .result-actions {
-                flex-direction: column;
-            }
+            .banner-overlay h1 { font-size: 2rem; }
+            .banner-overlay p { font-size: 0.9rem; letter-spacing: 4px; }
+            .tools-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .input-group { flex-direction: column; }
+            .input-group .action-btn { justify-content: center; }
+            .tool-page { padding: 75px 1rem 3rem; }
+            .navbar { padding: 0 1rem; }
+            .tools-header h2 { font-size: 1.4rem; }
+            .tool-card { min-height: 160px; padding: 1.5rem; }
+            .result-actions { flex-direction: column; }
+            .video-info .stats { gap: 0.8rem; font-size: 0.7rem; }
         }
 
         @media (max-width: 480px) {
-            .banner-overlay h1 {
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-            }
-            .banner-overlay p {
-                font-size: 0.7rem;
-                letter-spacing: 3px;
-            }
-            .banner-section {
-                padding: 55px 1rem 0;
-            }
-            .tools-section {
-                padding: 1rem 1rem 3rem;
-            }
-            .tool-page-title {
-                font-size: 1.4rem;
-            }
-            .loader-text .brand {
-                font-size: 1.8rem;
-            }
+            .banner-overlay h1 { font-size: 1.5rem; letter-spacing: 2px; }
+            .banner-overlay p { font-size: 0.7rem; letter-spacing: 3px; }
+            .banner-section { padding: 55px 1rem 0; }
+            .tools-section { padding: 1rem 1rem 3rem; }
+            .tool-page-title { font-size: 1.4rem; }
+            .loader-text .brand { font-size: 1.8rem; }
+            .video-wrapper .play-overlay { width: 50px; height: 50px; }
+            .video-wrapper .play-overlay svg { width: 22px; height: 22px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== SVG SPRITES ===== -->
     <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <symbol id="icon-logo" viewBox="0 0 24 24">
@@ -730,10 +786,6 @@
                 <circle cx="12" cy="12" r="5"/>
                 <circle cx="17.5" cy="6.5" r="1.5"/>
             </symbol>
-            <symbol id="icon-youtube" viewBox="0 0 24 24">
-                <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2c.313-1.732.455-3.508.42-5.28a28.5 28.5 0 00-.42-5.28z"/>
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-            </symbol>
             <symbol id="icon-back" viewBox="0 0 24 24">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </symbol>
@@ -742,10 +794,27 @@
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
             </symbol>
+            <symbol id="icon-play" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+            </symbol>
+            <symbol id="icon-eye" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </symbol>
+            <symbol id="icon-heart" viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </symbol>
+            <symbol id="icon-message" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </symbol>
+            <symbol id="icon-share" viewBox="0 0 24 24">
+                <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+            </symbol>
         </defs>
     </svg>
 
-    <!-- ===== LOADING SCREEN ===== -->
     <div id="loading-screen">
         <div class="loader-wrapper">
             <div class="loader-animation">
@@ -764,10 +833,7 @@
         </div>
     </div>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div id="main-content">
-
-        <!-- ===== NAVBAR ===== -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
@@ -783,10 +849,7 @@
             </div>
         </nav>
 
-        <!-- ===== HOME PAGE ===== -->
         <div id="home-page">
-
-            <!-- BANNER - ATAS SEKALI -->
             <section class="banner-section">
                 <div class="banner-wrapper">
                     <img src="https://files.catbox.moe/mhcy1u.jpg" alt="VStudios Tools Banner" onerror="this.style.display='none'">
@@ -797,7 +860,6 @@
                 </div>
             </section>
 
-            <!-- TOOLS - TERUS BAWAH BANNER -->
             <section class="tools-section">
                 <div class="tools-container">
                     <div class="tools-header">
@@ -807,9 +869,7 @@
                         <h2>Our Tools</h2>
                     </div>
                     <div class="tools-divider"></div>
-
                     <div class="tools-grid">
-                        <!-- TikTok Downloader -->
                         <div class="tool-card" onclick="openTool('tiktok')">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24">
@@ -820,8 +880,6 @@
                             <p>Download videos without watermark</p>
                             <button class="btn">Open Tool</button>
                         </div>
-
-                        <!-- Instagram Coming Soon -->
                         <div class="tool-card coming-soon">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24">
@@ -837,7 +895,6 @@
             </section>
         </div>
 
-        <!-- ===== TOOL PAGE: TIKTOK ===== -->
         <div id="tool-tiktok" class="tool-page">
             <div class="tool-page-inner">
                 <div class="tool-page-header">
@@ -871,27 +928,49 @@
                 </div>
 
                 <div id="result-box" class="result-box">
-                    <video id="result-video" controls></video>
+                    <!-- Video with Cover -->
+                    <div class="video-wrapper">
+                        <img id="cover-img" class="cover-img" src="" alt="Video cover">
+                        <div id="play-overlay" class="play-overlay">
+                            <svg viewBox="0 0 24 24">
+                                <use href="#icon-play"/>
+                            </svg>
+                        </div>
+                        <video id="result-video" controls></video>
+                    </div>
+
+                    <!-- Video Info -->
+                    <div class="video-info">
+                        <div class="title" id="video-title">Loading...</div>
+                        <div class="stats" id="video-stats">
+                            <span><svg class="stat-icon" viewBox="0 0 24 24" width="14" height="14"><use href="#icon-eye"/></svg> <span id="stat-views">-</span></span>
+                            <span><svg class="stat-icon" viewBox="0 0 24 24" width="14" height="14"><use href="#icon-heart"/></svg> <span id="stat-likes">-</span></span>
+                            <span><svg class="stat-icon" viewBox="0 0 24 24" width="14" height="14"><use href="#icon-message"/></svg> <span id="stat-comments">-</span></span>
+                            <span><svg class="stat-icon" viewBox="0 0 24 24" width="14" height="14"><use href="#icon-share"/></svg> <span id="stat-shares">-</span></span>
+                            <span>⏱ <span id="stat-duration">-</span></span>
+                        </div>
+                        <div class="author" id="video-author">By: -</div>
+                    </div>
+
                     <div class="result-actions">
                         <button id="save-video-btn" class="save-btn">
                             <svg viewBox="0 0 24 24">
                                 <use href="#icon-download"/>
                             </svg>
-                            Download Video
+                            Download HD Video
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== FOOTER ===== -->
         <footer class="footer">
             <p>© 2026 VStudios Tools &bull; Developed By Veyora</p>
         </footer>
     </div>
 
     <script>
-        // ===== LOADING SCREEN WITH PROGRESS =====
+        // ===== LOADING SCREEN =====
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
@@ -902,9 +981,7 @@
                 progress += Math.random() * 15 + 5;
                 if (progress > 100) progress = 100;
                 loaderFill.style.width = progress + '%';
-                if (progress >= 100) {
-                    clearInterval(interval);
-                }
+                if (progress >= 100) clearInterval(interval);
             }, 200);
 
             setTimeout(function() {
@@ -945,7 +1022,18 @@
         const loaderInline = document.getElementById('loader-inline');
         const resultBox = document.getElementById('result-box');
         const videoElement = document.getElementById('result-video');
+        const coverImg = document.getElementById('cover-img');
+        const playOverlay = document.getElementById('play-overlay');
         const saveBtn = document.getElementById('save-video-btn');
+        const videoTitle = document.getElementById('video-title');
+        const videoAuthor = document.getElementById('video-author');
+        const statViews = document.getElementById('stat-views');
+        const statLikes = document.getElementById('stat-likes');
+        const statComments = document.getElementById('stat-comments');
+        const statShares = document.getElementById('stat-shares');
+        const statDuration = document.getElementById('stat-duration');
+
+        let currentVideoUrl = null;
 
         function resetTool() {
             resultBox.classList.remove('show');
@@ -953,7 +1041,11 @@
             loaderInline.classList.remove('show');
             loaderInline.style.display = 'none';
             videoElement.src = '';
+            coverImg.src = '';
+            coverImg.classList.remove('hidden');
+            playOverlay.classList.remove('hidden');
             urlInput.value = '';
+            currentVideoUrl = null;
             downloadBtn.disabled = false;
             downloadBtn.innerHTML = `
                 <svg viewBox="0 0 24 24">
@@ -963,6 +1055,33 @@
             `;
         }
 
+        // Play overlay - click to play video
+        playOverlay.addEventListener('click', function() {
+            videoElement.play();
+            coverImg.classList.add('hidden');
+            playOverlay.classList.add('hidden');
+        });
+
+        // When video plays, hide cover
+        videoElement.addEventListener('play', function() {
+            coverImg.classList.add('hidden');
+            playOverlay.classList.add('hidden');
+        });
+
+        // When video pauses, show cover if at start
+        videoElement.addEventListener('pause', function() {
+            if (videoElement.currentTime === 0) {
+                coverImg.classList.remove('hidden');
+                playOverlay.classList.remove('hidden');
+            }
+        });
+
+        // When video ends, show cover
+        videoElement.addEventListener('ended', function() {
+            coverImg.classList.remove('hidden');
+            playOverlay.classList.remove('hidden');
+        });
+
         // Enter key support
         urlInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -970,42 +1089,19 @@
             }
         });
 
-        // ===== EXTRACT VIDEO URL FROM API RESPONSE =====
-        function extractVideoUrl(data) {
-            // If data is string, return it
-            if (typeof data === 'string') {
-                return data;
+        // ===== FORMAT NUMBER =====
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (typeof num === 'string') {
+                num = num.replace(/[^0-9.]/g, '');
+                if (num.includes('K')) return num;
+                if (num.includes('M')) return num;
             }
-            
-            // If data is object, search recursively
-            if (typeof data === 'object' && data !== null) {
-                // Common keys for video URLs
-                const keys = ['video', 'url', 'download', 'play', 'no_watermark', 'watermark', 'hd', 'sd', 'source'];
-                
-                for (const key of keys) {
-                    if (data[key]) {
-                        if (typeof data[key] === 'string') {
-                            return data[key];
-                        }
-                        // If nested object, search deeper
-                        const nested = extractVideoUrl(data[key]);
-                        if (nested) return nested;
-                    }
-                }
-                
-                // Search all values recursively
-                for (const value of Object.values(data)) {
-                    if (typeof value === 'string' && (value.includes('http') || value.includes('.mp4'))) {
-                        return value;
-                    }
-                    if (typeof value === 'object') {
-                        const found = extractVideoUrl(value);
-                        if (found) return found;
-                    }
-                }
-            }
-            
-            return null;
+            num = parseInt(num);
+            if (isNaN(num)) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
         }
 
         // ===== DOWNLOAD BUTTON CLICK =====
@@ -1042,42 +1138,81 @@
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                console.log('API Response:', data); // Debug: lihat response di console
+                console.log('API Response:', data);
 
-                // Extract video URL from response
-                let videoUrl = null;
-                
+                // Check if response is valid
                 if (data.status && data.result) {
-                    videoUrl = extractVideoUrl(data.result);
-                } else if (data.data) {
-                    videoUrl = extractVideoUrl(data.data);
-                } else if (data.video) {
-                    videoUrl = data.video;
-                } else {
-                    // Try whole response
-                    videoUrl = extractVideoUrl(data);
-                }
+                    const result = data.result;
+                    
+                    // 1. Get COVER image
+                    const coverUrl = result.cover || null;
+                    
+                    // 2. Get HD VIDEO (from alternatives.hd)
+                    let videoUrl = null;
+                    if (result.alternatives && result.alternatives.hd) {
+                        videoUrl = result.alternatives.hd;
+                    } else if (result.data) {
+                        videoUrl = result.data;
+                    } else if (result.alternatives && result.alternatives.selected) {
+                        videoUrl = result.alternatives.selected;
+                    }
+                    
+                    // 3. Get TITLE (description)
+                    const title = result.title || 'No title available';
+                    
+                    // 4. Get AUTHOR
+                    const author = result.author ? result.author.nickname || result.author.username : 'Unknown';
+                    
+                    // 5. Get STATS
+                    const stats = result.stats || {};
+                    const views = formatNumber(stats.views);
+                    const likes = formatNumber(stats.likes);
+                    const comments = formatNumber(stats.comment);
+                    const shares = formatNumber(stats.share);
+                    const duration = result.duration || '-';
 
-                if (videoUrl) {
-                    // Hide loading, show result
-                    loaderInline.classList.remove('show');
-                    loaderInline.style.display = 'none';
-                    
-                    resultBox.style.display = 'block';
-                    setTimeout(() => resultBox.classList.add('show'), 10);
-                    
-                    // Set video source
-                    videoElement.src = videoUrl;
-                    videoElement.load();
-                    
-                    // Setup download button
-                    saveBtn.onclick = function(e) {
-                        e.preventDefault();
-                        downloadVideo(videoUrl);
-                    };
+                    if (videoUrl) {
+                        // Hide loading, show result
+                        loaderInline.classList.remove('show');
+                        loaderInline.style.display = 'none';
+                        
+                        resultBox.style.display = 'block';
+                        setTimeout(() => resultBox.classList.add('show'), 10);
+                        
+                        // Set cover image
+                        if (coverUrl) {
+                            coverImg.src = coverUrl;
+                            coverImg.classList.remove('hidden');
+                            playOverlay.classList.remove('hidden');
+                        }
+                        
+                        // Set video source
+                        currentVideoUrl = videoUrl;
+                        videoElement.src = videoUrl;
+                        videoElement.load();
+                        
+                        // Set video info
+                        videoTitle.textContent = title;
+                        videoAuthor.textContent = 'By: ' + author;
+                        statViews.textContent = views;
+                        statLikes.textContent = likes;
+                        statComments.textContent = comments;
+                        statShares.textContent = shares;
+                        statDuration.textContent = duration;
+                        
+                        // Setup download button - download HD video
+                        saveBtn.onclick = function(e) {
+                            e.preventDefault();
+                            downloadVideo(videoUrl);
+                        };
+                    } else {
+                        alert('Failed to get video URL. Please try another link.');
+                        console.log('Could not extract video from:', data);
+                        loaderInline.classList.remove('show');
+                        loaderInline.style.display = 'none';
+                    }
                 } else {
-                    alert('Failed to get video URL. Please try another link.\nCheck console for API response.');
-                    console.log('Could not extract video from:', data);
+                    alert('Failed to process video. Please try again.');
                     loaderInline.classList.remove('show');
                     loaderInline.style.display = 'none';
                 }
@@ -1099,6 +1234,10 @@
 
         // ===== DOWNLOAD VIDEO FUNCTION =====
         function downloadVideo(videoUrl) {
+            // Show download status
+            saveBtn.textContent = 'Downloading...';
+            saveBtn.disabled = true;
+            
             // Method 1: Fetch as blob
             fetch(videoUrl, {
                 mode: 'cors',
@@ -1114,16 +1253,30 @@
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tiktok_video_${Date.now()}.mp4`;
+                a.download = `tiktok_hd_video_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 setTimeout(() => window.URL.revokeObjectURL(url), 5000);
+                saveBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <use href="#icon-download"/>
+                    </svg>
+                    Download HD Video
+                `;
+                saveBtn.disabled = false;
             })
             .catch((error) => {
                 console.error('Download error:', error);
                 // Method 2: Fallback - open in new tab
                 window.open(videoUrl, '_blank');
+                saveBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <use href="#icon-download"/>
+                    </svg>
+                    Download HD Video
+                `;
+                saveBtn.disabled = false;
             });
         }
 
@@ -1138,7 +1291,9 @@
 
         console.log('VStudios Tools loaded successfully!');
         console.log('Developed By Veyora');
-        console.log('API will be called when you paste a TikTok link and click Download.');
+        console.log('✅ Cover image will be shown');
+        console.log('✅ HD video will be downloaded');
+        console.log('✅ Title & stats will be displayed');
     </script>
 </body>
 </html>
