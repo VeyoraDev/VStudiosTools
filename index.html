@@ -257,7 +257,7 @@
             font-weight: 300;
         }
 
-        /* ===== TOOLS SECTION (BESAR & TERUS BAWAH BANNER) ===== */
+        /* ===== TOOLS SECTION ===== */
         .tools-section {
             padding: 2rem 2rem 4rem;
             background: rgba(0, 0, 0, 0.2);
@@ -970,6 +970,45 @@
             }
         });
 
+        // ===== EXTRACT VIDEO URL FROM API RESPONSE =====
+        function extractVideoUrl(data) {
+            // If data is string, return it
+            if (typeof data === 'string') {
+                return data;
+            }
+            
+            // If data is object, search recursively
+            if (typeof data === 'object' && data !== null) {
+                // Common keys for video URLs
+                const keys = ['video', 'url', 'download', 'play', 'no_watermark', 'watermark', 'hd', 'sd', 'source'];
+                
+                for (const key of keys) {
+                    if (data[key]) {
+                        if (typeof data[key] === 'string') {
+                            return data[key];
+                        }
+                        // If nested object, search deeper
+                        const nested = extractVideoUrl(data[key]);
+                        if (nested) return nested;
+                    }
+                }
+                
+                // Search all values recursively
+                for (const value of Object.values(data)) {
+                    if (typeof value === 'string' && (value.includes('http') || value.includes('.mp4'))) {
+                        return value;
+                    }
+                    if (typeof value === 'object') {
+                        const found = extractVideoUrl(value);
+                        if (found) return found;
+                    }
+                }
+            }
+            
+            return null;
+        }
+
+        // ===== DOWNLOAD BUTTON CLICK =====
         downloadBtn.addEventListener('click', async function() {
             const url = urlInput.value.trim();
             
@@ -1003,51 +1042,42 @@
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                // Extract video URL
+                console.log('API Response:', data); // Debug: lihat response di console
+
+                // Extract video URL from response
                 let videoUrl = null;
                 
                 if (data.status && data.result) {
-                    if (typeof data.result === 'string') {
-                        videoUrl = data.result;
-                    } else if (typeof data.result === 'object') {
-                        // Try multiple possible keys
-                        videoUrl = data.result.video || 
-                                  data.result.url || 
-                                  data.result.download || 
-                                  data.result.play || 
-                                  data.result.no_watermark ||
-                                  data.result.watermark;
-                        
-                        // If still null, search all values
-                        if (!videoUrl) {
-                            const values = Object.values(data.result);
-                            for (const val of values) {
-                                if (typeof val === 'string' && (val.includes('.mp4') || val.includes('video') || val.startsWith('http'))) {
-                                    videoUrl = val;
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    videoUrl = extractVideoUrl(data.result);
+                } else if (data.data) {
+                    videoUrl = extractVideoUrl(data.data);
+                } else if (data.video) {
+                    videoUrl = data.video;
+                } else {
+                    // Try whole response
+                    videoUrl = extractVideoUrl(data);
                 }
 
                 if (videoUrl) {
+                    // Hide loading, show result
                     loaderInline.classList.remove('show');
                     loaderInline.style.display = 'none';
                     
                     resultBox.style.display = 'block';
                     setTimeout(() => resultBox.classList.add('show'), 10);
                     
+                    // Set video source
                     videoElement.src = videoUrl;
                     videoElement.load();
                     
-                    // FIXED: Download with proper method
+                    // Setup download button
                     saveBtn.onclick = function(e) {
                         e.preventDefault();
                         downloadVideo(videoUrl);
                     };
                 } else {
-                    alert('Failed to get video. Please try another link.');
+                    alert('Failed to get video URL. Please try another link.\nCheck console for API response.');
+                    console.log('Could not extract video from:', data);
                     loaderInline.classList.remove('show');
                     loaderInline.style.display = 'none';
                 }
@@ -1067,28 +1097,34 @@
             }
         });
 
-        // ===== FIXED DOWNLOAD FUNCTION =====
+        // ===== DOWNLOAD VIDEO FUNCTION =====
         function downloadVideo(videoUrl) {
-            // Method 1: Fetch as blob for proper download
-            fetch(videoUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.blob();
-                })
-                .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `tiktok_video_${Date.now()}.mp4`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => window.URL.revokeObjectURL(url), 5000);
-                })
-                .catch(() => {
-                    // Method 2: Fallback - open in new tab for user to save
-                    window.open(videoUrl, '_blank');
-                });
+            // Method 1: Fetch as blob
+            fetch(videoUrl, {
+                mode: 'cors',
+                headers: {
+                    'Accept': 'video/mp4,video/*'
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tiktok_video_${Date.now()}.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(() => window.URL.revokeObjectURL(url), 5000);
+            })
+            .catch((error) => {
+                console.error('Download error:', error);
+                // Method 2: Fallback - open in new tab
+                window.open(videoUrl, '_blank');
+            });
         }
 
         // ===== SPIN ANIMATION =====
@@ -1102,6 +1138,7 @@
 
         console.log('VStudios Tools loaded successfully!');
         console.log('Developed By Veyora');
+        console.log('API will be called when you paste a TikTok link and click Download.');
     </script>
 </body>
 </html>
