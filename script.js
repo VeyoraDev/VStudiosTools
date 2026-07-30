@@ -31,7 +31,7 @@ function hideTool() {
     document.querySelector('.tools-grid').style.display = 'grid';
 }
 
-// TikTok Download Function - Using real API
+// TikTok Download Function - Call API
 async function downloadTikTok() {
     const urlInput = document.getElementById('tiktok-url');
     const url = urlInput.value.trim();
@@ -46,35 +46,35 @@ async function downloadTikTok() {
         return;
     }
     
-    // Show loading
-    document.getElementById('loading-tool').style.display = 'block';
-    document.getElementById('result-area').style.display = 'none';
+    document.getElementById('tiktok-loading').style.display = 'block';
+    document.getElementById('tiktok-result').style.display = 'none';
     
     try {
-        // Using the API from your code
-        const response = await fetch(`https://restapi-v2.simplebot.my.id/download/tiktok?url=${encodeURIComponent(url)}`);
+        const response = await fetch('/api/tiktok', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: url })
+        });
+        
         const data = await response.json();
         
-        // Check if success
         if (data.status && data.result) {
             const result = data.result;
             
-            // Check if video exists
-            if (!result.video_nowm) {
+            if (!result.video || !result.video[0]) {
                 throw new Error('No video found');
             }
             
-            // Hide loading, show result
-            document.getElementById('loading-tool').style.display = 'none';
-            document.getElementById('result-area').style.display = 'block';
+            document.getElementById('tiktok-loading').style.display = 'none';
+            document.getElementById('tiktok-result').style.display = 'block';
             
-            // Set video
-            const video = document.getElementById('video-preview');
-            video.src = result.video_nowm;
+            const video = document.getElementById('tiktok-video');
+            video.src = result.video[0];
             video.load();
             
-            // Show video details
-            const details = document.getElementById('video-details');
+            const details = document.getElementById('tiktok-details');
             let detailText = '';
             
             if (result.author) {
@@ -92,17 +92,15 @@ async function downloadTikTok() {
             
             details.innerHTML = detailText || 'Video ready to download';
             
-            // Store video URL for save
-            window.currentVideoUrl = result.video_nowm;
+            window.tiktokVideoUrl = result.video[0];
             
-            // Show audio button if available
-            const audioBtn = document.getElementById('audio-btn');
-            if (result.audio_url) {
+            const audioBtn = document.getElementById('tiktok-audio-btn');
+            if (result.audio && result.audio[0]) {
                 audioBtn.style.display = 'flex';
-                window.currentAudioUrl = result.audio_url;
+                window.tiktokAudioUrl = result.audio[0];
             } else {
                 audioBtn.style.display = 'none';
-                window.currentAudioUrl = null;
+                window.tiktokAudioUrl = null;
             }
             
         } else {
@@ -110,46 +108,51 @@ async function downloadTikTok() {
         }
         
     } catch (error) {
-        document.getElementById('loading-tool').style.display = 'none';
+        document.getElementById('tiktok-loading').style.display = 'none';
         alert('Failed to download video. Please try again.');
         console.error('Error:', error);
     }
 }
 
-// Save Video Function
-function saveVideo() {
-    const videoUrl = window.currentVideoUrl;
-    
-    if (!videoUrl) {
-        alert('No video available to save');
-        return;
+// Save Functions
+function saveVideo(type) {
+    if (type === 'tiktok') {
+        const url = window.tiktokVideoUrl;
+        if (!url) {
+            alert('No video available to save');
+            return;
+        }
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `tiktok_video_${Date.now()}.mp4`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
-    
-    // Create download link
-    const link = document.createElement('a');
-    link.href = videoUrl;
-    link.download = `tiktok_video_${Date.now()}.mp4`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 }
 
-// Save Audio Function
-function saveAudio() {
-    const audioUrl = window.currentAudioUrl;
-    
-    if (!audioUrl) {
-        alert('No audio available to save');
-        return;
+function saveAudio(type) {
+    if (type === 'tiktok') {
+        const url = window.tiktokAudioUrl;
+        if (!url) {
+            alert('No audio available to save');
+            return;
+        }
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `tiktok_audio_${Date.now()}.mp3`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
-    
-    const link = document.createElement('a');
-    link.href = audioUrl;
-    link.download = `tiktok_audio_${Date.now()}.mp3`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 }
+
+// Enter key support
+document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        downloadTikTok();
+    }
+});
 
 // Add CSS animation
 const style = document.createElement('style');
@@ -160,10 +163,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// Enter key support
-document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        downloadTikTok();
-    }
-});
