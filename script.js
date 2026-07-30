@@ -31,7 +31,7 @@ function hideTool() {
     document.querySelector('.tools-grid').style.display = 'grid';
 }
 
-// TikTok Download Function - Call API
+// TikTok Download Function
 async function downloadTikTok() {
     const urlInput = document.getElementById('tiktok-url');
     const url = urlInput.value.trim();
@@ -46,6 +46,7 @@ async function downloadTikTok() {
         return;
     }
     
+    // Show loading
     document.getElementById('tiktok-loading').style.display = 'block';
     document.getElementById('tiktok-result').style.display = 'none';
     
@@ -59,45 +60,107 @@ async function downloadTikTok() {
         });
         
         const data = await response.json();
+        console.log('Response data:', data);
         
+        // Check if success
         if (data.status && data.result) {
             const result = data.result;
             
-            if (!result.video || !result.video[0]) {
-                throw new Error('No video found');
+            // Get video URL - check different possible structures
+            let videoUrl = null;
+            let audioUrl = null;
+            
+            // Check various possible video fields
+            if (result.video) {
+                if (Array.isArray(result.video)) {
+                    videoUrl = result.video[0];
+                } else if (typeof result.video === 'string') {
+                    videoUrl = result.video;
+                }
+            } else if (result.video_no_watermark) {
+                videoUrl = result.video_no_watermark;
+            } else if (result.video_no_wm) {
+                videoUrl = result.video_no_wm;
+            } else if (result.play) {
+                videoUrl = result.play;
+            } else if (result.video_url) {
+                videoUrl = result.video_url;
             }
             
+            if (!videoUrl) {
+                throw new Error('No video URL found in response');
+            }
+            
+            // Check audio
+            if (result.audio) {
+                if (Array.isArray(result.audio)) {
+                    audioUrl = result.audio[0];
+                } else if (typeof result.audio === 'string') {
+                    audioUrl = result.audio;
+                }
+            } else if (result.music) {
+                audioUrl = result.music;
+            } else if (result.audio_url) {
+                audioUrl = result.audio_url;
+            }
+            
+            // Hide loading, show result
             document.getElementById('tiktok-loading').style.display = 'none';
             document.getElementById('tiktok-result').style.display = 'block';
             
+            // Set video
             const video = document.getElementById('tiktok-video');
-            video.src = result.video[0];
+            video.src = videoUrl;
             video.load();
             
+            // Show video details
             const details = document.getElementById('tiktok-details');
             let detailText = '';
             
+            // Author info
             if (result.author) {
-                detailText += `<strong>Author:</strong> ${result.author.nickname || 'Unknown'}`;
+                const authorName = result.author.nickname || result.author.username || result.author.name || 'Unknown';
+                detailText += `<strong>Author:</strong> ${authorName}`;
             }
-            if (result.play_count) {
-                detailText += ` &bull; <strong>Views:</strong> ${result.play_count}`;
+            
+            // Views
+            if (result.play_count || result.views) {
+                const views = result.play_count || result.views;
+                detailText += ` &bull; <strong>Views:</strong> ${views.toLocaleString()}`;
             }
+            
+            // Duration
             if (result.duration) {
-                detailText += ` &bull; <strong>Duration:</strong> ${result.duration}s`;
+                const duration = typeof result.duration === 'number' ? result.duration : parseInt(result.duration);
+                if (!isNaN(duration)) {
+                    const mins = Math.floor(duration / 60);
+                    const secs = duration % 60;
+                    detailText += ` &bull; <strong>Duration:</strong> ${mins}:${secs.toString().padStart(2, '0')}`;
+                }
             }
-            if (result.title) {
-                detailText += `<br><strong>Title:</strong> ${result.title.substring(0, 100)}${result.title.length > 100 ? '...' : ''}`;
+            
+            // Likes
+            if (result.digg_count || result.likes) {
+                const likes = result.digg_count || result.likes;
+                detailText += ` &bull; <strong>Likes:</strong> ${likes.toLocaleString()}`;
+            }
+            
+            // Title/Description
+            if (result.title || result.desc) {
+                const title = result.title || result.desc || '';
+                detailText += `<br><strong>Title:</strong> ${title.substring(0, 150)}${title.length > 150 ? '...' : ''}`;
             }
             
             details.innerHTML = detailText || 'Video ready to download';
             
-            window.tiktokVideoUrl = result.video[0];
+            // Store video URL
+            window.tiktokVideoUrl = videoUrl;
             
+            // Show/hide audio button
             const audioBtn = document.getElementById('tiktok-audio-btn');
-            if (result.audio && result.audio[0]) {
+            if (audioUrl) {
                 audioBtn.style.display = 'flex';
-                window.tiktokAudioUrl = result.audio[0];
+                window.tiktokAudioUrl = audioUrl;
             } else {
                 audioBtn.style.display = 'none';
                 window.tiktokAudioUrl = null;
@@ -109,12 +172,12 @@ async function downloadTikTok() {
         
     } catch (error) {
         document.getElementById('tiktok-loading').style.display = 'none';
-        alert('Failed to download video. Please try again.');
+        alert('Failed to download video: ' + error.message);
         console.error('Error:', error);
     }
 }
 
-// Save Functions
+// Save Video Function
 function saveVideo(type) {
     if (type === 'tiktok') {
         const url = window.tiktokVideoUrl;
@@ -122,6 +185,8 @@ function saveVideo(type) {
             alert('No video available to save');
             return;
         }
+        
+        // Create download link
         const link = document.createElement('a');
         link.href = url;
         link.download = `tiktok_video_${Date.now()}.mp4`;
@@ -131,6 +196,7 @@ function saveVideo(type) {
     }
 }
 
+// Save Audio Function
 function saveAudio(type) {
     if (type === 'tiktok') {
         const url = window.tiktokAudioUrl;
@@ -138,6 +204,7 @@ function saveAudio(type) {
             alert('No audio available to save');
             return;
         }
+        
         const link = document.createElement('a');
         link.href = url;
         link.download = `tiktok_audio_${Date.now()}.mp3`;
