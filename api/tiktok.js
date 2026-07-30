@@ -26,12 +26,11 @@ export default async function handler(req, res) {
     }
     
     try {
-        // Using BetaBotz API
-        const apiKey = process.env.BETABOTZ_API_KEY || 'YOUR_API_KEY_HERE';
+        // Using BetaBotz API with provided apikey
         const response = await axios.get('https://api.betabotz.eu.org/api/download/tiktok', {
             params: {
                 url: url,
-                apikey: apiKey
+                apikey: 'Btz-5SWmT'
             },
             headers: {
                 'User-Agent': 'Mozilla/5.0'
@@ -39,7 +38,18 @@ export default async function handler(req, res) {
             timeout: 30000
         });
         
-        return res.status(200).json(response.data);
+        // Log for debugging
+        console.log('TikTok API Response:', response.data);
+        
+        // Check if response has data
+        if (response.data && response.data.status && response.data.result) {
+            return res.status(200).json(response.data);
+        } else {
+            return res.status(404).json({
+                status: false,
+                message: response.data?.message || 'No data found'
+            });
+        }
         
     } catch (error) {
         console.error('TikTok API Error:', error.message);
