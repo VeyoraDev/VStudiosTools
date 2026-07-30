@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default async function handler(req, res) {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,30 +24,18 @@ export default async function handler(req, res) {
     }
     
     try {
-        // Using BetaBotz API with provided apikey
-        const response = await axios.get('https://api.betabotz.eu.org/api/download/tiktok', {
-            params: {
-                url: url,
-                apikey: 'Btz-5SWmT'
-            },
+        // Forward to BetaBotz API
+        const apiUrl = `https://api.betabotz.eu.org/api/download/tiktok?apikey=Btz-5SWmT&url=${encodeURIComponent(url)}`;
+        
+        const response = await fetch(apiUrl, {
             headers: {
                 'User-Agent': 'Mozilla/5.0'
-            },
-            timeout: 30000
+            }
         });
         
-        // Log for debugging
-        console.log('TikTok API Response:', response.data);
+        const data = await response.json();
         
-        // Check if response has data
-        if (response.data && response.data.status && response.data.result) {
-            return res.status(200).json(response.data);
-        } else {
-            return res.status(404).json({
-                status: false,
-                message: response.data?.message || 'No data found'
-            });
-        }
+        return res.status(200).json(data);
         
     } catch (error) {
         console.error('TikTok API Error:', error.message);
