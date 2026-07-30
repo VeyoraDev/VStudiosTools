@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VStudios Tools</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loading.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-container">
+            <div class="loader-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="loader-text">
+                <span class="loading-title">VStudios</span>
+                <span class="loading-sub">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span class="logo-icon">✦</span>
+                    <span class="logo-text">VStudios</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#tools">Tools</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero/Banner Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-image">
+                        <img src="https://files.catbox.moe/mhcy1u.jpg" alt="VStudios Banner">
+                    </div>
+                    <div class="hero-text">
+                        <h1 class="hero-title">VStudios Tools</h1>
+                        <p class="hero-subtitle">By Veyora</p>
+                        <div class="hero-decor"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">✨ Our Tools</h2>
+                <div class="tools-grid">
+                    <!-- TikTok Downloader Card -->
+                    <div class="tool-card" data-tool="tiktok">
+                        <div class="tool-icon">🎵</div>
+                        <h3>TikTok Downloader</h3>
+                        <p>Download video tanpa watermark</p>
+                        <button class="tool-btn">Buka Tool</button>
+                    </div>
+                    
+                    <!-- Coming Soon Cards -->
+                    <div class="tool-card coming-soon">
+                        <div class="tool-icon">📸</div>
+                        <h3>Instagram Downloader</h3>
+                        <p>Coming Soon</p>
+                        <button class="tool-btn" disabled>Segera Hadir</button>
+                    </div>
+                    
+                    <div class="tool-card coming-soon">
+                        <div class="tool-icon">▶️</div>
+                        <h3>YouTube Downloader</h3>
+                        <p>Coming Soon</p>
+                        <button class="tool-btn" disabled>Segera Hadir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TikTok Downloader Modal -->
+        <div id="tiktok-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div class="modal-header">
+                    <h2>🎵 TikTok Downloader</h2>
+                    <p>Paste link TikTok dan download video tanpa watermark</p>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="tiktok-url" placeholder="Paste link TikTok di sini...">
+                        <button id="download-btn" class="download-btn">
+                            <span class="btn-icon">⬇</span> Download
+                        </button>
+                    </div>
+                    <div id="result-container" style="display: none;">
+                        <div id="video-container">
+                            <video id="result-video" controls></video>
+                            <button id="save-video-btn" class="save-btn">
+                                <span class="btn-icon">⬇</span> Download Video
+                            </button>
+                        </div>
+                    </div>
+                    <div id="loading-indicator" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Memproses video...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 VStudios Tools | Developed By Veyora</p>
+                <div class="footer-social">
+                    <span>✦</span>
+                    <span>✦</span>
+                    <span>✦</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="loading.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
