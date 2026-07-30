@@ -1,37 +1,4 @@
-// Loading Screen
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        const mainContent = document.getElementById('main-content');
-        
-        loadingScreen.style.opacity = '0';
-        setTimeout(function() {
-            loadingScreen.style.display = 'none';
-            mainContent.style.display = 'block';
-            mainContent.style.animation = 'fadeIn 0.6s ease';
-        }, 500);
-    }, 2500);
-});
-
-// Show/Hide Tool
-function showTool(tool) {
-    if (tool === 'tiktok') {
-        document.getElementById('tiktok-tool').style.display = 'block';
-        document.querySelector('.tools-grid').style.display = 'none';
-        
-        document.getElementById('tiktok-tool').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
-    }
-}
-
-function hideTool() {
-    document.getElementById('tiktok-tool').style.display = 'none';
-    document.querySelector('.tools-grid').style.display = 'grid';
-}
-
-// TikTok Download Function - Using Naze API
+// TikTok Download Function - Using FAA API
 async function downloadTikTok() {
     const urlInput = document.getElementById('tiktok-url');
     const url = urlInput.value.trim();
@@ -51,9 +18,9 @@ async function downloadTikTok() {
     document.getElementById('tiktok-result').style.display = 'none';
     
     try {
-        // Build API URL with Naze API
+        // Build API URL with FAA API
         const encodedUrl = encodeURIComponent(url);
-        const apiUrl = `https://api.naze.biz.id/download/tiktok?url=${encodedUrl}&apikey=nz-dc6b3e60d3`;
+        const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodedUrl}`;
         
         console.log('Fetching:', apiUrl);
         
@@ -62,34 +29,32 @@ async function downloadTikTok() {
         
         console.log('API Response:', data);
         
-        // Check if success - Naze API response structure
+        // Check if success - FAA API response structure
         if (data.status && data.result) {
             const result = data.result;
             
-            // Get video URL - try multiple possible fields
+            // Get video URL from FAA API structure
             let videoUrl = null;
             
-            // Check various video fields
-            if (result.video) {
+            // FAA API uses data field for video
+            if (result.data) {
+                videoUrl = result.data;
+            } else if (result.alternatives && result.alternatives.selected) {
+                videoUrl = result.alternatives.selected;
+            } else if (result.alternatives && result.alternatives.hd) {
+                videoUrl = result.alternatives.hd;
+            } else if (result.alternatives && result.alternatives.sd) {
+                videoUrl = result.alternatives.sd;
+            } else if (result.video) {
                 if (Array.isArray(result.video)) {
                     videoUrl = result.video[0];
                 } else {
                     videoUrl = result.video;
                 }
-            } else if (result.video_no_watermark) {
-                videoUrl = result.video_no_watermark;
-            } else if (result.video_no_wm) {
-                videoUrl = result.video_no_wm;
             } else if (result.play) {
                 videoUrl = result.play;
             } else if (result.video_url) {
                 videoUrl = result.video_url;
-            } else if (result.url) {
-                videoUrl = result.url;
-            } else if (result.video_download) {
-                videoUrl = result.video_download;
-            } else if (result.download_url) {
-                videoUrl = result.download_url;
             }
             
             if (!videoUrl) {
@@ -99,7 +64,9 @@ async function downloadTikTok() {
             
             // Get audio URL if available
             let audioUrl = null;
-            if (result.audio) {
+            if (result.music_info && result.music_info.url) {
+                audioUrl = result.music_info.url;
+            } else if (result.audio) {
                 if (Array.isArray(result.audio)) {
                     audioUrl = result.audio[0];
                 } else {
@@ -107,8 +74,6 @@ async function downloadTikTok() {
                 }
             } else if (result.music) {
                 audioUrl = result.music;
-            } else if (result.audio_url) {
-                audioUrl = result.audio_url;
             }
             
             // Hide loading, show result
@@ -120,65 +85,66 @@ async function downloadTikTok() {
             video.src = videoUrl;
             video.load();
             
-            // Show video details
+            // Show video details - FAA API specific
             const details = document.getElementById('tiktok-details');
             let detailText = '';
             
             // Author
             if (result.author) {
-                const name = result.author.nickname || result.author.username || result.author.name || 'Unknown';
+                const name = result.author.nickname || result.author.username || 'Unknown';
                 detailText += `<strong>Author:</strong> ${name}`;
+                if (result.author.username) {
+                    detailText += ` (@${result.author.username})`;
+                }
             }
             
             // Views
-            if (result.play_count) {
+            if (result.stats && result.stats.views) {
+                detailText += ` &bull; <strong>Views:</strong> ${result.stats.views}`;
+            } else if (result.play_count) {
                 detailText += ` &bull; <strong>Views:</strong> ${Number(result.play_count).toLocaleString()}`;
-            } else if (result.views) {
-                detailText += ` &bull; <strong>Views:</strong> ${Number(result.views).toLocaleString()}`;
             }
             
             // Duration
             if (result.duration) {
-                const dur = parseInt(result.duration);
-                if (!isNaN(dur)) {
-                    const mins = Math.floor(dur / 60);
-                    const secs = dur % 60;
-                    detailText += ` &bull; <strong>Duration:</strong> ${mins}:${secs.toString().padStart(2, '0')}`;
-                }
+                detailText += ` &bull; <strong>Duration:</strong> ${result.duration}`;
             }
             
             // Likes
-            if (result.digg_count) {
+            if (result.stats && result.stats.likes) {
+                detailText += ` &bull; <strong>Likes:</strong> ${result.stats.likes}`;
+            } else if (result.digg_count) {
                 detailText += ` &bull; <strong>Likes:</strong> ${Number(result.digg_count).toLocaleString()}`;
-            } else if (result.likes) {
-                detailText += ` &bull; <strong>Likes:</strong> ${Number(result.likes).toLocaleString()}`;
             }
             
             // Comments
-            if (result.comment_count) {
+            if (result.stats && result.stats.comment) {
+                detailText += ` &bull; <strong>Comments:</strong> ${result.stats.comment}`;
+            } else if (result.comment_count) {
                 detailText += ` &bull; <strong>Comments:</strong> ${Number(result.comment_count).toLocaleString()}`;
-            } else if (result.comments) {
-                detailText += ` &bull; <strong>Comments:</strong> ${Number(result.comments).toLocaleString()}`;
             }
             
             // Shares
-            if (result.share_count) {
+            if (result.stats && result.stats.share) {
+                detailText += ` &bull; <strong>Shares:</strong> ${result.stats.share}`;
+            } else if (result.share_count) {
                 detailText += ` &bull; <strong>Shares:</strong> ${Number(result.share_count).toLocaleString()}`;
-            } else if (result.shares) {
-                detailText += ` &bull; <strong>Shares:</strong> ${Number(result.shares).toLocaleString()}`;
             }
             
-            // Title/Description
+            // Title
             if (result.title) {
                 const title = result.title.replace(/[^\x20-\x7E]/g, '').trim();
                 if (title) {
                     detailText += `<br><strong>Title:</strong> ${title.substring(0, 150)}${title.length > 150 ? '...' : ''}`;
                 }
-            } else if (result.desc) {
-                const desc = result.desc.replace(/[^\x20-\x7E]/g, '').trim();
-                if (desc) {
-                    detailText += `<br><strong>Description:</strong> ${desc.substring(0, 150)}${desc.length > 150 ? '...' : ''}`;
-                }
+            }
+            
+            // Region & Taken at
+            if (result.region) {
+                detailText += `<br><strong>Region:</strong> ${result.region}`;
+            }
+            if (result.taken_at) {
+                detailText += ` &bull; <strong>Taken:</strong> ${result.taken_at}`;
             }
             
             details.innerHTML = detailText || 'Video ready to download';
@@ -189,7 +155,6 @@ async function downloadTikTok() {
             // Store audio URL if available
             if (audioUrl) {
                 window.tiktokAudioUrl = audioUrl;
-                // Show audio button
                 const audioBtn = document.getElementById('tiktok-audio-btn');
                 if (audioBtn) {
                     audioBtn.style.display = 'flex';
@@ -258,7 +223,7 @@ document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
 
 // Test function for console
 window.testAPI = async function(url) {
-    const apiUrl = `https://api.naze.biz.id/download/tiktok?url=${encodeURIComponent(url)}&apikey=nz-dc6b3e60d3`;
+    const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodeURIComponent(url)}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log('API Test Result:', data);
