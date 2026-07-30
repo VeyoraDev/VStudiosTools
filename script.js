@@ -83,7 +83,6 @@ async function downloadTikTok() {
     addConsoleLine('Sending request to API...', 'info');
     
     try {
-        // Build API URL with FAA API
         const encodedUrl = encodeURIComponent(url);
         const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodedUrl}`;
         
@@ -99,21 +98,17 @@ async function downloadTikTok() {
         
         const data = await response.json();
         
-        // Log full response
         addConsoleLine('Response Data:', 'data');
         addConsoleLine(JSON.stringify(data, null, 2), 'data');
         
-        // Check if success - FAA API response structure
         if (data.status && data.result) {
             addConsoleLine('API Status: Success ✓', 'success');
             const result = data.result;
             
-            // Get video URL from FAA API structure
             let videoUrl = null;
             
             addConsoleLine('Extracting video URL...', 'info');
             
-            // FAA API uses data field for video
             if (result.data) {
                 videoUrl = result.data;
                 addConsoleLine('Found video URL in result.data', 'success');
@@ -123,9 +118,6 @@ async function downloadTikTok() {
             } else if (result.alternatives && result.alternatives.hd) {
                 videoUrl = result.alternatives.hd;
                 addConsoleLine('Found video URL in alternatives.hd', 'success');
-            } else if (result.alternatives && result.alternatives.sd) {
-                videoUrl = result.alternatives.sd;
-                addConsoleLine('Found video URL in alternatives.sd', 'success');
             } else if (result.video) {
                 if (Array.isArray(result.video)) {
                     videoUrl = result.video[0];
@@ -136,9 +128,6 @@ async function downloadTikTok() {
             } else if (result.play) {
                 videoUrl = result.play;
                 addConsoleLine('Found video URL in result.play', 'success');
-            } else if (result.video_url) {
-                videoUrl = result.video_url;
-                addConsoleLine('Found video URL in result.video_url', 'success');
             }
             
             if (!videoUrl) {
@@ -149,7 +138,6 @@ async function downloadTikTok() {
             
             addConsoleLine(`Video URL extracted: ${videoUrl.substring(0, 80)}...`, 'url');
             
-            // Get audio URL if available
             let audioUrl = null;
             if (result.music_info && result.music_info.url) {
                 audioUrl = result.music_info.url;
@@ -161,31 +149,24 @@ async function downloadTikTok() {
                     audioUrl = result.audio;
                 }
                 addConsoleLine('Audio URL found ✓', 'success');
-            } else if (result.music) {
-                audioUrl = result.music;
-                addConsoleLine('Audio URL found ✓', 'success');
             } else {
                 addConsoleLine('No audio URL available', 'warning');
             }
             
-            // Hide loading, show result
             document.getElementById('tiktok-loading').style.display = 'none';
             document.getElementById('tiktok-result').style.display = 'block';
             
             addConsoleLine('Rendering video...', 'info');
             
-            // Set video
             const video = document.getElementById('tiktok-video');
             video.src = videoUrl;
             video.load();
             
             addConsoleLine('Video loaded successfully ✓', 'success');
             
-            // Show video details - FAA API specific
             const details = document.getElementById('tiktok-details');
             let detailText = '';
             
-            // Author
             if (result.author) {
                 const name = result.author.nickname || result.author.username || 'Unknown';
                 detailText += `<strong>Author:</strong> ${name}`;
@@ -195,49 +176,26 @@ async function downloadTikTok() {
                 addConsoleLine(`Author: ${name}`, 'data');
             }
             
-            // Views
             if (result.stats && result.stats.views) {
                 detailText += ` &bull; <strong>Views:</strong> ${result.stats.views}`;
                 addConsoleLine(`Views: ${result.stats.views}`, 'data');
-            } else if (result.play_count) {
-                detailText += ` &bull; <strong>Views:</strong> ${Number(result.play_count).toLocaleString()}`;
-                addConsoleLine(`Views: ${Number(result.play_count).toLocaleString()}`, 'data');
             }
             
-            // Duration
             if (result.duration) {
                 detailText += ` &bull; <strong>Duration:</strong> ${result.duration}`;
                 addConsoleLine(`Duration: ${result.duration}`, 'data');
             }
             
-            // Likes
             if (result.stats && result.stats.likes) {
                 detailText += ` &bull; <strong>Likes:</strong> ${result.stats.likes}`;
                 addConsoleLine(`Likes: ${result.stats.likes}`, 'data');
-            } else if (result.digg_count) {
-                detailText += ` &bull; <strong>Likes:</strong> ${Number(result.digg_count).toLocaleString()}`;
-                addConsoleLine(`Likes: ${Number(result.digg_count).toLocaleString()}`, 'data');
             }
             
-            // Comments
             if (result.stats && result.stats.comment) {
                 detailText += ` &bull; <strong>Comments:</strong> ${result.stats.comment}`;
                 addConsoleLine(`Comments: ${result.stats.comment}`, 'data');
-            } else if (result.comment_count) {
-                detailText += ` &bull; <strong>Comments:</strong> ${Number(result.comment_count).toLocaleString()}`;
-                addConsoleLine(`Comments: ${Number(result.comment_count).toLocaleString()}`, 'data');
             }
             
-            // Shares
-            if (result.stats && result.stats.share) {
-                detailText += ` &bull; <strong>Shares:</strong> ${result.stats.share}`;
-                addConsoleLine(`Shares: ${result.stats.share}`, 'data');
-            } else if (result.share_count) {
-                detailText += ` &bull; <strong>Shares:</strong> ${Number(result.share_count).toLocaleString()}`;
-                addConsoleLine(`Shares: ${Number(result.share_count).toLocaleString()}`, 'data');
-            }
-            
-            // Title
             if (result.title) {
                 const title = result.title.replace(/[^\x20-\x7E]/g, '').trim();
                 if (title) {
@@ -246,7 +204,6 @@ async function downloadTikTok() {
                 }
             }
             
-            // Region & Taken at
             if (result.region) {
                 detailText += `<br><strong>Region:</strong> ${result.region}`;
                 addConsoleLine(`Region: ${result.region}`, 'data');
@@ -258,10 +215,8 @@ async function downloadTikTok() {
             
             details.innerHTML = detailText || 'Video ready to download';
             
-            // Store video URL for download
             window.tiktokVideoUrl = videoUrl;
             
-            // Store audio URL if available
             if (audioUrl) {
                 window.tiktokAudioUrl = audioUrl;
                 const audioBtn = document.getElementById('tiktok-audio-btn');
@@ -299,7 +254,6 @@ async function downloadTikTok() {
     }
 }
 
-// Download Video Function
 function downloadVideo() {
     const url = window.tiktokVideoUrl;
     
@@ -314,7 +268,6 @@ function downloadVideo() {
     addConsoleLine(`Video URL: ${url.substring(0, 80)}...`, 'url');
     addConsoleLine('Creating download link...', 'info');
     
-    // Create download link
     const link = document.createElement('a');
     link.href = url;
     link.download = `tiktok_video_${Date.now()}.mp4`;
@@ -325,7 +278,6 @@ function downloadVideo() {
     addConsoleLine('Download started ✓', 'success');
 }
 
-// Download Audio Function
 function downloadAudio() {
     const url = window.tiktokAudioUrl;
     
@@ -350,23 +302,12 @@ function downloadAudio() {
     addConsoleLine('Download started ✓', 'success');
 }
 
-// Enter key support
 document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         downloadTikTok();
     }
 });
 
-// Test function for console
-window.testAPI = async function(url) {
-    const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodeURIComponent(url)}`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    console.log('API Test Result:', data);
-    return data;
-};
-
-// Add CSS animation
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeIn {
