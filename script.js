@@ -31,7 +31,7 @@ function hideTool() {
     document.querySelector('.tools-grid').style.display = 'grid';
 }
 
-// TikTok Download Function
+// TikTok Download Function - Using Naze API
 async function downloadTikTok() {
     const urlInput = document.getElementById('tiktok-url');
     const url = urlInput.value.trim();
@@ -51,9 +51,9 @@ async function downloadTikTok() {
     document.getElementById('tiktok-result').style.display = 'none';
     
     try {
-        // Build API URL with user's URL
+        // Build API URL with Naze API
         const encodedUrl = encodeURIComponent(url);
-        const apiUrl = `https://api.betabotz.eu.org/api/download/tiktok?apikey=Btz-5SWmT&url=${encodedUrl}`;
+        const apiUrl = `https://api.naze.biz.id/download/tiktok?url=${encodedUrl}&apikey=nz-dc6b3e60d3`;
         
         console.log('Fetching:', apiUrl);
         
@@ -62,13 +62,14 @@ async function downloadTikTok() {
         
         console.log('API Response:', data);
         
-        // Check if success
+        // Check if success - Naze API response structure
         if (data.status && data.result) {
             const result = data.result;
             
             // Get video URL - try multiple possible fields
             let videoUrl = null;
             
+            // Check various video fields
             if (result.video) {
                 if (Array.isArray(result.video)) {
                     videoUrl = result.video[0];
@@ -85,11 +86,29 @@ async function downloadTikTok() {
                 videoUrl = result.video_url;
             } else if (result.url) {
                 videoUrl = result.url;
+            } else if (result.video_download) {
+                videoUrl = result.video_download;
+            } else if (result.download_url) {
+                videoUrl = result.download_url;
             }
             
             if (!videoUrl) {
                 console.error('No video found in:', result);
                 throw new Error('No video URL found');
+            }
+            
+            // Get audio URL if available
+            let audioUrl = null;
+            if (result.audio) {
+                if (Array.isArray(result.audio)) {
+                    audioUrl = result.audio[0];
+                } else {
+                    audioUrl = result.audio;
+                }
+            } else if (result.music) {
+                audioUrl = result.music;
+            } else if (result.audio_url) {
+                audioUrl = result.audio_url;
             }
             
             // Hide loading, show result
@@ -107,13 +126,15 @@ async function downloadTikTok() {
             
             // Author
             if (result.author) {
-                const name = result.author.nickname || result.author.username || 'Unknown';
+                const name = result.author.nickname || result.author.username || result.author.name || 'Unknown';
                 detailText += `<strong>Author:</strong> ${name}`;
             }
             
             // Views
             if (result.play_count) {
                 detailText += ` &bull; <strong>Views:</strong> ${Number(result.play_count).toLocaleString()}`;
+            } else if (result.views) {
+                detailText += ` &bull; <strong>Views:</strong> ${Number(result.views).toLocaleString()}`;
             }
             
             // Duration
@@ -129,13 +150,34 @@ async function downloadTikTok() {
             // Likes
             if (result.digg_count) {
                 detailText += ` &bull; <strong>Likes:</strong> ${Number(result.digg_count).toLocaleString()}`;
+            } else if (result.likes) {
+                detailText += ` &bull; <strong>Likes:</strong> ${Number(result.likes).toLocaleString()}`;
             }
             
-            // Title
+            // Comments
+            if (result.comment_count) {
+                detailText += ` &bull; <strong>Comments:</strong> ${Number(result.comment_count).toLocaleString()}`;
+            } else if (result.comments) {
+                detailText += ` &bull; <strong>Comments:</strong> ${Number(result.comments).toLocaleString()}`;
+            }
+            
+            // Shares
+            if (result.share_count) {
+                detailText += ` &bull; <strong>Shares:</strong> ${Number(result.share_count).toLocaleString()}`;
+            } else if (result.shares) {
+                detailText += ` &bull; <strong>Shares:</strong> ${Number(result.shares).toLocaleString()}`;
+            }
+            
+            // Title/Description
             if (result.title) {
                 const title = result.title.replace(/[^\x20-\x7E]/g, '').trim();
                 if (title) {
                     detailText += `<br><strong>Title:</strong> ${title.substring(0, 150)}${title.length > 150 ? '...' : ''}`;
+                }
+            } else if (result.desc) {
+                const desc = result.desc.replace(/[^\x20-\x7E]/g, '').trim();
+                if (desc) {
+                    detailText += `<br><strong>Description:</strong> ${desc.substring(0, 150)}${desc.length > 150 ? '...' : ''}`;
                 }
             }
             
@@ -144,8 +186,24 @@ async function downloadTikTok() {
             // Store video URL for download
             window.tiktokVideoUrl = videoUrl;
             
+            // Store audio URL if available
+            if (audioUrl) {
+                window.tiktokAudioUrl = audioUrl;
+                // Show audio button
+                const audioBtn = document.getElementById('tiktok-audio-btn');
+                if (audioBtn) {
+                    audioBtn.style.display = 'flex';
+                }
+            } else {
+                window.tiktokAudioUrl = null;
+                const audioBtn = document.getElementById('tiktok-audio-btn');
+                if (audioBtn) {
+                    audioBtn.style.display = 'none';
+                }
+            }
+            
         } else {
-            throw new Error(data.message || 'Failed to fetch video');
+            throw new Error(data.message || data.error || 'Failed to fetch video');
         }
         
     } catch (error) {
@@ -173,6 +231,24 @@ function downloadVideo() {
     document.body.removeChild(link);
 }
 
+// Download Audio Function
+function downloadAudio() {
+    const url = window.tiktokAudioUrl;
+    
+    if (!url) {
+        alert('No audio available to download');
+        return;
+    }
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `tiktok_audio_${Date.now()}.mp3`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 // Enter key support
 document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
@@ -182,9 +258,19 @@ document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
 
 // Test function for console
 window.testAPI = async function(url) {
-    const apiUrl = `https://api.betabotz.eu.org/api/download/tiktok?apikey=Btz-5SWmT&url=${encodeURIComponent(url)}`;
+    const apiUrl = `https://api.naze.biz.id/download/tiktok?url=${encodeURIComponent(url)}&apikey=nz-dc6b3e60d3`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log('API Test Result:', data);
     return data;
 };
+
+// Add CSS animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+document.head.appendChild(style);
