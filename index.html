@@ -105,9 +105,14 @@
                             <div class="video-container">
                                 <video id="tiktok-video" controls></video>
                                 <div class="video-details" id="tiktok-details"></div>
-                                <button onclick="downloadVideo()" class="save-button">
-                                    <i class="fas fa-save"></i> Download Video
-                                </button>
+                                <div class="button-group">
+                                    <button onclick="downloadVideo()" class="save-button">
+                                        <i class="fas fa-save"></i> Download Video
+                                    </button>
+                                    <button onclick="downloadAudio()" class="save-button audio-btn" id="tiktok-audio-btn" style="display:none;">
+                                        <i class="fas fa-music"></i> Download Audio
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
