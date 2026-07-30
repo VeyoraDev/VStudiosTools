@@ -1,3 +1,4 @@
+// api/tiktok.js
 export default async function handler(req, res) {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,8 +25,7 @@ export default async function handler(req, res) {
     }
     
     try {
-        // Forward to BetaBotz API
-        const apiUrl = `https://api.betabotz.eu.org/api/download/tiktok?apikey=Btz-5SWmT&url=${encodeURIComponent(url)}`;
+        const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodeURIComponent(url)}`;
         
         const response = await fetch(apiUrl, {
             headers: {
