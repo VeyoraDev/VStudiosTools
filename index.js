@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VStudios Tools - By Veyora</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <div class="loading-anime">
+                <div class="anime-character"></div>
+            </div>
+            <div class="loading-brand">VStudios Tools</div>
+            <div class="loading-credit">By Veyora</div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <!-- Banner -->
+        <section class="banner-section">
+            <div class="banner-wrapper">
+                <img src="https://files.catbox.moe/mhcy1u.jpg" alt="VStudios Banner" class="banner-image">
+                <div class="banner-overlay"></div>
+                <div class="banner-text">
+                    <h1>VStudios Tools</h1>
+                    <p>Developed By Veyora</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <main class="dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2>VStudios Tools</h2>
+                    <p class="developer-credit">By Veyora</p>
+                </div>
+
+                <!-- Tools Grid -->
+                <div class="tools-grid">
+                    <!-- TikTok Downloader -->
+                    <div class="tool-card active" onclick="showTool('tiktok')">
+                        <div class="tool-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <h3>TikTok Downloader</h3>
+                        <p>Download video without watermark</p>
+                        <span class="tool-badge">● Popular</span>
+                    </div>
+
+                    <div class="tool-card disabled">
+                        <div class="tool-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Music Downloader</h3>
+                        <p>Coming soon</p>
+                        <span class="tool-badge soon">○ Soon</span>
+                    </div>
+
+                    <div class="tool-card disabled">
+                        <div class="tool-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>Video Editor</h3>
+                        <p>Coming soon</p>
+                        <span class="tool-badge soon">○ Soon</span>
+                    </div>
+
+                    <div class="tool-card disabled">
+                        <div class="tool-icon">
+                            <i class="fas fa-crop-alt"></i>
+                        </div>
+                        <h3>Image Converter</h3>
+                        <p>Coming soon</p>
+                        <span class="tool-badge soon">○ Soon</span>
+                    </div>
+                </div>
+
+                <!-- TikTok Tool Area -->
+                <div id="tiktok-tool" class="tool-area" style="display: none;">
+                    <div class="tool-header">
+                        <button onclick="hideTool()" class="back-button">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <h2><i class="fab fa-tiktok"></i> TikTok Downloader</h2>
+                    </div>
+                    
+                    <div class="tool-body">
+                        <div class="input-wrapper">
+                            <input type="url" id="tiktok-url" placeholder="Paste TikTok URL here..." class="url-input">
+                            <button onclick="downloadTikTok()" class="action-button">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                        
+                        <div id="result-area" style="display: none;">
+                            <div class="video-container">
+                                <video id="video-preview" controls></video>
+                                <div class="video-details" id="video-details"></div>
+                                <button onclick="saveVideo()" class="save-button">
+                                    <i class="fas fa-save"></i> Save Video
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="loading-tool" style="display: none;">
+                            <div class="loader-spinner"></div>
+                            <p>Processing video...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 VStudios Tools | Developed By Veyora</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
