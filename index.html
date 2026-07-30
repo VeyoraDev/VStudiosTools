@@ -47,7 +47,6 @@
 
                 <!-- Tools Grid -->
                 <div class="tools-grid">
-                    <!-- TikTok Downloader -->
                     <div class="tool-card active" onclick="showTool('tiktok')">
                         <div class="tool-icon">
                             <i class="fab fa-tiktok"></i>
@@ -59,27 +58,27 @@
 
                     <div class="tool-card disabled">
                         <div class="tool-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <h3>YouTube Downloader</h3>
+                        <p>Coming soon</p>
+                        <span class="tool-badge soon">○ Soon</span>
+                    </div>
+
+                    <div class="tool-card disabled">
+                        <div class="tool-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3>Instagram Downloader</h3>
+                        <p>Coming soon</p>
+                        <span class="tool-badge soon">○ Soon</span>
+                    </div>
+
+                    <div class="tool-card disabled">
+                        <div class="tool-icon">
                             <i class="fas fa-music"></i>
                         </div>
                         <h3>Music Downloader</h3>
-                        <p>Coming soon</p>
-                        <span class="tool-badge soon">○ Soon</span>
-                    </div>
-
-                    <div class="tool-card disabled">
-                        <div class="tool-icon">
-                            <i class="fas fa-film"></i>
-                        </div>
-                        <h3>Video Editor</h3>
-                        <p>Coming soon</p>
-                        <span class="tool-badge soon">○ Soon</span>
-                    </div>
-
-                    <div class="tool-card disabled">
-                        <div class="tool-icon">
-                            <i class="fas fa-crop-alt"></i>
-                        </div>
-                        <h3>Image Converter</h3>
                         <p>Coming soon</p>
                         <span class="tool-badge soon">○ Soon</span>
                     </div>
@@ -102,17 +101,22 @@
                             </button>
                         </div>
                         
-                        <div id="result-area" style="display: none;">
+                        <div id="tiktok-result" style="display: none;">
                             <div class="video-container">
-                                <video id="video-preview" controls></video>
-                                <div class="video-details" id="video-details"></div>
-                                <button onclick="saveVideo()" class="save-button">
-                                    <i class="fas fa-save"></i> Save Video
-                                </button>
+                                <video id="tiktok-video" controls></video>
+                                <div class="video-details" id="tiktok-details"></div>
+                                <div class="button-group">
+                                    <button onclick="saveVideo('tiktok')" class="save-button">
+                                        <i class="fas fa-save"></i> Save Video
+                                    </button>
+                                    <button onclick="saveAudio('tiktok')" class="save-button audio-btn" id="tiktok-audio-btn" style="display:none;">
+                                        <i class="fas fa-music"></i> Save Audio
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
-                        <div id="loading-tool" style="display: none;">
+                        <div id="tiktok-loading" style="display: none;">
                             <div class="loader-spinner"></div>
                             <p>Processing video...</p>
                         </div>
