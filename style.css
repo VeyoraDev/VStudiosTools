@@ -1,3 +1,20 @@
+/* Tambah button group */
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button-group .save-button {
+    flex: 1;
+    min-width: 140px;
+}
+
+.audio-btn {
+    background: linear-gradient(135deg, var(--purple-400), var(--purple-600)) !important;
+}
+
+/* Rest same seperti sebelumnya */
 * {
     margin: 0;
     padding: 0;
@@ -453,8 +470,15 @@ body {
     color: var(--text-muted);
 }
 
-.save-button {
-    width: 100%;
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button-group .save-button {
+    flex: 1;
+    min-width: 140px;
     padding: 14px;
     border: none;
     border-radius: var(--radius-sm);
@@ -471,9 +495,13 @@ body {
     gap: 10px;
 }
 
-.save-button:hover {
+.button-group .save-button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-purple);
+}
+
+.audio-btn {
+    background: linear-gradient(135deg, var(--purple-400), var(--purple-600)) !important;
 }
 
 /* Loading Tool */
@@ -568,8 +596,12 @@ body {
     }
     
     .action-button {
-        width: 100%;
+        width: 100%; no
         justify-content: center;
+    }
+    
+    .button-group .save-button {
+        min-width: 100%;
     }
     
     .footer .container {
