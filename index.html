@@ -6,7 +6,6 @@
     <title>VStudios Tools</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +27,6 @@
         ::-webkit-scrollbar-track { background: #060210; }
         ::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.15); border-radius: 4px; }
 
-        /* ===== LOADING ===== */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -133,11 +131,9 @@
             font-weight: 200;
         }
 
-        /* ===== MAIN CONTENT ===== */
         #main-content { display: none; opacity: 0; transition: opacity 0.8s ease; }
         #main-content.show { display: block; opacity: 1; }
 
-        /* ===== NAVBAR ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -192,7 +188,6 @@
 
         .nav-links a:hover { color: #a78bfa; }
 
-        /* ===== BANNER ===== */
         .banner-section {
             padding: 54px 2rem 0;
             width: 100%;
@@ -245,7 +240,6 @@
             font-weight: 300;
         }
 
-        /* ===== BANNER BAWAH ===== */
         .banner-bottom {
             max-width: 1100px;
             margin: 0.8rem auto 0;
@@ -327,7 +321,6 @@
             color: #6a5a8a;
         }
 
-        /* ===== TOOLS SECTION ===== */
         .tools-section {
             padding: 1.5rem 2rem 3rem;
             background: rgba(0, 0, 0, 0.15);
@@ -488,7 +481,27 @@
             letter-spacing: 0.3px;
         }
 
-        /* ===== TOOL PAGE ===== */
+        .tool-card .btn {
+            background: rgba(167, 139, 250, 0.04);
+            color: #7a6a9a;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            padding: 0.2rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+            margin-top: 0.3rem;
+        }
+
+        .tool-card:not(.coming-soon):hover .btn {
+            background: rgba(167, 139, 250, 0.08);
+            border-color: rgba(167, 139, 250, 0.06);
+            color: #a78bfa;
+        }
+
         .tool-page {
             display: none;
             padding: 74px 2rem 4rem;
@@ -574,10 +587,12 @@
         .input-group {
             display: flex;
             gap: 0.8rem;
+            flex-wrap: wrap;
         }
 
         .input-group input, .input-group textarea {
             flex: 1;
+            min-width: 150px;
             padding: 0.75rem 1.2rem;
             border: 1px solid rgba(167, 139, 250, 0.04);
             border-radius: 10px;
@@ -673,7 +688,6 @@
             letter-spacing: 2px;
         }
 
-        /* ===== RESULT BOX ===== */
         .result-box {
             display: none;
             background: rgba(255, 255, 255, 0.01);
@@ -688,130 +702,22 @@
             animation: fadeSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ===== VIDEO WRAPPER ===== */
-        .video-wrapper {
-            position: relative;
+        .result-box img, .result-box video {
             width: 100%;
             border-radius: 10px;
-            overflow: hidden;
+            max-height: 500px;
+            object-fit: contain;
             background: #04010e;
         }
 
-        .video-wrapper video {
-            width: 100%;
-            display: block;
-            max-height: 420px;
-        }
-
-        .video-wrapper .cover-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 2;
-            cursor: pointer;
-            transition: opacity 0.6s ease;
-        }
-
-        .video-wrapper .cover-img.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .video-wrapper .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            width: 54px;
-            height: 54px;
-            background: rgba(108, 43, 217, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .video-wrapper .play-overlay:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: rgba(108, 43, 217, 0.3);
-        }
-
-        .video-wrapper .play-overlay svg {
-            width: 22px;
-            height: 22px;
-            fill: rgba(255, 255, 255, 0.7);
-            margin-left: 3px;
-        }
-
-        .video-wrapper .play-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .video-info {
-            padding: 0.8rem 0.3rem 0.3rem;
-        }
-
-        .video-info .title {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: #f0ebff;
-            line-height: 1.5;
-            margin-bottom: 0.4rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            letter-spacing: -0.2px;
-        }
-
-        .video-info .stats {
+        .result-box .result-actions {
             display: flex;
             gap: 0.8rem;
-            flex-wrap: wrap;
-            font-size: 0.65rem;
-            color: #5a4a7a;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .video-info .stats span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .video-info .stats .stat-icon {
-            opacity: 0.3;
-            width: 12px;
-            height: 12px;
-        }
-
-        .video-info .author {
-            color: #3a2a5a;
-            font-size: 0.7rem;
-            margin-top: 0.3rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
         }
 
-        .result-actions .save-btn {
+        .result-box .result-actions .save-btn {
             flex: 1;
             min-width: 120px;
             padding: 0.65rem;
@@ -831,17 +737,17 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .result-actions .save-btn:hover:not(:disabled) {
+        .result-box .result-actions .save-btn:hover:not(:disabled) {
             background: rgba(16, 185, 129, 0.08);
             border-color: rgba(16, 185, 129, 0.06);
         }
 
-        .result-actions .save-btn:disabled {
+        .result-box .result-actions .save-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
 
-        .result-actions .save-btn svg {
+        .result-box .result-actions .save-btn svg {
             width: 15px;
             height: 15px;
             stroke: currentColor;
@@ -849,7 +755,7 @@
             stroke-width: 2;
         }
 
-        /* ===== IMAGE GRID ===== */
+        /* Image Grid */
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -863,7 +769,6 @@
             background: #0a0518;
             border: 1px solid rgba(167, 139, 250, 0.04);
             transition: all 0.4s ease;
-            position: relative;
         }
 
         .image-grid .img-item:hover {
@@ -914,63 +819,7 @@
             stroke-width: 2;
         }
 
-        /* ===== YOUTUBE RESULT ===== */
-        .yt-result {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            padding: 0.3rem;
-        }
-
-        .yt-result .thumbnail {
-            width: 120px;
-            min-width: 120px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #0a0518;
-        }
-
-        .yt-result .thumbnail img {
-            width: 100%;
-            display: block;
-        }
-
-        .yt-result .info {
-            flex: 1;
-        }
-
-        .yt-result .info .title {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #f0ebff;
-            line-height: 1.4;
-            margin-bottom: 0.3rem;
-        }
-
-        .yt-result .info .duration {
-            font-size: 0.7rem;
-            color: #5a4a7a;
-            margin-bottom: 0.5rem;
-        }
-
-        .yt-result .info .format-badge {
-            display: inline-block;
-            padding: 0.15rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            background: rgba(167, 139, 250, 0.06);
-            color: #a78bfa;
-            border: 1px solid rgba(167, 139, 250, 0.04);
-            margin-top: 0.3rem;
-        }
-
-        /* ===== ART NAMA ===== */
-        .arti-result {
-            padding: 0.5rem 0.3rem;
-        }
-
+        /* Arti Nama */
         .arti-result .nama-display {
             font-size: 2rem;
             font-weight: 600;
@@ -999,7 +848,18 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== TOAST ===== */
+        /* QR Result Text */
+        .qr-text-result {
+            font-size: 1.1rem;
+            color: #c4b5fd;
+            padding: 1rem;
+            background: rgba(167, 139, 250, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(167, 139, 250, 0.03);
+            word-break: break-all;
+        }
+
+        /* Toast */
         #toast {
             position: fixed;
             bottom: 2rem;
@@ -1039,7 +899,7 @@
             stroke-width: 2.5;
         }
 
-        /* ===== REQUEST MODAL ===== */
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1141,7 +1001,6 @@
             background: rgba(255, 255, 255, 0.04);
         }
 
-        /* ===== FOOTER ===== */
         .footer {
             background: rgba(0, 0, 0, 0.15);
             padding: 1.5rem;
@@ -1157,7 +1016,90 @@
             font-weight: 300;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* TikTok Search Result */
+        .tt-search-item {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(167,139,250,0.04);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tt-search-item .tt-content {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tt-search-item .tt-content .tt-cover {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .tt-search-item .tt-content .tt-info {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-title {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #f0ebff;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-author {
+            font-size: 0.65rem;
+            color: #5a4a7a;
+            margin-top: 0.2rem;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-stats {
+            font-size: 0.6rem;
+            color: #4a3a6a;
+            margin-top: 0.2rem;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-actions {
+            margin-top: 0.4rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-actions .dl-btn {
+            padding: 0.2rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            background: rgba(16,185,129,0.06);
+            color: #34d399;
+            border: 1px solid rgba(16,185,129,0.04);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-actions .dl-btn:hover {
+            background: rgba(16,185,129,0.12);
+        }
+
+        .tt-search-item .tt-content .tt-info .tt-actions .dl-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
         @media (max-width: 768px) {
             .banner-overlay h1 { font-size: 1.8rem; letter-spacing: 3px; }
             .banner-overlay p { font-size: 0.8rem; letter-spacing: 6px; }
@@ -1169,15 +1111,10 @@
             .tools-header { flex-direction: column; align-items: stretch; }
             .search-box input { width: 100%; }
             .tool-card { min-height: 110px; padding: 1rem 0.8rem; }
-            .result-actions { flex-direction: column; }
-            .video-info .stats { gap: 0.5rem; font-size: 0.6rem; }
-            #toast { padding: 0.6rem 1.2rem; font-size: 0.75rem; bottom: 1.2rem; }
-            .yt-result { flex-direction: column; align-items: center; }
-            .yt-result .thumbnail { width: 100%; max-width: 200px; min-width: unset; }
             .banner-bottom { flex-direction: column; padding: 0 1rem; }
             .image-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-            .image-grid .img-item img { height: 120px; }
-            .modal-box { padding: 1.5rem; }
+            .tt-search-item .tt-content { flex-direction: column; align-items: center; }
+            .tt-search-item .tt-content .tt-cover { width: 100%; max-width: 200px; height: auto; aspect-ratio: 16/9; }
         }
 
         @media (max-width: 480px) {
@@ -1187,12 +1124,11 @@
             .tools-section { padding: 0.8rem 1rem 3rem; }
             .tool-page-title { font-size: 1.2rem; }
             .loader-text .brand { font-size: 1.6rem; letter-spacing: 5px; }
-            .video-wrapper .play-overlay { width: 44px; height: 44px; }
-            .video-wrapper .play-overlay svg { width: 18px; height: 18px; }
             .tool-card .icon-box { width: 34px; height: 34px; padding: 6px; }
             .tool-card h3 { font-size: 0.7rem; }
             .image-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
             .image-grid .img-item img { height: 100px; }
+            .result-box .result-actions .save-btn { min-width: 100px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -1201,7 +1137,6 @@
     <!-- ===== SVG SPRITES ===== -->
     <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <!-- Logo -->
             <symbol id="icon-logo" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8">
                 <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                 <path d="M2 17l10 5 10-5"/>
@@ -1211,45 +1146,42 @@
                 <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
             </symbol>
-
-            <!-- FIXED TIKTOK ICON -->
             <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19.59 6.87a4.43 4.43 0 0 1-2.75-2.27 4.42 4.42 0 0 0-1.19-1.01 4.53 4.53 0 0 0-1.51-.59c-1.11-.15-2.15.02-2.82.69-.51.51-.78 1.19-.78 1.89v9.43a3.34 3.34 0 0 1-1.46 2.74c-.61.42-1.37.65-2.19.65-.86 0-1.68-.29-2.36-.81a3.27 3.27 0 0 1-1.68-2.87 3.29 3.29 0 0 1 2.18-3.48c.75-.31 1.58-.39 2.38-.22.36.08.7.21 1.02.39v-4.4a4.11 4.11 0 0 0-1.17-.24 5.1 5.1 0 0 0-.69-.04c-2.07.1-3.87 1.14-4.73 2.75a5.11 5.11 0 0 0-.24 4.12c.17.67.52 1.28 1.03 1.78a5.2 5.2 0 0 0 1.92 1.17c.71.28 1.47.35 2.21.2.74-.15 1.42-.52 1.97-1.09.24-.24.44-.51.61-.81.17-.3.29-.61.36-.94.03-.17.05-.34.06-.51V3.78c.01-.07-.01-.13-.04-.19-.01-.03-.01-.05-.01-.08.03-.31.07-.62.07-.92v-.01c.21-1.02.72-1.96 1.43-2.66a4.62 4.62 0 0 1 1.98-1.19c.31-.1.62-.16.94-.17h.1c.88.04 1.72.39 2.42.98l.01.01c.16.14.31.28.45.43.12.13.23.27.33.41l.01.01c.33.47.57 1.01.72 1.56.15.57.22 1.14.2 1.72h-.01a4.2 4.2 0 0 0 1.38 3.16c.54.48 1.17.81 1.82 1 .2.06.41.1.62.13v3.13c-.52-.1-1.05-.18-1.57-.34a7.53 7.53 0 0 1-2.91-1.97z"/>
             </symbol>
-
             <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
             </symbol>
-
             <symbol id="icon-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2c.313-1.732.455-3.508.42-5.28a28.5 28.5 0 0 0-.42-5.28z"/>
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
             </symbol>
-
             <symbol id="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 17H5a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2"/>
                 <path d="M15 17h-4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2"/>
                 <path d="M21 17h-4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2"/>
             </symbol>
-
             <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
             </symbol>
-
-            <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5"/>
-                <polyline points="21 15 16 10 5 21"/>
+            <symbol id="icon-hd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <text x="3" y="18" font-size="16" font-weight="bold" fill="currentColor">HD</text>
             </symbol>
-
+            <symbol id="icon-brat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </symbol>
             <symbol id="icon-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="23 7 16 12 23 17 23 7"/>
                 <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </symbol>
-
+            <symbol id="icon-pinterest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 4.2 2.65 7.8 6.35 9.2-.1-.6-.15-1.5-.05-2.2l.55-2.3c-.35-.7-.35-1.3-.35-2 0-1.9 1.1-3.4 2.5-3.4 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.2.7.35 1.3 1.05 1.3 1.25 0 2.2-1.3 2.2-3.2 0-1.7-1.2-2.8-2.9-2.8-1.95 0-3.1 1.45-3.1 3.0 0 .6.2 1.2.6 1.6.05.05.05.1.05.15-.1.4-.3 1.5-.35 1.7-.05.25-.2.3-.4.2-1.5-.65-2.4-2.6-2.4-4.15 0-3.4 2.45-6.5 7.1-6.5 3.7 0 6.6 2.65 6.6 6.2 0 3.7-2.3 6.7-5.5 6.7-1.1 0-2.1-.55-2.4-1.2 0 0-.55 2.1-.65 2.6-.25.9-1.0 2.0-1.5 2.7 1.15.35 2.35.55 3.6.55 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+            </symbol>
             <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7"/>
                 <rect x="14" y="3" width="7" height="7"/>
@@ -1258,82 +1190,60 @@
                 <line x1="14" y1="17" x2="21" y2="17"/>
                 <line x1="17" y1="14" x2="17" y2="21"/>
             </symbol>
-
             <symbol id="icon-random" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="23 4 23 10 17 10"/>
                 <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
             </symbol>
-
             <symbol id="icon-meme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
                 <line x1="9" y1="9" x2="9.01" y2="9"/>
                 <line x1="15" y1="9" x2="15.01" y2="9"/>
             </symbol>
-
-            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
             </symbol>
-
             <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </symbol>
-
             <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
             </symbol>
-
             <symbol id="icon-play" viewBox="0 0 24 24" fill="white">
                 <polygon points="5 3 19 12 5 21 5 3"/>
             </symbol>
-
             <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                 <circle cx="12" cy="12" r="3"/>
             </symbol>
-
             <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
             </symbol>
-
             <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
             </symbol>
-
             <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
                 <polyline points="16 6 12 2 8 6"/>
                 <line x1="12" y1="2" x2="12" y2="15"/>
             </symbol>
-
             <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12"/>
             </symbol>
-
             <symbol id="icon-telegram" viewBox="0 0 24 24" fill="none" stroke="#4a9aca" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
             </symbol>
-
             <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </symbol>
-
-            <symbol id="icon-hd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <text x="3" y="18" font-size="16" font-weight="bold" fill="currentColor">HD</text>
-            </symbol>
-
-            <symbol id="icon-brat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
-            </symbol>
-
-            <symbol id="icon-pinterest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C6.48 2 2 6.48 2 12c0 4.2 2.65 7.8 6.35 9.2-.1-.6-.15-1.5-.05-2.2l.55-2.3c-.35-.7-.35-1.3-.35-2 0-1.9 1.1-3.4 2.5-3.4 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.2.7.35 1.3 1.05 1.3 1.25 0 2.2-1.3 2.2-3.2 0-1.7-1.2-2.8-2.9-2.8-1.95 0-3.1 1.45-3.1 3.0 0 .6.2 1.2.6 1.6.05.05.05.1.05.15-.1.4-.3 1.5-.35 1.7-.05.25-.2.3-.4.2-1.5-.65-2.4-2.6-2.4-4.15 0-3.4 2.45-6.5 7.1-6.5 3.7 0 6.6 2.65 6.6 6.2 0 3.7-2.3 6.7-5.5 6.7-1.1 0-2.1-.55-2.4-1.2 0 0-.55 2.1-.65 2.6-.25.9-1.0 2.0-1.5 2.7 1.15.35 2.35.55 3.6.55 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </symbol>
         </defs>
     </svg>
@@ -1381,7 +1291,6 @@
     <!-- ===== MAIN CONTENT ===== -->
     <div id="main-content">
 
-        <!-- ===== NAVBAR ===== -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
@@ -1407,7 +1316,6 @@
                 </div>
             </section>
 
-            <!-- Banner Bottom: Telegram + Request -->
             <div class="banner-bottom">
                 <a href="https://t.me/vyoraci" target="_blank" class="telegram-box">
                     <svg viewBox="0 0 24 24"><use href="#icon-telegram"/></svg>
@@ -1425,7 +1333,7 @@
                         <div class="tools-header-left">
                             <svg viewBox="0 0 24 24"><use href="#icon-tools"/></svg>
                             <h2>Tools</h2>
-                            <span class="total-badge" id="total-tools">20 Tools</span>
+                            <span class="total-badge" id="total-tools">18 Tools</span>
                         </div>
                         <div class="search-box">
                             <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg>
@@ -1433,16 +1341,13 @@
                         </div>
                     </div>
                     <div class="tools-divider"></div>
-                    <div class="tools-grid" id="tools-grid">
-                        <!-- Tool cards akan di generate oleh JavaScript -->
-                    </div>
+                    <div class="tools-grid" id="tools-grid"></div>
                 </div>
             </section>
         </div>
 
         <!-- Tool pages akan di generate oleh JavaScript -->
 
-        <!-- ===== FOOTER ===== -->
         <footer class="footer">
             <p>© 2026 VStudios Tools &bull; Developed By Veyora</p>
         </footer>
@@ -1453,23 +1358,23 @@
         // ===== TOOLS DATA =====
         // ============================================================
         const toolsData = [
-            { id: 'tiktok', name: 'TikTok Downloader', desc: 'Download video without watermark', icon: 'icon-tiktok', category: 'download' },
-            { id: 'instagram', name: 'Instagram Downloader', desc: 'Download reels & videos', icon: 'icon-instagram', category: 'download' },
-            { id: 'ytmp4', name: 'YouTube MP4', desc: 'Download YouTube video (MP4)', icon: 'icon-youtube', category: 'download' },
-            { id: 'ytmp3', name: 'YouTube MP3', desc: 'Download YouTube audio (MP3)', icon: 'icon-music', category: 'download' },
-            { id: 'artinama', name: 'Arti Nama', desc: 'Discover the meaning of your name', icon: 'icon-user', category: 'tools' },
-            { id: 'superhd', name: 'Photo HD', desc: 'Enhance photo to HD quality', icon: 'icon-hd', category: 'image' },
-            { id: 'brat', name: 'BRAT Text2Image', desc: 'Create BRAT style text image', icon: 'icon-brat', category: 'image' },
-            { id: 'bratvid', name: 'BRAT Text2Video', desc: 'Create BRAT style video', icon: 'icon-video', category: 'video' },
-            { id: 'pinterest', name: 'Pinterest Search', desc: 'Search Pinterest images', icon: 'icon-pinterest', category: 'image' },
-            { id: 'qrcreate', name: 'QR Create', desc: 'Generate QR code from text', icon: 'icon-qr', category: 'tools' },
-            { id: 'qrdetect', name: 'QR Detect', desc: 'Read QR code from image', icon: 'icon-qr', category: 'tools' },
-            { id: 'loli', name: 'Random Loli', desc: 'Get random anime loli image', icon: 'icon-random', category: 'image' },
-            { id: 'meme', name: 'Random Meme', desc: 'Get random meme image', icon: 'icon-meme', category: 'image' },
-            { id: 'pap', name: 'Random Pap', desc: 'Get random pap image', icon: 'icon-random', category: 'image' },
-            { id: 'waifu', name: 'Random Waifu', desc: 'Get random waifu image', icon: 'icon-random', category: 'image' },
-            { id: 'memegen', name: 'Meme Generator', desc: 'Create custom meme with text', icon: 'icon-meme', category: 'image' },
-            { id: 'tiktoksearch', name: 'TikTok Search', desc: 'Search TikTok videos', icon: 'icon-tiktok', category: 'search' },
+            { id: 'tiktok', name: 'TikTok Downloader', desc: 'Download video without watermark', icon: 'icon-tiktok' },
+            { id: 'instagram', name: 'Instagram Downloader', desc: 'Download reels & videos', icon: 'icon-instagram' },
+            { id: 'ytmp4', name: 'YouTube MP4', desc: 'Download YouTube video (MP4)', icon: 'icon-youtube' },
+            { id: 'ytmp3', name: 'YouTube MP3', desc: 'Download YouTube audio (MP3)', icon: 'icon-music' },
+            { id: 'artinama', name: 'Arti Nama', desc: 'Discover the meaning of your name', icon: 'icon-user' },
+            { id: 'superhd', name: 'Photo HD', desc: 'Enhance photo to HD quality', icon: 'icon-hd' },
+            { id: 'brat', name: 'BRAT Text2Image', desc: 'Create BRAT style text image', icon: 'icon-brat' },
+            { id: 'bratvid', name: 'BRAT Text2Video', desc: 'Create BRAT style video', icon: 'icon-video' },
+            { id: 'pinterest', name: 'Pinterest Search', desc: 'Search Pinterest images', icon: 'icon-pinterest' },
+            { id: 'qrcreate', name: 'QR Create', desc: 'Generate QR code from text', icon: 'icon-qr' },
+            { id: 'qrdetect', name: 'QR Detect', desc: 'Read QR code from image', icon: 'icon-qr' },
+            { id: 'loli', name: 'Random Loli', desc: 'Get random anime loli image', icon: 'icon-random' },
+            { id: 'meme', name: 'Random Meme', desc: 'Get random meme image', icon: 'icon-meme' },
+            { id: 'pap', name: 'Random Pap', desc: 'Get random pap image', icon: 'icon-random' },
+            { id: 'waifu', name: 'Random Waifu', desc: 'Get random waifu image', icon: 'icon-random' },
+            { id: 'memegen', name: 'Meme Generator', desc: 'Create custom meme with text', icon: 'icon-meme' },
+            { id: 'tiktoksearch', name: 'TikTok Search', desc: 'Search TikTok videos', icon: 'icon-tiktok' },
         ];
 
         // ============================================================
@@ -1483,7 +1388,6 @@
                 card.className = 'tool-card';
                 card.dataset.tool = tool.id;
                 card.dataset.name = tool.name.toLowerCase();
-                card.dataset.category = tool.category;
                 card.onclick = () => openTool(tool.id);
                 card.innerHTML = `
                     <div class="icon-box">
@@ -1498,16 +1402,11 @@
             document.getElementById('total-tools').textContent = toolsData.length + ' Tools';
         }
 
-        // ============================================================
-        // ===== SEARCH TOOLS =====
-        // ============================================================
         function filterTools(query) {
             const q = query.toLowerCase().trim();
-            const cards = document.querySelectorAll('.tool-card');
-            cards.forEach(card => {
+            document.querySelectorAll('.tool-card').forEach(card => {
                 const name = card.dataset.name || '';
-                const match = name.includes(q);
-                card.classList.toggle('hidden', !match);
+                card.classList.toggle('hidden', !name.includes(q));
             });
         }
 
@@ -1527,7 +1426,7 @@
                     void mainContent.offsetWidth;
                     mainContent.className = 'show';
                 }, 600);
-            }, 2800);
+            }, 2500);
         });
 
         // ============================================================
@@ -1535,7 +1434,6 @@
         // ============================================================
         function showHome() {
             document.getElementById('home-page').style.display = 'block';
-            // Hide all tool pages
             document.querySelectorAll('.tool-page').forEach(p => {
                 p.classList.remove('active');
                 p.style.display = 'none';
@@ -1545,16 +1443,100 @@
 
         function openTool(toolId) {
             document.getElementById('home-page').style.display = 'none';
-            
-            // Check if page exists, if not create it
             let page = document.getElementById('tool-' + toolId);
             if (!page) {
                 page = createToolPage(toolId);
             }
-            
             page.style.display = 'block';
             setTimeout(() => page.classList.add('active'), 10);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        // ===== SHARED FUNCTIONS =====
+        // ============================================================
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (typeof num === 'string') {
+                const cleaned = num.replace(/[^0-9.]/g, '');
+                if (num.includes('K')) return num;
+                if (num.includes('M')) return num;
+                return cleaned || '0';
+            }
+            num = parseInt(num);
+            if (isNaN(num)) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+
+        // ===== DOWNLOAD FUNCTIONS =====
+        function downloadFile(url, filename, toastMsg) {
+            if (!url) { showToast('No URL to download'); return; }
+            
+            fetch(url, { mode: 'cors' })
+                .then(r => { if (!r.ok) throw new Error('Network error'); return r.blob(); })
+                .then(blob => {
+                    const urlBlob = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = urlBlob;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
+                    showToast(toastMsg || 'Download successful!');
+                })
+                .catch(() => {
+                    window.open(url, '_blank');
+                    showToast('Download started in new tab');
+                });
+        }
+
+        function downloadImage(url, filename, toastMsg) {
+            downloadFile(url, filename, toastMsg || 'Image downloaded!');
+        }
+
+        // ============================================================
+        // ===== REQUEST MODAL =====
+        // ============================================================
+        function openRequestModal() {
+            document.getElementById('request-modal').classList.add('show');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('request-modal').classList.remove('show');
+            document.getElementById('request-text').value = '';
+        }
+
+        function sendRequest() {
+            const text = document.getElementById('request-text').value.trim();
+            if (!text) { showToast('Please describe the tool you want!'); return; }
+            
+            const botToken = '8988555855:AAE8HoautR88vyCxvXYoFZ2Yz1lz04dP90c';
+            const chatId = '1086203403';
+            const message = '📝 New Tool Request:\n\n' + text;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: message })
+            })
+            .then(() => {
+                showToast('Request sent successfully! ✅');
+                closeRequestModal();
+            })
+            .catch(() => {
+                showToast('Failed to send request. Please try again.');
+            });
         }
 
         // ============================================================
@@ -1569,45 +1551,34 @@
             page.className = 'tool-page';
             page.style.display = 'none';
 
-            // Build page based on tool type
             let content = '';
             
-            if (toolId === 'tiktok') {
-                content = buildTikTokPage();
-            } else if (toolId === 'instagram') {
-                content = buildInstagramPage();
-            } else if (toolId === 'ytmp4') {
-                content = buildYtmp4Page();
-            } else if (toolId === 'ytmp3') {
-                content = buildYtmp3Page();
-            } else if (toolId === 'artinama') {
-                content = buildArtiNamaPage();
-            } else if (toolId === 'superhd') {
-                content = buildSuperHDPage();
-            } else if (toolId === 'brat') {
-                content = buildBratPage('brat', 'BRAT Text2Image', 'Enter text for BRAT image');
-            } else if (toolId === 'bratvid') {
-                content = buildBratPage('bratvid', 'BRAT Text2Video', 'Enter text for BRAT video');
-            } else if (toolId === 'pinterest') {
-                content = buildPinterestPage();
-            } else if (toolId === 'qrcreate') {
-                content = buildQrCreatePage();
-            } else if (toolId === 'qrdetect') {
-                content = buildQrDetectPage();
-            } else if (['loli', 'meme', 'pap', 'waifu'].includes(toolId)) {
-                content = buildRandomImagePage(toolId);
-            } else if (toolId === 'memegen') {
-                content = buildMemeGenPage();
-            } else if (toolId === 'tiktoksearch') {
-                content = buildTikTokSearchPage();
-            } else {
-                content = buildGenericPage(tool);
+            // Build specific page based on tool
+            switch(toolId) {
+                case 'tiktok': content = buildTikTokPage(); break;
+                case 'instagram': content = buildInstagramPage(); break;
+                case 'ytmp4': content = buildYtmp4Page(); break;
+                case 'ytmp3': content = buildYtmp3Page(); break;
+                case 'artinama': content = buildArtiNamaPage(); break;
+                case 'superhd': content = buildSuperHDPage(); break;
+                case 'brat': content = buildBratPage('brat', 'BRAT Text2Image', 'Enter text for BRAT image', 'https://api-faa.my.id/faa/brat?text='); break;
+                case 'bratvid': content = buildBratPage('bratvid', 'BRAT Text2Video', 'Enter text for BRAT video', 'https://api-faa.my.id/faa/bratvid?text='); break;
+                case 'pinterest': content = buildPinterestPage(); break;
+                case 'qrcreate': content = buildQrCreatePage(); break;
+                case 'qrdetect': content = buildQrDetectPage(); break;
+                case 'loli': content = buildRandomImagePage('loli', 'Random Loli', 'Get random anime loli image', 'https://api-faa.my.id/faa/loli'); break;
+                case 'meme': content = buildRandomImagePage('meme', 'Random Meme', 'Get random meme image', 'https://api-faa.my.id/faa/meme'); break;
+                case 'pap': content = buildRandomImagePage('pap', 'Random Pap', 'Get random pap image', 'https://api-faa.my.id/faa/pap'); break;
+                case 'waifu': content = buildRandomImagePage('waifu', 'Random Waifu', 'Get random waifu image', 'https://api-faa.my.id/faa/waifu'); break;
+                case 'memegen': content = buildMemeGenPage(); break;
+                case 'tiktoksearch': content = buildTikTokSearchPage(); break;
+                default: content = buildGenericPage(tool);
             }
 
             page.innerHTML = content;
             document.getElementById('main-content').appendChild(page);
             
-            // Initialize tool specific JS after page is added
+            // Initialize after page is added
             setTimeout(() => initToolPage(toolId), 100);
             
             return page;
@@ -1636,14 +1607,9 @@
                             </button>
                         </div>
                     </div>
-                    <div id="${tool.id}-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Processing...</p>
-                    </div>
+                    <div id="${tool.id}-loader" class="loader-inline"><div class="spinner"></div><p>Processing...</p></div>
                     <div id="${tool.id}-result" class="result-box">
-                        <div class="video-info">
-                            <div class="title" id="${tool.id}-title">Result</div>
-                        </div>
+                        <div id="${tool.id}-result-content"></div>
                         <div class="result-actions">
                             <button id="${tool.id}-save" class="save-btn">
                                 <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
@@ -1674,33 +1640,28 @@
                             </button>
                         </div>
                     </div>
-                    <div id="tiktok-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Processing video...</p>
-                    </div>
+                    <div id="tiktok-loader" class="loader-inline"><div class="spinner"></div><p>Processing video...</p></div>
                     <div id="tiktok-result" class="result-box">
                         <div class="video-wrapper">
-                            <img id="tiktok-cover" class="cover-img" src="" alt="Video cover">
-                            <div id="tiktok-play" class="play-overlay">
-                                <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
+                            <img id="tiktok-cover" class="cover-img" src="" alt="Video cover" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;cursor:pointer;transition:opacity 0.6s ease;">
+                            <div id="tiktok-play" class="play-overlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:54px;height:54px;background:rgba(108,43,217,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.03);transition:all 0.4s ease;cursor:pointer;">
+                                <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:rgba(255,255,255,0.7);margin-left:3px;"><use href="#icon-play"/></svg>
                             </div>
-                            <video id="tiktok-video" controls></video>
+                            <video id="tiktok-video" controls style="width:100%;display:block;max-height:420px;"></video>
                         </div>
-                        <div class="video-info">
-                            <div class="title" id="tiktok-title">Loading...</div>
-                            <div class="stats" id="tiktok-stats">
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-eye"/></svg> <span id="tiktok-views">-</span></span>
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="tiktok-likes">-</span></span>
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="tiktok-comments">-</span></span>
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-share"/></svg> <span id="tiktok-shares">-</span></span>
+                        <div class="video-info" style="padding:0.8rem 0.3rem 0.3rem;">
+                            <div class="title" id="tiktok-title" style="font-size:0.85rem;font-weight:400;color:#f0ebff;line-height:1.5;margin-bottom:0.4rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;letter-spacing:-0.2px;">Loading...</div>
+                            <div class="stats" id="tiktok-stats" style="display:flex;gap:0.8rem;flex-wrap:wrap;font-size:0.65rem;color:#5a4a7a;font-weight:300;letter-spacing:0.5px;">
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-eye"/></svg> <span id="tiktok-views">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-heart"/></svg> <span id="tiktok-likes">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-message"/></svg> <span id="tiktok-comments">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-share"/></svg> <span id="tiktok-shares">-</span></span>
                                 <span>⏱ <span id="tiktok-duration">-</span></span>
                             </div>
-                            <div class="author" id="tiktok-author">By: -</div>
+                            <div class="author" id="tiktok-author" style="color:#3a2a5a;font-size:0.7rem;margin-top:0.3rem;font-weight:300;letter-spacing:0.5px;">By: -</div>
                         </div>
                         <div class="result-actions">
-                            <button id="tiktok-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Video
-                            </button>
+                            <button id="tiktok-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Video</button>
                         </div>
                     </div>
                 </div>
@@ -1711,47 +1672,27 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">Instagram Downloader</div>
-                            <div class="tool-page-sub">Paste link & download reels or videos</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">Instagram Downloader</div><div class="tool-page-sub">Paste link & download reels or videos</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="instagram-url" placeholder="Paste Instagram link here...">
-                            <button id="instagram-download-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                            </button>
+                            <button id="instagram-download-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download</button>
                         </div>
                     </div>
-                    <div id="instagram-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Processing video...</p>
-                    </div>
+                    <div id="instagram-loader" class="loader-inline"><div class="spinner"></div><p>Processing video...</p></div>
                     <div id="instagram-result" class="result-box">
-                        <div class="video-wrapper">
-                            <img id="instagram-cover" class="cover-img" src="" alt="Video cover">
-                            <div id="instagram-play" class="play-overlay">
-                                <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
+                        <video id="instagram-video" controls style="width:100%;border-radius:10px;max-height:500px;"></video>
+                        <div class="video-info" style="padding:0.8rem 0.3rem 0.3rem;">
+                            <div class="title" id="instagram-title" style="font-size:0.85rem;font-weight:400;color:#f0ebff;line-height:1.5;margin-bottom:0.4rem;">Loading...</div>
+                            <div class="stats" id="instagram-stats" style="display:flex;gap:0.8rem;flex-wrap:wrap;font-size:0.65rem;color:#5a4a7a;">
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-heart"/></svg> <span id="instagram-likes">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24" style="opacity:0.3;width:12px;height:12px;"><use href="#icon-message"/></svg> <span id="instagram-comments">-</span></span>
                             </div>
-                            <video id="instagram-video" controls></video>
+                            <div class="author" id="instagram-author" style="color:#3a2a5a;font-size:0.7rem;margin-top:0.3rem;">By: -</div>
                         </div>
-                        <div class="video-info">
-                            <div class="title" id="instagram-title">Loading...</div>
-                            <div class="stats" id="instagram-stats">
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="instagram-likes">-</span></span>
-                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="instagram-comments">-</span></span>
-                            </div>
-                            <div class="author" id="instagram-author">By: -</div>
-                        </div>
-                        <div class="result-actions">
-                            <button id="instagram-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
-                            </button>
-                        </div>
+                        <div class="result-actions"><button id="instagram-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video</button></div>
                     </div>
                 </div>
             `;
@@ -1761,44 +1702,26 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">YouTube MP4</div>
-                            <div class="tool-page-sub">Download YouTube videos in MP4 format</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">YouTube MP4</div><div class="tool-page-sub">Download YouTube videos in MP4 format</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="ytmp4-url" placeholder="Paste YouTube link here...">
-                            <button id="ytmp4-download-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
-                            </button>
+                            <button id="ytmp4-download-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4</button>
                         </div>
                     </div>
-                    <div id="ytmp4-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Fetching video...</p>
-                    </div>
+                    <div id="ytmp4-loader" class="loader-inline"><div class="spinner"></div><p>Fetching video...</p></div>
                     <div id="ytmp4-result" class="result-box">
-                        <div class="yt-result">
-                            <div class="thumbnail">
-                                <img id="ytmp4-thumb" src="" alt="Thumbnail">
-                            </div>
-                            <div class="info">
-                                <div class="title" id="ytmp4-title">Loading...</div>
-                                <div class="duration" id="ytmp4-duration">-</div>
-                                <div class="meta">
-                                    <span class="format-badge">MP4 Video</span>
-                                </div>
+                        <div style="display:flex;gap:1rem;align-items:flex-start;padding:0.3rem;flex-wrap:wrap;">
+                            <div style="width:120px;min-width:120px;border-radius:8px;overflow:hidden;background:#0a0518;"><img id="ytmp4-thumb" src="" alt="Thumbnail" style="width:100%;display:block;"></div>
+                            <div style="flex:1;min-width:150px;">
+                                <div class="title" id="ytmp4-title" style="font-size:0.9rem;font-weight:400;color:#f0ebff;line-height:1.4;margin-bottom:0.3rem;">Loading...</div>
+                                <div class="duration" id="ytmp4-duration" style="font-size:0.7rem;color:#5a4a7a;margin-bottom:0.5rem;">-</div>
+                                <span class="format-badge" style="display:inline-block;padding:0.15rem 0.6rem;border-radius:4px;font-size:0.6rem;font-weight:500;letter-spacing:0.5px;background:rgba(167,139,250,0.06);color:#a78bfa;border:1px solid rgba(167,139,250,0.04);">MP4 Video</span>
                             </div>
                         </div>
-                        <div class="result-actions">
-                            <button id="ytmp4-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
-                            </button>
-                        </div>
+                        <div class="result-actions"><button id="ytmp4-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4</button></div>
                     </div>
                 </div>
             `;
@@ -1808,44 +1731,26 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">YouTube MP3</div>
-                            <div class="tool-page-sub">Download YouTube audio in MP3 format</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">YouTube MP3</div><div class="tool-page-sub">Download YouTube audio in MP3 format</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="ytmp3-url" placeholder="Paste YouTube link here...">
-                            <button id="ytmp3-download-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
-                            </button>
+                            <button id="ytmp3-download-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3</button>
                         </div>
                     </div>
-                    <div id="ytmp3-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Fetching audio...</p>
-                    </div>
+                    <div id="ytmp3-loader" class="loader-inline"><div class="spinner"></div><p>Fetching audio...</p></div>
                     <div id="ytmp3-result" class="result-box">
-                        <div class="yt-result">
-                            <div class="thumbnail">
-                                <img id="ytmp3-thumb" src="" alt="Thumbnail">
-                            </div>
-                            <div class="info">
-                                <div class="title" id="ytmp3-title">Loading...</div>
-                                <div class="duration" id="ytmp3-duration">-</div>
-                                <div class="meta">
-                                    <span class="format-badge">MP3 Audio</span>
-                                </div>
+                        <div style="display:flex;gap:1rem;align-items:flex-start;padding:0.3rem;flex-wrap:wrap;">
+                            <div style="width:120px;min-width:120px;border-radius:8px;overflow:hidden;background:#0a0518;"><img id="ytmp3-thumb" src="" alt="Thumbnail" style="width:100%;display:block;"></div>
+                            <div style="flex:1;min-width:150px;">
+                                <div class="title" id="ytmp3-title" style="font-size:0.9rem;font-weight:400;color:#f0ebff;line-height:1.4;margin-bottom:0.3rem;">Loading...</div>
+                                <div class="duration" id="ytmp3-duration" style="font-size:0.7rem;color:#5a4a7a;margin-bottom:0.5rem;">-</div>
+                                <span class="format-badge" style="display:inline-block;padding:0.15rem 0.6rem;border-radius:4px;font-size:0.6rem;font-weight:500;letter-spacing:0.5px;background:rgba(167,139,250,0.06);color:#a78bfa;border:1px solid rgba(167,139,250,0.04);">MP3 Audio</span>
                             </div>
                         </div>
-                        <div class="result-actions">
-                            <button id="ytmp3-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
-                            </button>
-                        </div>
+                        <div class="result-actions"><button id="ytmp3-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3</button></div>
                     </div>
                 </div>
             `;
@@ -1855,31 +1760,21 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">Arti Nama</div>
-                            <div class="tool-page-sub">Discover the meaning behind your name</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">Arti Nama</div><div class="tool-page-sub">Discover the meaning behind your name</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="artinama-input" placeholder="Enter your name... e.g. maklu">
-                            <button id="artinama-search-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
-                            </button>
+                            <button id="artinama-search-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search</button>
                         </div>
                     </div>
-                    <div id="artinama-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Searching meaning...</p>
-                    </div>
+                    <div id="artinama-loader" class="loader-inline"><div class="spinner"></div><p>Searching meaning...</p></div>
                     <div id="artinama-result" class="result-box">
                         <div class="arti-result">
-                            <div class="nama-display" id="arti-nama-display">-</div>
-                            <div class="arti-text" id="arti-text">Loading...</div>
-                            <div class="catatan" id="arti-catatan"></div>
+                            <div class="nama-display" id="arti-nama-display" style="font-size:2rem;font-weight:600;color:#c4b5fd;letter-spacing:2px;margin-bottom:0.5rem;">-</div>
+                            <div class="arti-text" id="arti-text" style="font-size:0.85rem;line-height:1.8;color:#c4b5fd;font-weight:300;white-space:pre-wrap;background:rgba(167,139,250,0.02);padding:1rem;border-radius:10px;border:1px solid rgba(167,139,250,0.03);">Loading...</div>
+                            <div class="catatan" id="arti-catatan" style="font-size:0.7rem;color:#5a4a7a;margin-top:0.8rem;font-style:italic;letter-spacing:0.5px;"></div>
                         </div>
                     </div>
                 </div>
@@ -1890,73 +1785,42 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">Photo HD</div>
-                            <div class="tool-page-sub">Enhance photo to HD quality</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">Photo HD</div><div class="tool-page-sub">Enhance photo to HD quality</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="superhd-input" placeholder="Paste image URL here...">
-                            <button id="superhd-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Enhance
-                            </button>
+                            <button id="superhd-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Enhance</button>
                         </div>
                     </div>
-                    <div id="superhd-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Enhancing image...</p>
-                    </div>
+                    <div id="superhd-loader" class="loader-inline"><div class="spinner"></div><p>Enhancing image...</p></div>
                     <div id="superhd-result" class="result-box">
-                        <div class="video-wrapper">
-                            <img id="superhd-image" src="" alt="HD Image" style="width:100%;border-radius:10px;">
-                        </div>
-                        <div class="result-actions">
-                            <button id="superhd-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Image
-                            </button>
-                        </div>
+                        <img id="superhd-image" src="" alt="HD Image" style="width:100%;border-radius:10px;max-height:500px;object-fit:contain;background:#04010e;">
+                        <div class="result-actions"><button id="superhd-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Image</button></div>
                     </div>
                 </div>
             `;
         }
 
-        function buildBratPage(id, title, placeholder) {
+        function buildBratPage(id, title, placeholder, apiBase) {
+            const isVideo = id === 'bratvid';
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">${title}</div>
-                            <div class="tool-page-sub">${placeholder}</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">${title}</div><div class="tool-page-sub">${placeholder}</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="${id}-input" placeholder="${placeholder}">
-                            <button id="${id}-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate
-                            </button>
+                            <button id="${id}-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate</button>
                         </div>
                     </div>
-                    <div id="${id}-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Generating...</p>
-                    </div>
+                    <div id="${id}-loader" class="loader-inline"><div class="spinner"></div><p>Generating...</p></div>
                     <div id="${id}-result" class="result-box">
-                        <div class="video-wrapper">
-                            ${id === 'bratvid' ? '<video id="bratvid-video" controls style="width:100%;border-radius:10px;"></video>' : '<img id="brat-image" src="" alt="Result" style="width:100%;border-radius:10px;">'}
-                        </div>
-                        <div class="result-actions">
-                            <button id="${id}-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                            </button>
-                        </div>
+                        ${isVideo ? `<video id="${id}-video" controls style="width:100%;border-radius:10px;max-height:500px;"></video>` : `<img id="${id}-image" src="" alt="Result" style="width:100%;border-radius:10px;max-height:500px;object-fit:contain;background:#04010e;">`}
+                        <div class="result-actions"><button id="${id}-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download</button></div>
                     </div>
                 </div>
             `;
@@ -1966,26 +1830,16 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">Pinterest Search</div>
-                            <div class="tool-page-sub">Search Pinterest images</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">Pinterest Search</div><div class="tool-page-sub">Search Pinterest images</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="pinterest-input" placeholder="Search query... e.g. anime wallpaper">
-                            <button id="pinterest-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
-                            </button>
+                            <button id="pinterest-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search</button>
                         </div>
                     </div>
-                    <div id="pinterest-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Searching images...</p>
-                    </div>
+                    <div id="pinterest-loader" class="loader-inline"><div class="spinner"></div><p>Searching images...</p></div>
                     <div id="pinterest-result" class="result-box">
                         <div id="pinterest-grid" class="image-grid"></div>
                     </div>
@@ -1997,35 +1851,19 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">QR Create</div>
-                            <div class="tool-page-sub">Generate QR code from text or URL</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">QR Create</div><div class="tool-page-sub">Generate QR code from text or URL</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="qrcreate-input" placeholder="Enter text or URL...">
-                            <button id="qrcreate-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate
-                            </button>
+                            <button id="qrcreate-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate</button>
                         </div>
                     </div>
-                    <div id="qrcreate-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Generating QR code...</p>
-                    </div>
+                    <div id="qrcreate-loader" class="loader-inline"><div class="spinner"></div><p>Generating QR code...</p></div>
                     <div id="qrcreate-result" class="result-box">
-                        <div class="video-wrapper">
-                            <img id="qrcreate-image" src="" alt="QR Code" style="width:100%;border-radius:10px;max-width:300px;margin:0 auto;display:block;">
-                        </div>
-                        <div class="result-actions">
-                            <button id="qrcreate-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download QR Code
-                            </button>
-                        </div>
+                        <img id="qrcreate-image" src="" alt="QR Code" style="width:100%;border-radius:10px;max-width:300px;margin:0 auto;display:block;background:#04010e;">
+                        <div class="result-actions"><button id="qrcreate-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download QR Code</button></div>
                     </div>
                 </div>
             `;
@@ -2035,86 +1873,42 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">QR Detect</div>
-                            <div class="tool-page-sub">Read QR code from image URL</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">QR Detect</div><div class="tool-page-sub">Read QR code from image URL</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="qrdetect-input" placeholder="Paste image URL with QR code...">
-                            <button id="qrdetect-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Detect
-                            </button>
+                            <button id="qrdetect-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Detect</button>
                         </div>
                     </div>
-                    <div id="qrdetect-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Detecting QR code...</p>
-                    </div>
+                    <div id="qrdetect-loader" class="loader-inline"><div class="spinner"></div><p>Detecting QR code...</p></div>
                     <div id="qrdetect-result" class="result-box">
-                        <div class="video-info">
-                            <div class="title" id="qrdetect-result-text">Loading...</div>
-                        </div>
-                        <div class="result-actions">
-                            <button id="qrdetect-copy" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-check"/></svg> Copy Result
-                            </button>
-                        </div>
+                        <div id="qrdetect-result-text" class="qr-text-result" style="font-size:1.1rem;color:#c4b5fd;padding:1rem;background:rgba(167,139,250,0.02);border-radius:10px;border:1px solid rgba(167,139,250,0.03);word-break:break-all;">Loading...</div>
+                        <div class="result-actions"><button id="qrdetect-copy" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-check"/></svg> Copy Result</button></div>
                     </div>
                 </div>
             `;
         }
 
-        function buildRandomImagePage(toolId) {
-            const names = {
-                loli: 'Random Loli',
-                meme: 'Random Meme',
-                pap: 'Random Pap',
-                waifu: 'Random Waifu'
-            };
-            const descs = {
-                loli: 'Get random anime loli image',
-                meme: 'Get random meme image',
-                pap: 'Get random pap image',
-                waifu: 'Get random waifu image'
-            };
+        function buildRandomImagePage(id, title, desc, apiUrl) {
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">${names[toolId]}</div>
-                            <div class="tool-page-sub">${descs[toolId]}</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">${title}</div><div class="tool-page-sub">${desc}</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
-                            <button id="${toolId}-btn" class="action-btn" style="width:100%;justify-content:center;">
-                                <svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Get Random
-                            </button>
+                            <button id="${id}-btn" class="action-btn" style="width:100%;justify-content:center;"><svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Get Random</button>
                         </div>
                     </div>
-                    <div id="${toolId}-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Loading...</p>
-                    </div>
-                    <div id="${toolId}-result" class="result-box">
-                        <div class="video-wrapper">
-                            <img id="${toolId}-image" src="" alt="Result" style="width:100%;border-radius:10px;">
-                        </div>
+                    <div id="${id}-loader" class="loader-inline"><div class="spinner"></div><p>Loading...</p></div>
+                    <div id="${id}-result" class="result-box">
+                        <img id="${id}-image" src="" alt="Result" style="width:100%;border-radius:10px;max-height:500px;object-fit:contain;background:#04010e;">
                         <div class="result-actions">
-                            <button id="${toolId}-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Image
-                            </button>
-                            <button id="${toolId}-next" class="save-btn" style="background:rgba(167,139,250,0.04);color:#a78bfa;border-color:rgba(167,139,250,0.04);">
-                                <svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Next
-                            </button>
+                            <button id="${id}-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Image</button>
+                            <button id="${id}-next" class="save-btn" style="background:rgba(167,139,250,0.04);color:#a78bfa;border-color:rgba(167,139,250,0.04);"><svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Next</button>
                         </div>
                     </div>
                 </div>
@@ -2125,37 +1919,21 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">Meme Generator</div>
-                            <div class="tool-page-sub">Create custom meme with text</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">Meme Generator</div><div class="tool-page-sub">Create custom meme with text</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group" style="flex-direction:column;gap:0.8rem;">
                             <input type="text" id="memegen-top" placeholder="Top text...">
                             <input type="text" id="memegen-bottom" placeholder="Bottom text...">
                             <input type="text" id="memegen-bg" placeholder="Background image URL...">
-                            <button id="memegen-btn" class="action-btn" style="width:100%;justify-content:center;">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate Meme
-                            </button>
+                            <button id="memegen-btn" class="action-btn" style="width:100%;justify-content:center;"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate Meme</button>
                         </div>
                     </div>
-                    <div id="memegen-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Generating meme...</p>
-                    </div>
+                    <div id="memegen-loader" class="loader-inline"><div class="spinner"></div><p>Generating meme...</p></div>
                     <div id="memegen-result" class="result-box">
-                        <div class="video-wrapper">
-                            <img id="memegen-image" src="" alt="Meme" style="width:100%;border-radius:10px;">
-                        </div>
-                        <div class="result-actions">
-                            <button id="memegen-save" class="save-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Meme
-                            </button>
-                        </div>
+                        <img id="memegen-image" src="" alt="Meme" style="width:100%;border-radius:10px;max-height:500px;object-fit:contain;background:#04010e;">
+                        <div class="result-actions"><button id="memegen-save" class="save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Meme</button></div>
                     </div>
                 </div>
             `;
@@ -2165,26 +1943,16 @@
             return `
                 <div class="tool-page-inner">
                     <div class="tool-page-header">
-                        <button class="back-btn" onclick="showHome()">
-                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                        </button>
-                        <div>
-                            <div class="tool-page-title">TikTok Search</div>
-                            <div class="tool-page-sub">Search TikTok videos</div>
-                        </div>
+                        <button class="back-btn" onclick="showHome()"><svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back</button>
+                        <div><div class="tool-page-title">TikTok Search</div><div class="tool-page-sub">Search TikTok videos</div></div>
                     </div>
                     <div class="input-box">
                         <div class="input-group">
                             <input type="text" id="tiktoksearch-input" placeholder="Search query... e.g. malaysia">
-                            <button id="tiktoksearch-btn" class="action-btn">
-                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
-                            </button>
+                            <button id="tiktoksearch-btn" class="action-btn"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search</button>
                         </div>
                     </div>
-                    <div id="tiktoksearch-loader" class="loader-inline">
-                        <div class="spinner"></div>
-                        <p>Searching videos...</p>
-                    </div>
+                    <div id="tiktoksearch-loader" class="loader-inline"><div class="spinner"></div><p>Searching videos...</p></div>
                     <div id="tiktoksearch-result" class="result-box">
                         <div id="tiktoksearch-grid"></div>
                     </div>
@@ -2218,149 +1986,21 @@
         }
 
         // ============================================================
-        // ===== SHARED FUNCTIONS =====
+        // ===== TOOL IMPLEMENTATIONS =====
         // ============================================================
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = message;
-            toast.classList.add('show');
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
-        }
 
-        function formatNumber(num) {
-            if (!num) return '0';
-            if (typeof num === 'string') {
-                const cleaned = num.replace(/[^0-9.]/g, '');
-                if (num.includes('K')) return num;
-                if (num.includes('M')) return num;
-                return cleaned || '0';
-            }
-            num = parseInt(num);
-            if (isNaN(num)) return '0';
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num.toString();
-        }
-
-        function setupVideoPlayer(coverId, playId, videoId) {
-            const cover = document.getElementById(coverId);
-            const play = document.getElementById(playId);
-            const video = document.getElementById(videoId);
-            if (!cover || !play || !video) return;
-
-            function showCover() {
-                cover.classList.remove('hidden');
-                play.classList.remove('hidden');
-            }
-            function hideCover() {
-                cover.classList.add('hidden');
-                play.classList.add('hidden');
-            }
-
-            play.addEventListener('click', () => { video.play(); hideCover(); });
-            video.addEventListener('play', hideCover);
-            video.addEventListener('pause', () => { if (video.currentTime === 0) showCover(); });
-            video.addEventListener('ended', showCover);
-        }
-
-        function downloadFile(url, filename, buttonId, toastMsg = 'Download successful!') {
-            const btn = document.getElementById(buttonId);
-            if (!btn) return;
-            btn.textContent = 'Downloading...';
-            btn.disabled = true;
-
-            fetch(url, { mode: 'cors' })
-                .then(r => { if (!r.ok) throw new Error('Network error'); return r.blob(); })
-                .then(blob => {
-                    const urlBlob = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = urlBlob;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
-                    showToast(toastMsg);
-                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-                    btn.disabled = false;
-                })
-                .catch(() => {
-                    window.open(url, '_blank');
-                    showToast('Download started in new tab');
-                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-                    btn.disabled = false;
-                });
-        }
-
-        function downloadImage(url, filename, buttonId, toastMsg = 'Image downloaded!') {
-            const btn = document.getElementById(buttonId);
-            if (!btn) return;
-            btn.textContent = 'Downloading...';
-            btn.disabled = true;
-
-            fetch(url, { mode: 'cors' })
-                .then(r => { if (!r.ok) throw new Error('Network error'); return r.blob(); })
-                .then(blob => {
-                    const urlBlob = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = urlBlob;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
-                    showToast(toastMsg);
-                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-                    btn.disabled = false;
-                })
-                .catch(() => {
-                    window.open(url, '_blank');
-                    showToast('Download started in new tab');
-                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-                    btn.disabled = false;
-                });
-        }
-
-        // ============================================================
-        // ===== REQUEST MODAL =====
-        // ============================================================
-        function openRequestModal() {
-            document.getElementById('request-modal').classList.add('show');
-        }
-
-        function closeRequestModal() {
-            document.getElementById('request-modal').classList.remove('show');
-            document.getElementById('request-text').value = '';
-        }
-
-        function sendRequest() {
-            const text = document.getElementById('request-text').value.trim();
-            if (!text) { showToast('Please describe the tool you want!'); return; }
-            
-            const botToken = '8988555855:AAE8HoautR88vyCxvXYoFZ2Yz1lz04dP90c';
-            const chatId = '1086203403';
-            const message = `📝 New Tool Request:\n\n${text}`;
-            
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: message })
-            })
-            .then(() => {
-                showToast('Request sent successfully! ✅');
-                closeRequestModal();
-            })
-            .catch(() => {
-                showToast('Failed to send request. Please try again.');
-            });
-        }
-
-        // ============================================================
         // ===== TIKTOK =====
-        // ============================================================
         function initTikTok() {
-            setupVideoPlayer('tiktok-cover', 'tiktok-play', 'tiktok-video');
+            const cover = document.getElementById('tiktok-cover');
+            const play = document.getElementById('tiktok-play');
+            const video = document.getElementById('tiktok-video');
+
+            if (cover && play && video) {
+                play.addEventListener('click', () => { video.play(); cover.classList.add('hidden'); play.classList.add('hidden'); });
+                video.addEventListener('play', () => { cover.classList.add('hidden'); play.classList.add('hidden'); });
+                video.addEventListener('pause', () => { if (video.currentTime === 0) { cover.classList.remove('hidden'); play.classList.remove('hidden'); } });
+                video.addEventListener('ended', () => { cover.classList.remove('hidden'); play.classList.remove('hidden'); });
+            }
 
             document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('tiktok-download-btn').click();
@@ -2419,7 +2059,7 @@
                             document.getElementById('tiktok-shares').textContent = formatNumber(stats.share);
                             document.getElementById('tiktok-duration').textContent = r.duration || '-';
 
-                            document.getElementById('tiktok-save').onclick = () => downloadFile(videoUrl, `tiktok_video_${Date.now()}.mp4`, 'tiktok-save');
+                            document.getElementById('tiktok-save').onclick = () => downloadFile(videoUrl, `tiktok_video_${Date.now()}.mp4`, 'tiktok-save', 'Video downloaded!');
                         } else {
                             showToast('Failed to get video URL');
                             loader.classList.remove('show');
@@ -2442,12 +2082,8 @@
             });
         }
 
-        // ============================================================
         // ===== INSTAGRAM =====
-        // ============================================================
         function initInstagram() {
-            setupVideoPlayer('instagram-cover', 'instagram-play', 'instagram-video');
-
             document.getElementById('instagram-url').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('instagram-download-btn').click();
             });
@@ -2528,9 +2164,7 @@
             });
         }
 
-        // ============================================================
         // ===== YOUTUBE MP4 =====
-        // ============================================================
         function initYtmp4() {
             document.getElementById('ytmp4-url').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('ytmp4-download-btn').click();
@@ -2598,9 +2232,7 @@
             });
         }
 
-        // ============================================================
         // ===== YOUTUBE MP3 =====
-        // ============================================================
         function initYtmp3() {
             document.getElementById('ytmp3-url').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('ytmp3-download-btn').click();
@@ -2670,9 +2302,7 @@
             });
         }
 
-        // ============================================================
         // ===== ARTI NAMA =====
-        // ============================================================
         function initArtiNama() {
             document.getElementById('artinama-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('artinama-search-btn').click();
@@ -2724,9 +2354,7 @@
             });
         }
 
-        // ============================================================
         // ===== SUPER HD =====
-        // ============================================================
         function initSuperHD() {
             document.getElementById('superhd-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('superhd-btn').click();
@@ -2748,31 +2376,37 @@
                 btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Enhancing...`;
 
                 try {
+                    // Fetch the API - it returns direct image
                     const apiUrl = `https://api-faa.my.id/faa/superhd?url=${encodeURIComponent(url)}`;
                     const response = await fetch(apiUrl);
-                    const data = await response.json();
-
-                    if (data.status && data.result) {
-                        let imageUrl = data.result;
-                        if (typeof imageUrl === 'object') {
-                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
-                        }
-
-                        if (imageUrl) {
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                            result.style.display = 'block';
-                            setTimeout(() => result.classList.add('show'), 10);
-
-                            document.getElementById('superhd-image').src = imageUrl;
-                            document.getElementById('superhd-save').onclick = () => downloadImage(imageUrl, `enhanced_image_${Date.now()}.jpg`, 'superhd-save', 'HD image downloaded!');
-                        } else {
-                            showToast('Failed to get enhanced image');
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
+                    
+                    // Check if response is JSON or direct image
+                    const contentType = response.headers.get('content-type') || '';
+                    let imageUrl = null;
+                    
+                    if (contentType.includes('application/json')) {
+                        const data = await response.json();
+                        if (data.status && data.result) {
+                            imageUrl = data.result;
+                            if (typeof imageUrl === 'object') {
+                                imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                            }
                         }
                     } else {
-                        showToast('Failed to enhance image');
+                        // Direct image - use the same URL
+                        imageUrl = apiUrl;
+                    }
+
+                    if (imageUrl) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        document.getElementById('superhd-image').src = imageUrl;
+                        document.getElementById('superhd-save').onclick = () => downloadImage(imageUrl, `enhanced_image_${Date.now()}.jpg`, 'superhd-save', 'HD image downloaded!');
+                    } else {
+                        showToast('Failed to get enhanced image');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
@@ -2788,14 +2422,13 @@
             });
         }
 
-        // ============================================================
         // ===== BRAT =====
-        // ============================================================
         function initBrat(id, apiBase) {
             const input = document.getElementById(id + '-input');
             const btn = document.getElementById(id + '-btn');
             const loader = document.getElementById(id + '-loader');
             const result = document.getElementById(id + '-result');
+            const isVideo = id === 'bratvid';
 
             if (input) {
                 input.addEventListener('keypress', function(e) {
@@ -2817,38 +2450,38 @@
                 try {
                     const apiUrl = `${apiBase}${encodeURIComponent(text)}`;
                     const response = await fetch(apiUrl);
-                    const data = await response.json();
+                    const contentType = response.headers.get('content-type') || '';
+                    let mediaUrl = null;
 
-                    if (data.status && data.result) {
-                        let mediaUrl = data.result;
-                        if (typeof mediaUrl === 'object') {
-                            mediaUrl = mediaUrl.url || mediaUrl.video || mediaUrl.image || Object.values(mediaUrl)[0];
-                        }
-
-                        if (mediaUrl) {
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                            result.style.display = 'block';
-                            setTimeout(() => result.classList.add('show'), 10);
-
-                            if (id === 'bratvid') {
-                                document.getElementById('bratvid-video').src = mediaUrl;
-                                document.getElementById('bratvid-video').load();
-                            } else {
-                                document.getElementById('brat-image').src = mediaUrl;
+                    if (contentType.includes('application/json')) {
+                        const data = await response.json();
+                        if (data.status && data.result) {
+                            mediaUrl = data.result;
+                            if (typeof mediaUrl === 'object') {
+                                mediaUrl = mediaUrl.url || mediaUrl.video || mediaUrl.image || Object.values(mediaUrl)[0];
                             }
-
-                            document.getElementById(id + '-save').onclick = () => {
-                                const ext = id === 'bratvid' ? 'mp4' : 'jpg';
-                                downloadFile(mediaUrl, `brat_${Date.now()}.${ext}`, id + '-save', `${id === 'bratvid' ? 'Video' : 'Image'} downloaded!`);
-                            };
-                        } else {
-                            showToast('Failed to get result');
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
                         }
                     } else {
-                        showToast('Failed to generate');
+                        mediaUrl = apiUrl;
+                    }
+
+                    if (mediaUrl) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        if (isVideo) {
+                            document.getElementById('bratvid-video').src = mediaUrl;
+                            document.getElementById('bratvid-video').load();
+                        } else {
+                            document.getElementById('brat-image').src = mediaUrl;
+                        }
+
+                        const ext = isVideo ? 'mp4' : 'jpg';
+                        document.getElementById(id + '-save').onclick = () => downloadFile(mediaUrl, `brat_${Date.now()}.${ext}`, id + '-save', `${isVideo ? 'Video' : 'Image'} downloaded!`);
+                    } else {
+                        showToast('Failed to get result');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
@@ -2864,9 +2497,7 @@
             });
         }
 
-        // ============================================================
         // ===== PINTEREST =====
-        // ============================================================
         function initPinterest() {
             document.getElementById('pinterest-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('pinterest-btn').click();
@@ -2904,7 +2535,7 @@
                             const item = document.createElement('div');
                             item.className = 'img-item';
                             item.innerHTML = `
-                                <img src="${imgUrl}" alt="Pinterest result ${index+1}" loading="lazy">
+                                <img src="${imgUrl}" alt="Pinterest result ${index+1}" loading="lazy" onerror="this.style.display='none'">
                                 <div class="img-actions">
                                     <button class="save-btn-sm" onclick="downloadImage('${imgUrl}', 'pinterest_${Date.now()}_${index}.jpg', null, 'Image downloaded!')">
                                         <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
@@ -2930,9 +2561,7 @@
             });
         }
 
-        // ============================================================
         // ===== QR CREATE =====
-        // ============================================================
         function initQrCreate() {
             document.getElementById('qrcreate-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('qrcreate-btn').click();
@@ -2956,27 +2585,29 @@
                 try {
                     const apiUrl = `https://api-faa.my.id/faa/qr-create?text=${encodeURIComponent(text)}`;
                     const response = await fetch(apiUrl);
-                    const data = await response.json();
+                    const contentType = response.headers.get('content-type') || '';
+                    let imageUrl = null;
 
-                    if (data.status && data.result) {
-                        let imageUrl = data.result;
-                        if (typeof imageUrl === 'object') {
-                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                    if (contentType.includes('application/json')) {
+                        const data = await response.json();
+                        if (data.status && data.result) {
+                            imageUrl = data.result;
+                            if (typeof imageUrl === 'object') {
+                                imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                            }
                         }
+                    } else {
+                        imageUrl = apiUrl;
+                    }
 
-                        if (imageUrl) {
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                            result.style.display = 'block';
-                            setTimeout(() => result.classList.add('show'), 10);
+                    if (imageUrl) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
 
-                            document.getElementById('qrcreate-image').src = imageUrl;
-                            document.getElementById('qrcreate-save').onclick = () => downloadImage(imageUrl, `qr_${Date.now()}.png`, 'qrcreate-save', 'QR code downloaded!');
-                        } else {
-                            showToast('Failed to generate QR code');
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                        }
+                        document.getElementById('qrcreate-image').src = imageUrl;
+                        document.getElementById('qrcreate-save').onclick = () => downloadImage(imageUrl, `qr_${Date.now()}.png`, 'qrcreate-save', 'QR code downloaded!');
                     } else {
                         showToast('Failed to generate QR code');
                         loader.classList.remove('show');
@@ -2994,9 +2625,7 @@
             });
         }
 
-        // ============================================================
         // ===== QR DETECT =====
-        // ============================================================
         function initQrDetect() {
             document.getElementById('qrdetect-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('qrdetect-btn').click();
@@ -3058,9 +2687,7 @@
             });
         }
 
-        // ============================================================
         // ===== RANDOM IMAGE =====
-        // ============================================================
         function initRandomImage(id, apiUrl) {
             function fetchRandom() {
                 const loader = document.getElementById(id + '-loader');
@@ -3077,16 +2704,24 @@
                 }
 
                 fetch(apiUrl)
-                    .then(r => r.json())
-                    .then(data => {
-                        let imageUrl = null;
-                        if (data.status && data.result) {
-                            imageUrl = data.result;
-                            if (typeof imageUrl === 'object') {
-                                imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
-                            }
+                    .then(response => {
+                        const contentType = response.headers.get('content-type') || '';
+                        if (contentType.includes('application/json')) {
+                            return response.json().then(data => {
+                                let imageUrl = null;
+                                if (data.status && data.result) {
+                                    imageUrl = data.result;
+                                    if (typeof imageUrl === 'object') {
+                                        imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                                    }
+                                }
+                                return imageUrl;
+                            });
+                        } else {
+                            return apiUrl;
                         }
-
+                    })
+                    .then(imageUrl => {
                         if (imageUrl) {
                             loader.classList.remove('show');
                             loader.style.display = 'none';
@@ -3120,13 +2755,10 @@
 
             const btn = document.getElementById(id + '-btn');
             if (btn) btn.addEventListener('click', fetchRandom);
-            // Auto fetch on load
             setTimeout(fetchRandom, 500);
         }
 
-        // ============================================================
         // ===== MEME GENERATOR =====
-        // ============================================================
         function initMemeGen() {
             document.getElementById('memegen-btn').addEventListener('click', async function() {
                 const top = document.getElementById('memegen-top').value.trim() || ' ';
@@ -3149,27 +2781,29 @@
                 try {
                     const apiUrl = `https://api-faa.my.id/faa/smeme?text_atas=${encodeURIComponent(top)}&text_bawah=${encodeURIComponent(bottom)}&background=${encodeURIComponent(bg)}`;
                     const response = await fetch(apiUrl);
-                    const data = await response.json();
+                    const contentType = response.headers.get('content-type') || '';
+                    let imageUrl = null;
 
-                    if (data.status && data.result) {
-                        let imageUrl = data.result;
-                        if (typeof imageUrl === 'object') {
-                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                    if (contentType.includes('application/json')) {
+                        const data = await response.json();
+                        if (data.status && data.result) {
+                            imageUrl = data.result;
+                            if (typeof imageUrl === 'object') {
+                                imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                            }
                         }
+                    } else {
+                        imageUrl = apiUrl;
+                    }
 
-                        if (imageUrl) {
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                            result.style.display = 'block';
-                            setTimeout(() => result.classList.add('show'), 10);
+                    if (imageUrl) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
 
-                            document.getElementById('memegen-image').src = imageUrl;
-                            document.getElementById('memegen-save').onclick = () => downloadImage(imageUrl, `meme_${Date.now()}.jpg`, 'memegen-save', 'Meme downloaded!');
-                        } else {
-                            showToast('Failed to generate meme');
-                            loader.classList.remove('show');
-                            loader.style.display = 'none';
-                        }
+                        document.getElementById('memegen-image').src = imageUrl;
+                        document.getElementById('memegen-save').onclick = () => downloadImage(imageUrl, `meme_${Date.now()}.jpg`, 'memegen-save', 'Meme downloaded!');
                     } else {
                         showToast('Failed to generate meme');
                         loader.classList.remove('show');
@@ -3187,9 +2821,7 @@
             });
         }
 
-        // ============================================================
         // ===== TIKTOK SEARCH =====
-        // ============================================================
         function initTikTokSearch() {
             document.getElementById('tiktoksearch-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') document.getElementById('tiktoksearch-btn').click();
@@ -3226,13 +2858,7 @@
                         
                         data.result.forEach((video, index) => {
                             const item = document.createElement('div');
-                            item.style.cssText = `
-                                background: rgba(255,255,255,0.015);
-                                border: 1px solid rgba(167,139,250,0.04);
-                                border-radius: 10px;
-                                padding: 0.8rem;
-                                margin-bottom: 0.8rem;
-                            `;
+                            item.className = 'tt-search-item';
                             
                             const videoUrl = video.url_nowm || video.url_wm || null;
                             const cover = video.cover || '';
@@ -3241,18 +2867,16 @@
                             const stats = video.stats || {};
                             
                             item.innerHTML = `
-                                <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-                                    ${cover ? `<img src="${cover}" style="width:120px;height:80px;object-fit:cover;border-radius:8px;flex-shrink:0;" alt="Cover">` : ''}
-                                    <div style="flex:1;min-width:150px;">
-                                        <div style="font-size:0.8rem;font-weight:400;color:#f0ebff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${title}</div>
-                                        <div style="font-size:0.65rem;color:#5a4a7a;margin-top:0.2rem;">By: ${author}</div>
-                                        <div style="font-size:0.6rem;color:#4a3a6a;margin-top:0.2rem;">
-                                            👁 ${formatNumber(stats.views)} ❤ ${formatNumber(stats.likes)} 💬 ${formatNumber(stats.comments)}
-                                        </div>
+                                <div class="tt-content">
+                                    ${cover ? `<img src="${cover}" class="tt-cover" alt="Cover" onerror="this.style.display='none'">` : ''}
+                                    <div class="tt-info">
+                                        <div class="tt-title">${title}</div>
+                                        <div class="tt-author">By: ${author}</div>
+                                        <div class="tt-stats">👁 ${formatNumber(stats.views)} ❤ ${formatNumber(stats.likes)} 💬 ${formatNumber(stats.comments)}</div>
                                         ${videoUrl ? `
-                                            <div style="margin-top:0.4rem;display:flex;gap:0.4rem;flex-wrap:wrap;">
-                                                <button onclick="downloadFile('${videoUrl}', 'tiktok_search_${Date.now()}_${index}.mp4', null, 'Video downloaded!')" style="padding:0.2rem 0.8rem;border:none;border-radius:6px;font-size:0.6rem;cursor:pointer;background:rgba(16,185,129,0.06);color:#34d399;border:1px solid rgba(16,185,129,0.04);font-family:'Inter',sans-serif;display:flex;align-items:center;gap:0.3rem;">
-                                                    <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;"><use href="#icon-download"/></svg> Download
+                                            <div class="tt-actions">
+                                                <button class="dl-btn" onclick="downloadFile('${videoUrl}', 'tiktok_search_${Date.now()}_${index}.mp4', null, 'Video downloaded!')">
+                                                    <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
                                                 </button>
                                             </div>
                                         ` : ''}
@@ -3278,11 +2902,10 @@
             });
         }
 
-        console.log('VStudios Tools Super Loaded!');
-        console.log('✅ 20+ Tools Available');
-        console.log('✅ Search Function');
-        console.log('✅ Telegram Developer & Request Tool');
-        console.log('✅ All Download Buttons');
+        console.log('✅ VStudios Tools Super Loaded!');
+        console.log('✅ 17 Tools Available');
+        console.log('✅ All download buttons work!');
+        console.log('✅ Direct image/video handling fixed!');
     </script>
 </body>
 </html>
