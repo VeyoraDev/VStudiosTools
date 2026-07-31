@@ -45,50 +45,63 @@
 
         .loader-wrapper { text-align: center; }
 
-        .loader-cube {
+        .loader-ring {
             position: relative;
             width: 80px;
             height: 80px;
             margin: 0 auto;
         }
 
-        .loader-cube .cube {
+        .loader-ring .ring {
             position: absolute;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(108, 43, 217, 0.1));
-            border: 1px solid rgba(167, 139, 250, 0.08);
-            border-radius: 4px;
-            animation: cubeMove 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            animation: ringSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         }
 
-        .loader-cube .cube:nth-child(1) { top: 0; left: 0; animation-delay: 0s; }
-        .loader-cube .cube:nth-child(2) { top: 0; right: 0; animation-delay: 0.3s; }
-        .loader-cube .cube:nth-child(3) { bottom: 0; left: 0; animation-delay: 0.6s; }
-        .loader-cube .cube:nth-child(4) { bottom: 0; right: 0; animation-delay: 0.9s; }
-
-        @keyframes cubeMove {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            25% { transform: scale(1.3) rotate(10deg); opacity: 1; }
-            50% { transform: scale(0.9) rotate(-5deg); opacity: 0.6; }
-            75% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+        .loader-ring .ring:nth-child(1) {
+            border-top-color: #a78bfa;
+            animation-delay: 0s;
+        }
+        .loader-ring .ring:nth-child(2) {
+            border-right-color: #7c3aed;
+            animation-delay: 0.2s;
+            width: 75%;
+            height: 75%;
+            top: 12.5%;
+            left: 12.5%;
+        }
+        .loader-ring .ring:nth-child(3) {
+            border-bottom-color: #4c1d95;
+            animation-delay: 0.4s;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
         }
 
-        .loader-glow {
+        @keyframes ringSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-ring .dot {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, rgba(167, 139, 250, 0.06), transparent 70%);
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #a78bfa, #6c2bd9);
             border-radius: 50%;
-            animation: glowPulse 2s ease-in-out infinite;
+            animation: dotPulse 1.2s ease-in-out infinite;
         }
 
-        @keyframes glowPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-            50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.6; }
+        @keyframes dotPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
         }
 
         .loader-text .brand {
@@ -99,7 +112,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 8px;
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         .loader-text .brand::after {
@@ -232,9 +245,91 @@
             font-weight: 300;
         }
 
+        /* ===== BANNER BAWAH ===== */
+        .banner-bottom {
+            max-width: 1100px;
+            margin: 0.8rem auto 0;
+            display: flex;
+            gap: 0.8rem;
+            padding: 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .banner-bottom .telegram-box {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(0, 136, 204, 0.06);
+            border: 1px solid rgba(0, 136, 204, 0.08);
+            border-radius: 12px;
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: #f0ebff;
+        }
+
+        .banner-bottom .telegram-box:hover {
+            background: rgba(0, 136, 204, 0.1);
+            border-color: rgba(0, 136, 204, 0.15);
+        }
+
+        .banner-bottom .telegram-box svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .banner-bottom .telegram-box .label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #6a8aaa;
+        }
+
+        .banner-bottom .telegram-box .label strong {
+            color: #4a9aca;
+            font-weight: 500;
+        }
+
+        .banner-bottom .request-box {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(167, 139, 250, 0.03);
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            border-radius: 12px;
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .banner-bottom .request-box:hover {
+            background: rgba(167, 139, 250, 0.06);
+            border-color: rgba(167, 139, 250, 0.08);
+        }
+
+        .banner-bottom .request-box svg {
+            width: 20px;
+            height: 20px;
+            stroke: #a78bfa;
+            fill: none;
+            stroke-width: 1.8;
+        }
+
+        .banner-bottom .request-box .label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #6a5a8a;
+        }
+
         /* ===== TOOLS SECTION ===== */
         .tools-section {
-            padding: 2rem 2rem 4rem;
+            padding: 1.5rem 2rem 3rem;
             background: rgba(0, 0, 0, 0.15);
         }
 
@@ -243,30 +338,72 @@
         .tools-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
-        .tools-header svg { width: 22px; height: 22px; opacity: 0.3; }
-        .tools-header h2 {
+        .tools-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tools-header-left svg { width: 22px; height: 22px; opacity: 0.3; }
+        .tools-header-left h2 {
             font-size: 1.3rem;
             font-weight: 300;
             color: #a78bfa;
             letter-spacing: 4px;
         }
 
+        .tools-header-left .total-badge {
+            font-size: 0.65rem;
+            color: #5a4a7a;
+            background: rgba(167, 139, 250, 0.04);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            letter-spacing: 0.5px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            border-radius: 10px;
+            padding: 0.3rem 0.8rem;
+        }
+
+        .search-box input {
+            background: none;
+            border: none;
+            color: #f0ebff;
+            font-size: 0.75rem;
+            padding: 0.4rem 0;
+            width: 140px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            outline: none;
+        }
+
+        .search-box input::placeholder { color: #3a2a5a; }
+        .search-box svg { width: 16px; height: 16px; stroke: #4a3a6a; fill: none; stroke-width: 2; }
+
         .tools-divider {
             width: 30px;
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.15), transparent);
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
         }
 
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .tool-card {
@@ -275,18 +412,20 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(167, 139, 250, 0.04);
             border-radius: 14px;
-            padding: 1.8rem 1.5rem;
+            padding: 1.2rem 1rem;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            min-height: 170px;
+            min-height: 130px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
+        .tool-card.hidden { display: none; }
 
         .tool-card::after {
             content: '';
@@ -307,15 +446,15 @@
         }
 
         .tool-card .icon-box {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: rgba(167, 139, 250, 0.03);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
-            margin-bottom: 0.8rem;
+            padding: 8px;
+            margin-bottom: 0.5rem;
             transition: all 0.5s ease;
             border: 1px solid rgba(167, 139, 250, 0.03);
         }
@@ -335,44 +474,18 @@
         }
 
         .tool-card h3 {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #f0ebff;
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.1rem;
             letter-spacing: -0.2px;
         }
 
         .tool-card p {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #5a4a7a;
-            margin-bottom: 1rem;
             font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .tool-card .btn {
-            background: rgba(167, 139, 250, 0.04);
-            color: #7a6a9a;
-            border: 1px solid rgba(167, 139, 250, 0.04);
-            padding: 0.4rem 1.6rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            letter-spacing: 1px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .tool-card:not(.coming-soon):hover .btn {
-            background: rgba(167, 139, 250, 0.08);
-            border-color: rgba(167, 139, 250, 0.06);
-            color: #a78bfa;
-        }
-
-        .tool-card .btn:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
+            letter-spacing: 0.3px;
         }
 
         /* ===== TOOL PAGE ===== */
@@ -399,6 +512,7 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .back-btn {
@@ -462,7 +576,7 @@
             gap: 0.8rem;
         }
 
-        .input-group input {
+        .input-group input, .input-group textarea {
             flex: 1;
             padding: 0.75rem 1.2rem;
             border: 1px solid rgba(167, 139, 250, 0.04);
@@ -475,13 +589,18 @@
             font-weight: 300;
         }
 
-        .input-group input:focus {
+        .input-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
             outline: none;
             border-color: rgba(167, 139, 250, 0.08);
             box-shadow: 0 0 40px rgba(76, 29, 149, 0.02);
         }
 
-        .input-group input::placeholder {
+        .input-group input::placeholder, .input-group textarea::placeholder {
             color: #2a1a4a;
             font-weight: 300;
             font-size: 0.8rem;
@@ -567,63 +686,6 @@
         .result-box.show {
             display: block;
             animation: fadeSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* YouTube Result */
-        .yt-result {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            padding: 0.3rem;
-        }
-
-        .yt-result .thumbnail {
-            width: 120px;
-            min-width: 120px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #0a0518;
-        }
-
-        .yt-result .thumbnail img {
-            width: 100%;
-            display: block;
-        }
-
-        .yt-result .info {
-            flex: 1;
-        }
-
-        .yt-result .info .title {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #f0ebff;
-            line-height: 1.4;
-            margin-bottom: 0.3rem;
-        }
-
-        .yt-result .info .duration {
-            font-size: 0.7rem;
-            color: #5a4a7a;
-            margin-bottom: 0.5rem;
-        }
-
-        .yt-result .info .meta {
-            font-size: 0.7rem;
-            color: #4a3a6a;
-        }
-
-        .yt-result .info .format-badge {
-            display: inline-block;
-            padding: 0.15rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            background: rgba(167, 139, 250, 0.06);
-            color: #a78bfa;
-            border: 1px solid rgba(167, 139, 250, 0.04);
-            margin-top: 0.3rem;
         }
 
         /* ===== VIDEO WRAPPER ===== */
@@ -746,10 +808,12 @@
             display: flex;
             gap: 0.8rem;
             margin-top: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .result-actions .save-btn {
             flex: 1;
+            min-width: 120px;
             padding: 0.65rem;
             border: none;
             border-radius: 10px;
@@ -785,7 +849,124 @@
             stroke-width: 2;
         }
 
-        /* ===== ARTI NAMA RESULT ===== */
+        /* ===== IMAGE GRID ===== */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .image-grid .img-item {
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0a0518;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .image-grid .img-item:hover {
+            border-color: rgba(167, 139, 250, 0.08);
+            transform: scale(1.02);
+        }
+
+        .image-grid .img-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-grid .img-item .img-actions {
+            padding: 0.4rem;
+            display: flex;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .image-grid .img-item .img-actions .save-btn-sm {
+            padding: 0.2rem 0.6rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(16, 185, 129, 0.06);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.04);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .image-grid .img-item .img-actions .save-btn-sm:hover {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.06);
+        }
+
+        .image-grid .img-item .img-actions .save-btn-sm svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== YOUTUBE RESULT ===== */
+        .yt-result {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 0.3rem;
+        }
+
+        .yt-result .thumbnail {
+            width: 120px;
+            min-width: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0a0518;
+        }
+
+        .yt-result .thumbnail img {
+            width: 100%;
+            display: block;
+        }
+
+        .yt-result .info {
+            flex: 1;
+        }
+
+        .yt-result .info .title {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #f0ebff;
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+        }
+
+        .yt-result .info .duration {
+            font-size: 0.7rem;
+            color: #5a4a7a;
+            margin-bottom: 0.5rem;
+        }
+
+        .yt-result .info .format-badge {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            background: rgba(167, 139, 250, 0.06);
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== ART NAMA ===== */
         .arti-result {
             padding: 0.5rem 0.3rem;
         }
@@ -858,6 +1039,108 @@
             stroke-width: 2.5;
         }
 
+        /* ===== REQUEST MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 2, 16, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal-box {
+            background: #0a0518;
+            border: 1px solid rgba(167, 139, 250, 0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 450px;
+            width: 90%;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        .modal-box h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: #f0ebff;
+        }
+
+        .modal-box p {
+            font-size: 0.8rem;
+            color: #5a4a7a;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-box .input-group {
+            flex-direction: column;
+        }
+
+        .modal-box .input-group textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 0.8rem;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.015);
+            color: #f0ebff;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            resize: vertical;
+        }
+
+        .modal-box .input-group textarea:focus {
+            outline: none;
+            border-color: rgba(167, 139, 250, 0.08);
+        }
+
+        .modal-box .modal-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .modal-box .modal-actions button {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-box .modal-actions .send-btn {
+            background: rgba(0, 136, 204, 0.06);
+            color: #4a9aca;
+            border: 1px solid rgba(0, 136, 204, 0.04);
+        }
+
+        .modal-box .modal-actions .send-btn:hover {
+            background: rgba(0, 136, 204, 0.1);
+            border-color: rgba(0, 136, 204, 0.08);
+        }
+
+        .modal-box .modal-actions .cancel-btn {
+            background: rgba(255, 255, 255, 0.02);
+            color: #5a4a7a;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+        }
+
+        .modal-box .modal-actions .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             background: rgba(0, 0, 0, 0.15);
@@ -878,20 +1161,23 @@
         @media (max-width: 768px) {
             .banner-overlay h1 { font-size: 1.8rem; letter-spacing: 3px; }
             .banner-overlay p { font-size: 0.8rem; letter-spacing: 6px; }
-            .tools-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+            .tools-grid { grid-template-columns: 1fr; gap: 0.6rem; }
             .input-group { flex-direction: column; }
             .input-group .action-btn { justify-content: center; }
             .tool-page { padding: 68px 1rem 3rem; }
             .navbar { padding: 0 1rem; height: 48px; }
-            .tools-header h2 { font-size: 1.1rem; }
-            .tool-card { min-height: 140px; padding: 1.3rem 1rem; }
+            .tools-header { flex-direction: column; align-items: stretch; }
+            .search-box input { width: 100%; }
+            .tool-card { min-height: 110px; padding: 1rem 0.8rem; }
             .result-actions { flex-direction: column; }
             .video-info .stats { gap: 0.5rem; font-size: 0.6rem; }
             #toast { padding: 0.6rem 1.2rem; font-size: 0.75rem; bottom: 1.2rem; }
-            .arti-result .nama-display { font-size: 1.5rem; }
-            .arti-result .arti-text { font-size: 0.78rem; padding: 0.8rem; }
             .yt-result { flex-direction: column; align-items: center; }
             .yt-result .thumbnail { width: 100%; max-width: 200px; min-width: unset; }
+            .banner-bottom { flex-direction: column; padding: 0 1rem; }
+            .image-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .image-grid .img-item img { height: 120px; }
+            .modal-box { padding: 1.5rem; }
         }
 
         @media (max-width: 480px) {
@@ -903,9 +1189,10 @@
             .loader-text .brand { font-size: 1.6rem; letter-spacing: 5px; }
             .video-wrapper .play-overlay { width: 44px; height: 44px; }
             .video-wrapper .play-overlay svg { width: 18px; height: 18px; }
-            .tool-card .icon-box { width: 40px; height: 40px; padding: 8px; }
-            .tool-card h3 { font-size: 0.85rem; }
-            .tool-card p { font-size: 0.65rem; }
+            .tool-card .icon-box { width: 34px; height: 34px; padding: 6px; }
+            .tool-card h3 { font-size: 0.7rem; }
+            .image-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+            .image-grid .img-item img { height: 100px; }
         }
     </style>
 </head>
@@ -914,6 +1201,7 @@
     <!-- ===== SVG SPRITES ===== -->
     <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
         <defs>
+            <!-- Logo -->
             <symbol id="icon-logo" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8">
                 <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                 <path d="M2 17l10 5 10-5"/>
@@ -924,7 +1212,7 @@
                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
             </symbol>
 
-            <!-- ===== FIXED TIKTOK ICON ===== -->
+            <!-- FIXED TIKTOK ICON -->
             <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19.59 6.87a4.43 4.43 0 0 1-2.75-2.27 4.42 4.42 0 0 0-1.19-1.01 4.53 4.53 0 0 0-1.51-.59c-1.11-.15-2.15.02-2.82.69-.51.51-.78 1.19-.78 1.89v9.43a3.34 3.34 0 0 1-1.46 2.74c-.61.42-1.37.65-2.19.65-.86 0-1.68-.29-2.36-.81a3.27 3.27 0 0 1-1.68-2.87 3.29 3.29 0 0 1 2.18-3.48c.75-.31 1.58-.39 2.38-.22.36.08.7.21 1.02.39v-4.4a4.11 4.11 0 0 0-1.17-.24 5.1 5.1 0 0 0-.69-.04c-2.07.1-3.87 1.14-4.73 2.75a5.11 5.11 0 0 0-.24 4.12c.17.67.52 1.28 1.03 1.78a5.2 5.2 0 0 0 1.92 1.17c.71.28 1.47.35 2.21.2.74-.15 1.42-.52 1.97-1.09.24-.24.44-.51.61-.81.17-.3.29-.61.36-.94.03-.17.05-.34.06-.51V3.78c.01-.07-.01-.13-.04-.19-.01-.03-.01-.05-.01-.08.03-.31.07-.62.07-.92v-.01c.21-1.02.72-1.96 1.43-2.66a4.62 4.62 0 0 1 1.98-1.19c.31-.1.62-.16.94-.17h.1c.88.04 1.72.39 2.42.98l.01.01c.16.14.31.28.45.43.12.13.23.27.33.41l.01.01c.33.47.57 1.01.72 1.56.15.57.22 1.14.2 1.72h-.01a4.2 4.2 0 0 0 1.38 3.16c.54.48 1.17.81 1.82 1 .2.06.41.1.62.13v3.13c-.52-.1-1.05-.18-1.57-.34a7.53 7.53 0 0 1-2.91-1.97z"/>
             </symbol>
@@ -949,6 +1237,43 @@
             <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
+            </symbol>
+
+            <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+            </symbol>
+
+            <symbol id="icon-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </symbol>
+
+            <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+                <line x1="14" y1="14" x2="21" y2="14"/>
+                <line x1="14" y1="17" x2="21" y2="17"/>
+                <line x1="17" y1="14" x2="17" y2="21"/>
+            </symbol>
+
+            <symbol id="icon-random" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </symbol>
+
+            <symbol id="icon-meme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </symbol>
+
+            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </symbol>
 
             <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -988,9 +1313,27 @@
                 <polyline points="20 6 9 17 4 12"/>
             </symbol>
 
-            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <symbol id="icon-telegram" viewBox="0 0 24 24" fill="none" stroke="#4a9aca" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </symbol>
+
+            <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </symbol>
+
+            <symbol id="icon-hd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <text x="3" y="18" font-size="16" font-weight="bold" fill="currentColor">HD</text>
+            </symbol>
+
+            <symbol id="icon-brat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </symbol>
+
+            <symbol id="icon-pinterest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 4.2 2.65 7.8 6.35 9.2-.1-.6-.15-1.5-.05-2.2l.55-2.3c-.35-.7-.35-1.3-.35-2 0-1.9 1.1-3.4 2.5-3.4 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.2.7.35 1.3 1.05 1.3 1.25 0 2.2-1.3 2.2-3.2 0-1.7-1.2-2.8-2.9-2.8-1.95 0-3.1 1.45-3.1 3.0 0 .6.2 1.2.6 1.6.05.05.05.1.05.15-.1.4-.3 1.5-.35 1.7-.05.25-.2.3-.4.2-1.5-.65-2.4-2.6-2.4-4.15 0-3.4 2.45-6.5 7.1-6.5 3.7 0 6.6 2.65 6.6 6.2 0 3.7-2.3 6.7-5.5 6.7-1.1 0-2.1-.55-2.4-1.2 0 0-.55 2.1-.65 2.6-.25.9-1.0 2.0-1.5 2.7 1.15.35 2.35.55 3.6.55 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
             </symbol>
         </defs>
     </svg>
@@ -998,12 +1341,11 @@
     <!-- ===== LOADING ===== -->
     <div id="loading-screen">
         <div class="loader-wrapper">
-            <div class="loader-cube">
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="loader-glow"></div>
+            <div class="loader-ring">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="dot"></div>
             </div>
             <div class="loader-text">
                 <span class="brand">VStudios</span>
@@ -1016,6 +1358,24 @@
     <div id="toast">
         <svg viewBox="0 0 24 24"><use href="#icon-check"/></svg>
         <span id="toast-message">Success!</span>
+    </div>
+
+    <!-- ===== REQUEST MODAL ===== -->
+    <div id="request-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Request Tool</h3>
+            <p>Suggest a new tool or feature you'd like to see!</p>
+            <div class="input-group">
+                <textarea id="request-text" placeholder="Describe the tool you want..."></textarea>
+                <div class="modal-actions">
+                    <button class="cancel-btn" onclick="closeRequestModal()">Cancel</button>
+                    <button class="send-btn" onclick="sendRequest()">
+                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;display:inline;vertical-align:middle;"><use href="#icon-send"/></svg>
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ===== MAIN CONTENT ===== -->
@@ -1047,323 +1407,40 @@
                 </div>
             </section>
 
+            <!-- Banner Bottom: Telegram + Request -->
+            <div class="banner-bottom">
+                <a href="https://t.me/vyoraci" target="_blank" class="telegram-box">
+                    <svg viewBox="0 0 24 24"><use href="#icon-telegram"/></svg>
+                    <span class="label"><strong>Telegram Developer</strong> @vyoraci</span>
+                </a>
+                <div class="request-box" onclick="openRequestModal()">
+                    <svg viewBox="0 0 24 24"><use href="#icon-send"/></svg>
+                    <span class="label">Request Tool</span>
+                </div>
+            </div>
+
             <section class="tools-section">
                 <div class="tools-container">
                     <div class="tools-header">
-                        <svg viewBox="0 0 24 24"><use href="#icon-tools"/></svg>
-                        <h2>Tools</h2>
+                        <div class="tools-header-left">
+                            <svg viewBox="0 0 24 24"><use href="#icon-tools"/></svg>
+                            <h2>Tools</h2>
+                            <span class="total-badge" id="total-tools">20 Tools</span>
+                        </div>
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+                            <input type="text" id="search-tools" placeholder="Search tools..." oninput="filterTools(this.value)">
+                        </div>
                     </div>
                     <div class="tools-divider"></div>
-                    <div class="tools-grid">
-                        <!-- TikTok -->
-                        <div class="tool-card" onclick="openTool('tiktok')">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24"><use href="#icon-tiktok"/></svg>
-                            </div>
-                            <h3>TikTok Downloader</h3>
-                            <p>Download videos without watermark</p>
-                            <button class="btn">Open</button>
-                        </div>
-
-                        <!-- Instagram -->
-                        <div class="tool-card" onclick="openTool('instagram')">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
-                            </div>
-                            <h3>Instagram Downloader</h3>
-                            <p>Download reels & videos</p>
-                            <button class="btn">Open</button>
-                        </div>
-
-                        <!-- YouTube MP4 -->
-                        <div class="tool-card" onclick="openTool('ytmp4')">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
-                            </div>
-                            <h3>YouTube MP4</h3>
-                            <p>Download YouTube videos (MP4)</p>
-                            <button class="btn">Open</button>
-                        </div>
-
-                        <!-- YouTube MP3 -->
-                        <div class="tool-card" onclick="openTool('ytmp3')">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24"><use href="#icon-music"/></svg>
-                            </div>
-                            <h3>YouTube MP3</h3>
-                            <p>Download YouTube audio (MP3)</p>
-                            <button class="btn">Open</button>
-                        </div>
-
-                        <!-- Arti Nama -->
-                        <div class="tool-card" onclick="openTool('artinama')">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24"><use href="#icon-user"/></svg>
-                            </div>
-                            <h3>Arti Nama</h3>
-                            <p>Discover the meaning of your name</p>
-                            <button class="btn">Open</button>
-                        </div>
-
-                        <!-- Coming Soon -->
-                        <div class="tool-card coming-soon">
-                            <div class="icon-box">
-                                <svg viewBox="0 0 24 24" stroke="#6a5a8a" fill="none" stroke-width="1.8">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <line x1="12" y1="8" x2="12" y2="12"/>
-                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
-                                </svg>
-                            </div>
-                            <h3>More Tools</h3>
-                            <p>Coming soon</p>
-                            <button class="btn" disabled>Soon</button>
-                        </div>
+                    <div class="tools-grid" id="tools-grid">
+                        <!-- Tool cards akan di generate oleh JavaScript -->
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- ===== TIKTOK ===== -->
-        <div id="tool-tiktok" class="tool-page">
-            <div class="tool-page-inner">
-                <div class="tool-page-header">
-                    <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                    </button>
-                    <div>
-                        <div class="tool-page-title">TikTok Downloader</div>
-                        <div class="tool-page-sub">Paste link & download video without watermark</div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <div class="input-group">
-                        <input type="text" id="tiktok-url" placeholder="Paste TikTok link here...">
-                        <button id="tiktok-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                        </button>
-                    </div>
-                </div>
-
-                <div id="tiktok-loader" class="loader-inline">
-                    <div class="spinner"></div>
-                    <p>Processing video...</p>
-                </div>
-
-                <div id="tiktok-result" class="result-box">
-                    <div class="video-wrapper">
-                        <img id="tiktok-cover" class="cover-img" src="" alt="Video cover">
-                        <div id="tiktok-play" class="play-overlay">
-                            <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
-                        </div>
-                        <video id="tiktok-video" controls></video>
-                    </div>
-                    <div class="video-info">
-                        <div class="title" id="tiktok-title">Loading...</div>
-                        <div class="stats" id="tiktok-stats">
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-eye"/></svg> <span id="tiktok-views">-</span></span>
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="tiktok-likes">-</span></span>
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="tiktok-comments">-</span></span>
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-share"/></svg> <span id="tiktok-shares">-</span></span>
-                            <span>⏱ <span id="tiktok-duration">-</span></span>
-                        </div>
-                        <div class="author" id="tiktok-author">By: -</div>
-                    </div>
-                    <div class="result-actions">
-                        <button id="tiktok-save" class="save-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Video
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== INSTAGRAM ===== -->
-        <div id="tool-instagram" class="tool-page">
-            <div class="tool-page-inner">
-                <div class="tool-page-header">
-                    <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                    </button>
-                    <div>
-                        <div class="tool-page-title">Instagram Downloader</div>
-                        <div class="tool-page-sub">Paste link & download reels or videos</div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <div class="input-group">
-                        <input type="text" id="instagram-url" placeholder="Paste Instagram link here...">
-                        <button id="instagram-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                        </button>
-                    </div>
-                </div>
-
-                <div id="instagram-loader" class="loader-inline">
-                    <div class="spinner"></div>
-                    <p>Processing video...</p>
-                </div>
-
-                <div id="instagram-result" class="result-box">
-                    <div class="video-wrapper">
-                        <img id="instagram-cover" class="cover-img" src="" alt="Video cover">
-                        <div id="instagram-play" class="play-overlay">
-                            <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
-                        </div>
-                        <video id="instagram-video" controls></video>
-                    </div>
-                    <div class="video-info">
-                        <div class="title" id="instagram-title">Loading...</div>
-                        <div class="stats" id="instagram-stats">
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="instagram-likes">-</span></span>
-                            <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="instagram-comments">-</span></span>
-                        </div>
-                        <div class="author" id="instagram-author">By: -</div>
-                    </div>
-                    <div class="result-actions">
-                        <button id="instagram-save" class="save-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== YOUTUBE MP4 ===== -->
-        <div id="tool-ytmp4" class="tool-page">
-            <div class="tool-page-inner">
-                <div class="tool-page-header">
-                    <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                    </button>
-                    <div>
-                        <div class="tool-page-title">YouTube MP4</div>
-                        <div class="tool-page-sub">Download YouTube videos in MP4 format</div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <div class="input-group">
-                        <input type="text" id="ytmp4-url" placeholder="Paste YouTube link here...">
-                        <button id="ytmp4-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
-                        </button>
-                    </div>
-                </div>
-
-                <div id="ytmp4-loader" class="loader-inline">
-                    <div class="spinner"></div>
-                    <p>Fetching video...</p>
-                </div>
-
-                <div id="ytmp4-result" class="result-box">
-                    <div class="yt-result">
-                        <div class="thumbnail">
-                            <img id="ytmp4-thumb" src="" alt="Thumbnail">
-                        </div>
-                        <div class="info">
-                            <div class="title" id="ytmp4-title">Loading...</div>
-                            <div class="duration" id="ytmp4-duration">-</div>
-                            <div class="meta">
-                                <span class="format-badge">MP4 Video</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="result-actions">
-                        <button id="ytmp4-save" class="save-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== YOUTUBE MP3 ===== -->
-        <div id="tool-ytmp3" class="tool-page">
-            <div class="tool-page-inner">
-                <div class="tool-page-header">
-                    <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                    </button>
-                    <div>
-                        <div class="tool-page-title">YouTube MP3</div>
-                        <div class="tool-page-sub">Download YouTube audio in MP3 format</div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <div class="input-group">
-                        <input type="text" id="ytmp3-url" placeholder="Paste YouTube link here...">
-                        <button id="ytmp3-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
-                        </button>
-                    </div>
-                </div>
-
-                <div id="ytmp3-loader" class="loader-inline">
-                    <div class="spinner"></div>
-                    <p>Fetching audio...</p>
-                </div>
-
-                <div id="ytmp3-result" class="result-box">
-                    <div class="yt-result">
-                        <div class="thumbnail">
-                            <img id="ytmp3-thumb" src="" alt="Thumbnail">
-                        </div>
-                        <div class="info">
-                            <div class="title" id="ytmp3-title">Loading...</div>
-                            <div class="duration" id="ytmp3-duration">-</div>
-                            <div class="meta">
-                                <span class="format-badge">MP3 Audio</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="result-actions">
-                        <button id="ytmp3-save" class="save-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== ARTI NAMA ===== -->
-        <div id="tool-artinama" class="tool-page">
-            <div class="tool-page-inner">
-                <div class="tool-page-header">
-                    <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
-                    </button>
-                    <div>
-                        <div class="tool-page-title">Arti Nama</div>
-                        <div class="tool-page-sub">Discover the meaning behind your name</div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <div class="input-group">
-                        <input type="text" id="artinama-input" placeholder="Enter your name... e.g. maklu">
-                        <button id="artinama-search-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
-                        </button>
-                    </div>
-                </div>
-
-                <div id="artinama-loader" class="loader-inline">
-                    <div class="spinner"></div>
-                    <p>Searching meaning...</p>
-                </div>
-
-                <div id="artinama-result" class="result-box">
-                    <div class="arti-result">
-                        <div class="nama-display" id="arti-nama-display">-</div>
-                        <div class="arti-text" id="arti-text">Loading...</div>
-                        <div class="catatan" id="arti-catatan"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Tool pages akan di generate oleh JavaScript -->
 
         <!-- ===== FOOTER ===== -->
         <footer class="footer">
@@ -1372,8 +1449,73 @@
     </div>
 
     <script>
+        // ============================================================
+        // ===== TOOLS DATA =====
+        // ============================================================
+        const toolsData = [
+            { id: 'tiktok', name: 'TikTok Downloader', desc: 'Download video without watermark', icon: 'icon-tiktok', category: 'download' },
+            { id: 'instagram', name: 'Instagram Downloader', desc: 'Download reels & videos', icon: 'icon-instagram', category: 'download' },
+            { id: 'ytmp4', name: 'YouTube MP4', desc: 'Download YouTube video (MP4)', icon: 'icon-youtube', category: 'download' },
+            { id: 'ytmp3', name: 'YouTube MP3', desc: 'Download YouTube audio (MP3)', icon: 'icon-music', category: 'download' },
+            { id: 'artinama', name: 'Arti Nama', desc: 'Discover the meaning of your name', icon: 'icon-user', category: 'tools' },
+            { id: 'superhd', name: 'Photo HD', desc: 'Enhance photo to HD quality', icon: 'icon-hd', category: 'image' },
+            { id: 'brat', name: 'BRAT Text2Image', desc: 'Create BRAT style text image', icon: 'icon-brat', category: 'image' },
+            { id: 'bratvid', name: 'BRAT Text2Video', desc: 'Create BRAT style video', icon: 'icon-video', category: 'video' },
+            { id: 'pinterest', name: 'Pinterest Search', desc: 'Search Pinterest images', icon: 'icon-pinterest', category: 'image' },
+            { id: 'qrcreate', name: 'QR Create', desc: 'Generate QR code from text', icon: 'icon-qr', category: 'tools' },
+            { id: 'qrdetect', name: 'QR Detect', desc: 'Read QR code from image', icon: 'icon-qr', category: 'tools' },
+            { id: 'loli', name: 'Random Loli', desc: 'Get random anime loli image', icon: 'icon-random', category: 'image' },
+            { id: 'meme', name: 'Random Meme', desc: 'Get random meme image', icon: 'icon-meme', category: 'image' },
+            { id: 'pap', name: 'Random Pap', desc: 'Get random pap image', icon: 'icon-random', category: 'image' },
+            { id: 'waifu', name: 'Random Waifu', desc: 'Get random waifu image', icon: 'icon-random', category: 'image' },
+            { id: 'memegen', name: 'Meme Generator', desc: 'Create custom meme with text', icon: 'icon-meme', category: 'image' },
+            { id: 'tiktoksearch', name: 'TikTok Search', desc: 'Search TikTok videos', icon: 'icon-tiktok', category: 'search' },
+        ];
+
+        // ============================================================
+        // ===== GENERATE TOOL CARDS =====
+        // ============================================================
+        function generateToolCards() {
+            const grid = document.getElementById('tools-grid');
+            grid.innerHTML = '';
+            toolsData.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'tool-card';
+                card.dataset.tool = tool.id;
+                card.dataset.name = tool.name.toLowerCase();
+                card.dataset.category = tool.category;
+                card.onclick = () => openTool(tool.id);
+                card.innerHTML = `
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><use href="#${tool.icon}"/></svg>
+                    </div>
+                    <h3>${tool.name}</h3>
+                    <p>${tool.desc}</p>
+                    <button class="btn">Open</button>
+                `;
+                grid.appendChild(card);
+            });
+            document.getElementById('total-tools').textContent = toolsData.length + ' Tools';
+        }
+
+        // ============================================================
+        // ===== SEARCH TOOLS =====
+        // ============================================================
+        function filterTools(query) {
+            const q = query.toLowerCase().trim();
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                const name = card.dataset.name || '';
+                const match = name.includes(q);
+                card.classList.toggle('hidden', !match);
+            });
+        }
+
+        // ============================================================
         // ===== LOADING =====
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
+            generateToolCards();
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
 
@@ -1388,65 +1530,696 @@
             }, 2800);
         });
 
+        // ============================================================
         // ===== NAVIGATION =====
+        // ============================================================
         function showHome() {
             document.getElementById('home-page').style.display = 'block';
-            ['tiktok', 'instagram', 'ytmp4', 'ytmp3', 'artinama'].forEach(tool => {
-                const page = document.getElementById('tool-' + tool);
-                page.classList.remove('active');
-                page.style.display = 'none';
+            // Hide all tool pages
+            document.querySelectorAll('.tool-page').forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none';
             });
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            resetTools();
         }
 
-        function openTool(tool) {
+        function openTool(toolId) {
             document.getElementById('home-page').style.display = 'none';
-            const page = document.getElementById('tool-' + tool);
+            
+            // Check if page exists, if not create it
+            let page = document.getElementById('tool-' + toolId);
+            if (!page) {
+                page = createToolPage(toolId);
+            }
+            
             page.style.display = 'block';
             setTimeout(() => page.classList.add('active'), 10);
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            resetTools();
         }
 
-        function resetTools() {
-            ['tiktok', 'instagram', 'ytmp4', 'ytmp3', 'artinama'].forEach(t => {
-                const result = document.getElementById(t + '-result');
-                const loader = document.getElementById(t + '-loader');
-                const video = document.getElementById(t + '-video');
-                const cover = document.getElementById(t + '-cover');
-                const play = document.getElementById(t + '-play');
-                const btn = document.getElementById(t + '-download-btn');
-                const searchBtn = document.getElementById(t + '-search-btn');
-                
-                if (result) {
-                    result.classList.remove('show');
-                    result.style.display = 'none';
-                }
-                if (loader) {
-                    loader.classList.remove('show');
-                    loader.style.display = 'none';
-                }
-                if (video) video.src = '';
-                if (cover) cover.src = '';
-                if (cover) cover.classList.remove('hidden');
-                if (play) play.classList.remove('hidden');
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                    `;
-                }
-                if (searchBtn) {
-                    searchBtn.disabled = false;
-                    searchBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
-                    `;
-                }
-            });
+        // ============================================================
+        // ===== CREATE TOOL PAGE =====
+        // ============================================================
+        function createToolPage(toolId) {
+            const tool = toolsData.find(t => t.id === toolId);
+            if (!tool) return null;
+
+            const page = document.createElement('div');
+            page.id = 'tool-' + toolId;
+            page.className = 'tool-page';
+            page.style.display = 'none';
+
+            // Build page based on tool type
+            let content = '';
+            
+            if (toolId === 'tiktok') {
+                content = buildTikTokPage();
+            } else if (toolId === 'instagram') {
+                content = buildInstagramPage();
+            } else if (toolId === 'ytmp4') {
+                content = buildYtmp4Page();
+            } else if (toolId === 'ytmp3') {
+                content = buildYtmp3Page();
+            } else if (toolId === 'artinama') {
+                content = buildArtiNamaPage();
+            } else if (toolId === 'superhd') {
+                content = buildSuperHDPage();
+            } else if (toolId === 'brat') {
+                content = buildBratPage('brat', 'BRAT Text2Image', 'Enter text for BRAT image');
+            } else if (toolId === 'bratvid') {
+                content = buildBratPage('bratvid', 'BRAT Text2Video', 'Enter text for BRAT video');
+            } else if (toolId === 'pinterest') {
+                content = buildPinterestPage();
+            } else if (toolId === 'qrcreate') {
+                content = buildQrCreatePage();
+            } else if (toolId === 'qrdetect') {
+                content = buildQrDetectPage();
+            } else if (['loli', 'meme', 'pap', 'waifu'].includes(toolId)) {
+                content = buildRandomImagePage(toolId);
+            } else if (toolId === 'memegen') {
+                content = buildMemeGenPage();
+            } else if (toolId === 'tiktoksearch') {
+                content = buildTikTokSearchPage();
+            } else {
+                content = buildGenericPage(tool);
+            }
+
+            page.innerHTML = content;
+            document.getElementById('main-content').appendChild(page);
+            
+            // Initialize tool specific JS after page is added
+            setTimeout(() => initToolPage(toolId), 100);
+            
+            return page;
         }
 
-        // ===== TOAST =====
+        // ============================================================
+        // ===== BUILD PAGE FUNCTIONS =====
+        // ============================================================
+        function buildGenericPage(tool) {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">${tool.name}</div>
+                            <div class="tool-page-sub">${tool.desc}</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="${tool.id}-input" placeholder="Enter your input here...">
+                            <button id="${tool.id}-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate
+                            </button>
+                        </div>
+                    </div>
+                    <div id="${tool.id}-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Processing...</p>
+                    </div>
+                    <div id="${tool.id}-result" class="result-box">
+                        <div class="video-info">
+                            <div class="title" id="${tool.id}-title">Result</div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="${tool.id}-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildTikTokPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">TikTok Downloader</div>
+                            <div class="tool-page-sub">Paste link & download video without watermark</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="tiktok-url" placeholder="Paste TikTok link here...">
+                            <button id="tiktok-download-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                            </button>
+                        </div>
+                    </div>
+                    <div id="tiktok-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Processing video...</p>
+                    </div>
+                    <div id="tiktok-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="tiktok-cover" class="cover-img" src="" alt="Video cover">
+                            <div id="tiktok-play" class="play-overlay">
+                                <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
+                            </div>
+                            <video id="tiktok-video" controls></video>
+                        </div>
+                        <div class="video-info">
+                            <div class="title" id="tiktok-title">Loading...</div>
+                            <div class="stats" id="tiktok-stats">
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-eye"/></svg> <span id="tiktok-views">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="tiktok-likes">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="tiktok-comments">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-share"/></svg> <span id="tiktok-shares">-</span></span>
+                                <span>⏱ <span id="tiktok-duration">-</span></span>
+                            </div>
+                            <div class="author" id="tiktok-author">By: -</div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="tiktok-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildInstagramPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">Instagram Downloader</div>
+                            <div class="tool-page-sub">Paste link & download reels or videos</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="instagram-url" placeholder="Paste Instagram link here...">
+                            <button id="instagram-download-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                            </button>
+                        </div>
+                    </div>
+                    <div id="instagram-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Processing video...</p>
+                    </div>
+                    <div id="instagram-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="instagram-cover" class="cover-img" src="" alt="Video cover">
+                            <div id="instagram-play" class="play-overlay">
+                                <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
+                            </div>
+                            <video id="instagram-video" controls></video>
+                        </div>
+                        <div class="video-info">
+                            <div class="title" id="instagram-title">Loading...</div>
+                            <div class="stats" id="instagram-stats">
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg> <span id="instagram-likes">-</span></span>
+                                <span><svg class="stat-icon" viewBox="0 0 24 24"><use href="#icon-message"/></svg> <span id="instagram-comments">-</span></span>
+                            </div>
+                            <div class="author" id="instagram-author">By: -</div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="instagram-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildYtmp4Page() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">YouTube MP4</div>
+                            <div class="tool-page-sub">Download YouTube videos in MP4 format</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="ytmp4-url" placeholder="Paste YouTube link here...">
+                            <button id="ytmp4-download-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ytmp4-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Fetching video...</p>
+                    </div>
+                    <div id="ytmp4-result" class="result-box">
+                        <div class="yt-result">
+                            <div class="thumbnail">
+                                <img id="ytmp4-thumb" src="" alt="Thumbnail">
+                            </div>
+                            <div class="info">
+                                <div class="title" id="ytmp4-title">Loading...</div>
+                                <div class="duration" id="ytmp4-duration">-</div>
+                                <div class="meta">
+                                    <span class="format-badge">MP4 Video</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="ytmp4-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildYtmp3Page() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">YouTube MP3</div>
+                            <div class="tool-page-sub">Download YouTube audio in MP3 format</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="ytmp3-url" placeholder="Paste YouTube link here...">
+                            <button id="ytmp3-download-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ytmp3-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Fetching audio...</p>
+                    </div>
+                    <div id="ytmp3-result" class="result-box">
+                        <div class="yt-result">
+                            <div class="thumbnail">
+                                <img id="ytmp3-thumb" src="" alt="Thumbnail">
+                            </div>
+                            <div class="info">
+                                <div class="title" id="ytmp3-title">Loading...</div>
+                                <div class="duration" id="ytmp3-duration">-</div>
+                                <div class="meta">
+                                    <span class="format-badge">MP3 Audio</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="ytmp3-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildArtiNamaPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">Arti Nama</div>
+                            <div class="tool-page-sub">Discover the meaning behind your name</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="artinama-input" placeholder="Enter your name... e.g. maklu">
+                            <button id="artinama-search-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
+                            </button>
+                        </div>
+                    </div>
+                    <div id="artinama-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Searching meaning...</p>
+                    </div>
+                    <div id="artinama-result" class="result-box">
+                        <div class="arti-result">
+                            <div class="nama-display" id="arti-nama-display">-</div>
+                            <div class="arti-text" id="arti-text">Loading...</div>
+                            <div class="catatan" id="arti-catatan"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildSuperHDPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">Photo HD</div>
+                            <div class="tool-page-sub">Enhance photo to HD quality</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="superhd-input" placeholder="Paste image URL here...">
+                            <button id="superhd-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Enhance
+                            </button>
+                        </div>
+                    </div>
+                    <div id="superhd-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Enhancing image...</p>
+                    </div>
+                    <div id="superhd-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="superhd-image" src="" alt="HD Image" style="width:100%;border-radius:10px;">
+                        </div>
+                        <div class="result-actions">
+                            <button id="superhd-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildBratPage(id, title, placeholder) {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">${title}</div>
+                            <div class="tool-page-sub">${placeholder}</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="${id}-input" placeholder="${placeholder}">
+                            <button id="${id}-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate
+                            </button>
+                        </div>
+                    </div>
+                    <div id="${id}-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Generating...</p>
+                    </div>
+                    <div id="${id}-result" class="result-box">
+                        <div class="video-wrapper">
+                            ${id === 'bratvid' ? '<video id="bratvid-video" controls style="width:100%;border-radius:10px;"></video>' : '<img id="brat-image" src="" alt="Result" style="width:100%;border-radius:10px;">'}
+                        </div>
+                        <div class="result-actions">
+                            <button id="${id}-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildPinterestPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">Pinterest Search</div>
+                            <div class="tool-page-sub">Search Pinterest images</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="pinterest-input" placeholder="Search query... e.g. anime wallpaper">
+                            <button id="pinterest-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
+                            </button>
+                        </div>
+                    </div>
+                    <div id="pinterest-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Searching images...</p>
+                    </div>
+                    <div id="pinterest-result" class="result-box">
+                        <div id="pinterest-grid" class="image-grid"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildQrCreatePage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">QR Create</div>
+                            <div class="tool-page-sub">Generate QR code from text or URL</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="qrcreate-input" placeholder="Enter text or URL...">
+                            <button id="qrcreate-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate
+                            </button>
+                        </div>
+                    </div>
+                    <div id="qrcreate-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Generating QR code...</p>
+                    </div>
+                    <div id="qrcreate-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="qrcreate-image" src="" alt="QR Code" style="width:100%;border-radius:10px;max-width:300px;margin:0 auto;display:block;">
+                        </div>
+                        <div class="result-actions">
+                            <button id="qrcreate-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download QR Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildQrDetectPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">QR Detect</div>
+                            <div class="tool-page-sub">Read QR code from image URL</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="qrdetect-input" placeholder="Paste image URL with QR code...">
+                            <button id="qrdetect-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Detect
+                            </button>
+                        </div>
+                    </div>
+                    <div id="qrdetect-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Detecting QR code...</p>
+                    </div>
+                    <div id="qrdetect-result" class="result-box">
+                        <div class="video-info">
+                            <div class="title" id="qrdetect-result-text">Loading...</div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="qrdetect-copy" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-check"/></svg> Copy Result
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildRandomImagePage(toolId) {
+            const names = {
+                loli: 'Random Loli',
+                meme: 'Random Meme',
+                pap: 'Random Pap',
+                waifu: 'Random Waifu'
+            };
+            const descs = {
+                loli: 'Get random anime loli image',
+                meme: 'Get random meme image',
+                pap: 'Get random pap image',
+                waifu: 'Get random waifu image'
+            };
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">${names[toolId]}</div>
+                            <div class="tool-page-sub">${descs[toolId]}</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <button id="${toolId}-btn" class="action-btn" style="width:100%;justify-content:center;">
+                                <svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Get Random
+                            </button>
+                        </div>
+                    </div>
+                    <div id="${toolId}-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Loading...</p>
+                    </div>
+                    <div id="${toolId}-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="${toolId}-image" src="" alt="Result" style="width:100%;border-radius:10px;">
+                        </div>
+                        <div class="result-actions">
+                            <button id="${toolId}-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Image
+                            </button>
+                            <button id="${toolId}-next" class="save-btn" style="background:rgba(167,139,250,0.04);color:#a78bfa;border-color:rgba(167,139,250,0.04);">
+                                <svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildMemeGenPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">Meme Generator</div>
+                            <div class="tool-page-sub">Create custom meme with text</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group" style="flex-direction:column;gap:0.8rem;">
+                            <input type="text" id="memegen-top" placeholder="Top text...">
+                            <input type="text" id="memegen-bottom" placeholder="Bottom text...">
+                            <input type="text" id="memegen-bg" placeholder="Background image URL...">
+                            <button id="memegen-btn" class="action-btn" style="width:100%;justify-content:center;">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate Meme
+                            </button>
+                        </div>
+                    </div>
+                    <div id="memegen-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Generating meme...</p>
+                    </div>
+                    <div id="memegen-result" class="result-box">
+                        <div class="video-wrapper">
+                            <img id="memegen-image" src="" alt="Meme" style="width:100%;border-radius:10px;">
+                        </div>
+                        <div class="result-actions">
+                            <button id="memegen-save" class="save-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Meme
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildTikTokSearchPage() {
+            return `
+                <div class="tool-page-inner">
+                    <div class="tool-page-header">
+                        <button class="back-btn" onclick="showHome()">
+                            <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                        </button>
+                        <div>
+                            <div class="tool-page-title">TikTok Search</div>
+                            <div class="tool-page-sub">Search TikTok videos</div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="input-group">
+                            <input type="text" id="tiktoksearch-input" placeholder="Search query... e.g. malaysia">
+                            <button id="tiktoksearch-btn" class="action-btn">
+                                <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
+                            </button>
+                        </div>
+                    </div>
+                    <div id="tiktoksearch-loader" class="loader-inline">
+                        <div class="spinner"></div>
+                        <p>Searching videos...</p>
+                    </div>
+                    <div id="tiktoksearch-result" class="result-box">
+                        <div id="tiktoksearch-grid"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // ===== INIT TOOL PAGES =====
+        // ============================================================
+        function initToolPage(toolId) {
+            switch(toolId) {
+                case 'tiktok': initTikTok(); break;
+                case 'instagram': initInstagram(); break;
+                case 'ytmp4': initYtmp4(); break;
+                case 'ytmp3': initYtmp3(); break;
+                case 'artinama': initArtiNama(); break;
+                case 'superhd': initSuperHD(); break;
+                case 'brat': initBrat('brat', 'https://api-faa.my.id/faa/brat?text='); break;
+                case 'bratvid': initBrat('bratvid', 'https://api-faa.my.id/faa/bratvid?text='); break;
+                case 'pinterest': initPinterest(); break;
+                case 'qrcreate': initQrCreate(); break;
+                case 'qrdetect': initQrDetect(); break;
+                case 'loli': initRandomImage('loli', 'https://api-faa.my.id/faa/loli'); break;
+                case 'meme': initRandomImage('meme', 'https://api-faa.my.id/faa/meme'); break;
+                case 'pap': initRandomImage('pap', 'https://api-faa.my.id/faa/pap'); break;
+                case 'waifu': initRandomImage('waifu', 'https://api-faa.my.id/faa/waifu'); break;
+                case 'memegen': initMemeGen(); break;
+                case 'tiktoksearch': initTikTokSearch(); break;
+            }
+        }
+
+        // ============================================================
+        // ===== SHARED FUNCTIONS =====
+        // ============================================================
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').textContent = message;
@@ -1455,7 +2228,6 @@
             toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ===== SHARED HELPERS =====
         function formatNumber(num) {
             if (!num) return '0';
             if (typeof num === 'string') {
@@ -1475,14 +2247,12 @@
             const cover = document.getElementById(coverId);
             const play = document.getElementById(playId);
             const video = document.getElementById(videoId);
-
             if (!cover || !play || !video) return;
 
             function showCover() {
                 cover.classList.remove('hidden');
                 play.classList.remove('hidden');
             }
-
             function hideCover() {
                 cover.classList.add('hidden');
                 play.classList.add('hidden');
@@ -1496,6 +2266,7 @@
 
         function downloadFile(url, filename, buttonId, toastMsg = 'Download successful!') {
             const btn = document.getElementById(buttonId);
+            if (!btn) return;
             btn.textContent = 'Downloading...';
             btn.disabled = true;
 
@@ -1511,383 +2282,1007 @@
                     document.body.removeChild(a);
                     setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
                     showToast(toastMsg);
-                    btn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                    `;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
                     btn.disabled = false;
                 })
                 .catch(() => {
                     window.open(url, '_blank');
                     showToast('Download started in new tab');
-                    btn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
-                    `;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
+                    btn.disabled = false;
+                });
+        }
+
+        function downloadImage(url, filename, buttonId, toastMsg = 'Image downloaded!') {
+            const btn = document.getElementById(buttonId);
+            if (!btn) return;
+            btn.textContent = 'Downloading...';
+            btn.disabled = true;
+
+            fetch(url, { mode: 'cors' })
+                .then(r => { if (!r.ok) throw new Error('Network error'); return r.blob(); })
+                .then(blob => {
+                    const urlBlob = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = urlBlob;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
+                    showToast(toastMsg);
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
+                    btn.disabled = false;
+                })
+                .catch(() => {
+                    window.open(url, '_blank');
+                    showToast('Download started in new tab');
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
                     btn.disabled = false;
                 });
         }
 
         // ============================================================
+        // ===== REQUEST MODAL =====
+        // ============================================================
+        function openRequestModal() {
+            document.getElementById('request-modal').classList.add('show');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('request-modal').classList.remove('show');
+            document.getElementById('request-text').value = '';
+        }
+
+        function sendRequest() {
+            const text = document.getElementById('request-text').value.trim();
+            if (!text) { showToast('Please describe the tool you want!'); return; }
+            
+            const botToken = '8988555855:AAE8HoautR88vyCxvXYoFZ2Yz1lz04dP90c';
+            const chatId = '1086203403';
+            const message = `📝 New Tool Request:\n\n${text}`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: message })
+            })
+            .then(() => {
+                showToast('Request sent successfully! ✅');
+                closeRequestModal();
+            })
+            .catch(() => {
+                showToast('Failed to send request. Please try again.');
+            });
+        }
+
+        // ============================================================
         // ===== TIKTOK =====
         // ============================================================
-        setupVideoPlayer('tiktok-cover', 'tiktok-play', 'tiktok-video');
+        function initTikTok() {
+            setupVideoPlayer('tiktok-cover', 'tiktok-play', 'tiktok-video');
 
-        document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('tiktok-download-btn').click();
-        });
+            document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('tiktok-download-btn').click();
+            });
 
-        document.getElementById('tiktok-download-btn').addEventListener('click', async function() {
-            const url = document.getElementById('tiktok-url').value.trim();
-            if (!url) { showToast('Please paste a TikTok link first!'); return; }
-            if (!url.includes('tiktok.com') && !url.includes('vt.tiktok.com')) {
-                showToast('Please enter a valid TikTok link!');
-                return;
-            }
+            document.getElementById('tiktok-download-btn').addEventListener('click', async function() {
+                const url = document.getElementById('tiktok-url').value.trim();
+                if (!url) { showToast('Please paste a TikTok link first!'); return; }
+                if (!url.includes('tiktok.com') && !url.includes('vt.tiktok.com')) {
+                    showToast('Please enter a valid TikTok link!');
+                    return;
+                }
 
-            const loader = document.getElementById('tiktok-loader');
-            const result = document.getElementById('tiktok-result');
-            const btn = this;
-            
-            loader.style.display = 'block';
-            setTimeout(() => loader.classList.add('show'), 10);
-            result.classList.remove('show');
-            result.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Processing...`;
+                const loader = document.getElementById('tiktok-loader');
+                const result = document.getElementById('tiktok-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Processing...`;
 
-            try {
-                const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/tiktok?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
 
-                if (data.status && data.result) {
-                    const r = data.result;
-                    let videoUrl = r.alternatives?.hd || r.data || r.alternatives?.selected || null;
-                    const coverUrl = r.cover || null;
-                    const title = r.title || 'No title';
-                    const author = r.author?.nickname || r.author?.username || 'Unknown';
-                    const stats = r.stats || {};
+                    if (data.status && data.result) {
+                        const r = data.result;
+                        let videoUrl = r.alternatives?.hd || r.data || r.alternatives?.selected || null;
+                        const coverUrl = r.cover || null;
+                        const title = r.title || 'No title';
+                        const author = r.author?.nickname || r.author?.username || 'Unknown';
+                        const stats = r.stats || {};
 
-                    if (videoUrl) {
-                        loader.classList.remove('show');
-                        loader.style.display = 'none';
-                        result.style.display = 'block';
-                        setTimeout(() => result.classList.add('show'), 10);
+                        if (videoUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
 
-                        if (coverUrl) {
-                            document.getElementById('tiktok-cover').src = coverUrl;
-                            document.getElementById('tiktok-cover').classList.remove('hidden');
-                            document.getElementById('tiktok-play').classList.remove('hidden');
+                            if (coverUrl) {
+                                document.getElementById('tiktok-cover').src = coverUrl;
+                                document.getElementById('tiktok-cover').classList.remove('hidden');
+                                document.getElementById('tiktok-play').classList.remove('hidden');
+                            }
+                            document.getElementById('tiktok-video').src = videoUrl;
+                            document.getElementById('tiktok-video').load();
+                            document.getElementById('tiktok-title').textContent = title;
+                            document.getElementById('tiktok-author').textContent = 'By: ' + author;
+                            document.getElementById('tiktok-views').textContent = formatNumber(stats.views);
+                            document.getElementById('tiktok-likes').textContent = formatNumber(stats.likes);
+                            document.getElementById('tiktok-comments').textContent = formatNumber(stats.comment);
+                            document.getElementById('tiktok-shares').textContent = formatNumber(stats.share);
+                            document.getElementById('tiktok-duration').textContent = r.duration || '-';
+
+                            document.getElementById('tiktok-save').onclick = () => downloadFile(videoUrl, `tiktok_video_${Date.now()}.mp4`, 'tiktok-save');
+                        } else {
+                            showToast('Failed to get video URL');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
                         }
-                        document.getElementById('tiktok-video').src = videoUrl;
-                        document.getElementById('tiktok-video').load();
-                        document.getElementById('tiktok-title').textContent = title;
-                        document.getElementById('tiktok-author').textContent = 'By: ' + author;
-                        document.getElementById('tiktok-views').textContent = formatNumber(stats.views);
-                        document.getElementById('tiktok-likes').textContent = formatNumber(stats.likes);
-                        document.getElementById('tiktok-comments').textContent = formatNumber(stats.comment);
-                        document.getElementById('tiktok-shares').textContent = formatNumber(stats.share);
-                        document.getElementById('tiktok-duration').textContent = r.duration || '-';
-
-                        document.getElementById('tiktok-save').onclick = () => downloadFile(videoUrl, `tiktok_video_${Date.now()}.mp4`, 'tiktok-save');
                     } else {
-                        showToast('Failed to get video URL');
+                        showToast('Failed to process video');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
-                } else {
-                    showToast('Failed to process video');
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
                     loader.classList.remove('show');
                     loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
                 }
-            } catch (e) {
-                console.error(e);
-                showToast('An error occurred');
-                loader.classList.remove('show');
-                loader.style.display = 'none';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-            }
-        });
+            });
+        }
 
         // ============================================================
         // ===== INSTAGRAM =====
         // ============================================================
-        setupVideoPlayer('instagram-cover', 'instagram-play', 'instagram-video');
+        function initInstagram() {
+            setupVideoPlayer('instagram-cover', 'instagram-play', 'instagram-video');
 
-        document.getElementById('instagram-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('instagram-download-btn').click();
-        });
+            document.getElementById('instagram-url').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('instagram-download-btn').click();
+            });
 
-        document.getElementById('instagram-download-btn').addEventListener('click', async function() {
-            const url = document.getElementById('instagram-url').value.trim();
-            if (!url) { showToast('Please paste an Instagram link first!'); return; }
-            if (!url.includes('instagram.com')) {
-                showToast('Please enter a valid Instagram link!');
-                return;
-            }
+            document.getElementById('instagram-download-btn').addEventListener('click', async function() {
+                const url = document.getElementById('instagram-url').value.trim();
+                if (!url) { showToast('Please paste an Instagram link first!'); return; }
+                if (!url.includes('instagram.com')) {
+                    showToast('Please enter a valid Instagram link!');
+                    return;
+                }
 
-            const loader = document.getElementById('instagram-loader');
-            const result = document.getElementById('instagram-result');
-            const btn = this;
-            
-            loader.style.display = 'block';
-            setTimeout(() => loader.classList.add('show'), 10);
-            result.classList.remove('show');
-            result.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Processing...`;
+                const loader = document.getElementById('instagram-loader');
+                const result = document.getElementById('instagram-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Processing...`;
 
-            try {
-                const apiUrl = `https://api-faa.my.id/faa/igdl?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/igdl?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
 
-                if (data.status && data.result) {
-                    const r = data.result;
-                    let videoUrl = null;
-                    
-                    if (r.url && r.url.length > 0) {
-                        videoUrl = r.url[0];
-                    } else if (r.url) {
-                        videoUrl = r.url;
-                    }
+                    if (data.status && data.result) {
+                        const r = data.result;
+                        let videoUrl = null;
+                        
+                        if (r.url && r.url.length > 0) {
+                            videoUrl = r.url[0];
+                        } else if (r.url) {
+                            videoUrl = r.url;
+                        }
 
-                    const meta = r.metadata || {};
-                    const title = meta.caption || 'Instagram Video';
-                    const author = meta.username || 'Unknown';
-                    const likes = meta.like || 'N/A';
-                    const comments = meta.comment || 'N/A';
+                        const meta = r.metadata || {};
+                        const title = meta.caption || 'Instagram Video';
+                        const author = meta.username || 'Unknown';
+                        const likes = meta.like || 'N/A';
+                        const comments = meta.comment || 'N/A';
 
-                    if (videoUrl) {
-                        loader.classList.remove('show');
-                        loader.style.display = 'none';
-                        result.style.display = 'block';
-                        setTimeout(() => result.classList.add('show'), 10);
+                        if (videoUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
 
-                        document.getElementById('instagram-video').src = videoUrl;
-                        document.getElementById('instagram-video').load();
-                        document.getElementById('instagram-title').textContent = title;
-                        document.getElementById('instagram-author').textContent = 'By: ' + author;
-                        document.getElementById('instagram-likes').textContent = likes;
-                        document.getElementById('instagram-comments').textContent = comments;
+                            document.getElementById('instagram-video').src = videoUrl;
+                            document.getElementById('instagram-video').load();
+                            document.getElementById('instagram-title').textContent = title;
+                            document.getElementById('instagram-author').textContent = 'By: ' + author;
+                            document.getElementById('instagram-likes').textContent = likes;
+                            document.getElementById('instagram-comments').textContent = comments;
 
-                        document.getElementById('instagram-save').onclick = () => downloadFile(videoUrl, `instagram_video_${Date.now()}.mp4`, 'instagram-save', 'Instagram download successful!');
+                            document.getElementById('instagram-save').onclick = () => downloadFile(videoUrl, `instagram_video_${Date.now()}.mp4`, 'instagram-save', 'Instagram download successful!');
+                        } else {
+                            showToast('Failed to get video URL');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
                     } else {
-                        showToast('Failed to get video URL');
+                        showToast('Failed to process video');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
-                } else {
-                    showToast('Failed to process video');
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
                     loader.classList.remove('show');
                     loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
                 }
-            } catch (e) {
-                console.error(e);
-                showToast('An error occurred');
-                loader.classList.remove('show');
-                loader.style.display = 'none';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
-            }
-        });
+            });
+        }
 
         // ============================================================
         // ===== YOUTUBE MP4 =====
         // ============================================================
-        document.getElementById('ytmp4-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('ytmp4-download-btn').click();
-        });
+        function initYtmp4() {
+            document.getElementById('ytmp4-url').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('ytmp4-download-btn').click();
+            });
 
-        document.getElementById('ytmp4-download-btn').addEventListener('click', async function() {
-            const url = document.getElementById('ytmp4-url').value.trim();
-            if (!url) { showToast('Please paste a YouTube link first!'); return; }
-            if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
-                showToast('Please enter a valid YouTube link!');
-                return;
-            }
+            document.getElementById('ytmp4-download-btn').addEventListener('click', async function() {
+                const url = document.getElementById('ytmp4-url').value.trim();
+                if (!url) { showToast('Please paste a YouTube link first!'); return; }
+                if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+                    showToast('Please enter a valid YouTube link!');
+                    return;
+                }
 
-            const loader = document.getElementById('ytmp4-loader');
-            const result = document.getElementById('ytmp4-result');
-            const btn = this;
-            
-            loader.style.display = 'block';
-            setTimeout(() => loader.classList.add('show'), 10);
-            result.classList.remove('show');
-            result.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
+                const loader = document.getElementById('ytmp4-loader');
+                const result = document.getElementById('ytmp4-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
 
-            try {
-                const apiUrl = `https://api-faa.my.id/faa/ytmp4?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/ytmp4?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
 
-                if (data.status && data.result) {
-                    const r = data.result;
-                    const downloadUrl = r.download_url || null;
-                    const format = r.format || 'mp4';
+                    if (data.status && data.result) {
+                        const r = data.result;
+                        const downloadUrl = r.download_url || null;
+                        const format = r.format || 'mp4';
 
-                    if (downloadUrl) {
-                        loader.classList.remove('show');
-                        loader.style.display = 'none';
-                        result.style.display = 'block';
-                        setTimeout(() => result.classList.add('show'), 10);
+                        if (downloadUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
 
-                        document.getElementById('ytmp4-title').textContent = 'YouTube Video';
-                        document.getElementById('ytmp4-duration').textContent = `Format: ${format.toUpperCase()}`;
-                        document.getElementById('ytmp4-thumb').src = 'https://i.ytimg.com/vi/default/hqdefault.jpg';
+                            document.getElementById('ytmp4-title').textContent = 'YouTube Video';
+                            document.getElementById('ytmp4-duration').textContent = `Format: ${format.toUpperCase()}`;
+                            document.getElementById('ytmp4-thumb').src = 'https://i.ytimg.com/vi/default/hqdefault.jpg';
 
-                        document.getElementById('ytmp4-save').onclick = () => downloadFile(downloadUrl, `youtube_video_${Date.now()}.mp4`, 'ytmp4-save', 'YouTube MP4 download successful!');
+                            document.getElementById('ytmp4-save').onclick = () => downloadFile(downloadUrl, `youtube_video_${Date.now()}.mp4`, 'ytmp4-save', 'YouTube MP4 download successful!');
+                        } else {
+                            showToast('Failed to get download URL');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
                     } else {
-                        showToast('Failed to get download URL');
+                        showToast('Failed to process video');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
-                } else {
-                    showToast('Failed to process video');
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
                     loader.classList.remove('show');
                     loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4`;
                 }
-            } catch (e) {
-                console.error(e);
-                showToast('An error occurred');
-                loader.classList.remove('show');
-                loader.style.display = 'none';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4`;
-            }
-        });
+            });
+        }
 
         // ============================================================
         // ===== YOUTUBE MP3 =====
         // ============================================================
-        document.getElementById('ytmp3-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('ytmp3-download-btn').click();
-        });
+        function initYtmp3() {
+            document.getElementById('ytmp3-url').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('ytmp3-download-btn').click();
+            });
 
-        document.getElementById('ytmp3-download-btn').addEventListener('click', async function() {
-            const url = document.getElementById('ytmp3-url').value.trim();
-            if (!url) { showToast('Please paste a YouTube link first!'); return; }
-            if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
-                showToast('Please enter a valid YouTube link!');
-                return;
-            }
+            document.getElementById('ytmp3-download-btn').addEventListener('click', async function() {
+                const url = document.getElementById('ytmp3-url').value.trim();
+                if (!url) { showToast('Please paste a YouTube link first!'); return; }
+                if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+                    showToast('Please enter a valid YouTube link!');
+                    return;
+                }
 
-            const loader = document.getElementById('ytmp3-loader');
-            const result = document.getElementById('ytmp3-result');
-            const btn = this;
-            
-            loader.style.display = 'block';
-            setTimeout(() => loader.classList.add('show'), 10);
-            result.classList.remove('show');
-            result.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
+                const loader = document.getElementById('ytmp3-loader');
+                const result = document.getElementById('ytmp3-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
 
-            try {
-                const apiUrl = `https://api-faa.my.id/faa/ytmp3?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/ytmp3?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
 
-                if (data.status && data.result) {
-                    const r = data.result;
-                    const mp3Url = r.mp3 || null;
-                    const title = r.title || 'YouTube Audio';
-                    const duration = r.duration || '-';
-                    const thumbnail = r.thumbnail || 'https://i.ytimg.com/vi/default/hqdefault.jpg';
+                    if (data.status && data.result) {
+                        const r = data.result;
+                        const mp3Url = r.mp3 || null;
+                        const title = r.title || 'YouTube Audio';
+                        const duration = r.duration || '-';
+                        const thumbnail = r.thumbnail || 'https://i.ytimg.com/vi/default/hqdefault.jpg';
 
-                    if (mp3Url) {
+                        if (mp3Url) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            document.getElementById('ytmp3-title').textContent = title;
+                            document.getElementById('ytmp3-duration').textContent = `Duration: ${duration}`;
+                            document.getElementById('ytmp3-thumb').src = thumbnail;
+
+                            document.getElementById('ytmp3-save').onclick = () => downloadFile(mp3Url, `youtube_audio_${Date.now()}.mp3`, 'ytmp3-save', 'YouTube MP3 download successful!');
+                        } else {
+                            showToast('Failed to get MP3 URL');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                    } else {
+                        showToast('Failed to process audio');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== ARTI NAMA =====
+        // ============================================================
+        function initArtiNama() {
+            document.getElementById('artinama-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('artinama-search-btn').click();
+            });
+
+            document.getElementById('artinama-search-btn').addEventListener('click', async function() {
+                const nama = document.getElementById('artinama-input').value.trim();
+                if (!nama) { showToast('Please enter a name!'); return; }
+
+                const loader = document.getElementById('artinama-loader');
+                const result = document.getElementById('artinama-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Searching...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/arti-nama?nama=${encodeURIComponent(nama)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status) {
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                         result.style.display = 'block';
                         setTimeout(() => result.classList.add('show'), 10);
 
-                        document.getElementById('ytmp3-title').textContent = title;
-                        document.getElementById('ytmp3-duration').textContent = `Duration: ${duration}`;
-                        document.getElementById('ytmp3-thumb').src = thumbnail;
-
-                        document.getElementById('ytmp3-save').onclick = () => downloadFile(mp3Url, `youtube_audio_${Date.now()}.mp3`, 'ytmp3-save', 'YouTube MP3 download successful!');
+                        document.getElementById('arti-nama-display').textContent = data.nama || nama;
+                        document.getElementById('arti-text').textContent = data.arti || 'Tidak ditemukan arti untuk nama ini.';
+                        document.getElementById('arti-catatan').textContent = data.catatan || '';
                     } else {
-                        showToast('Failed to get MP3 URL');
+                        showToast('Failed to get meaning');
                         loader.classList.remove('show');
                         loader.style.display = 'none';
                     }
-                } else {
-                    showToast('Failed to process audio');
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
                     loader.classList.remove('show');
                     loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search`;
                 }
-            } catch (e) {
-                console.error(e);
-                showToast('An error occurred');
-                loader.classList.remove('show');
-                loader.style.display = 'none';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3`;
-            }
-        });
+            });
+        }
 
         // ============================================================
-        // ===== ARTI NAMA =====
+        // ===== SUPER HD =====
         // ============================================================
-        document.getElementById('artinama-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('artinama-search-btn').click();
-        });
+        function initSuperHD() {
+            document.getElementById('superhd-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('superhd-btn').click();
+            });
 
-        document.getElementById('artinama-search-btn').addEventListener('click', async function() {
-            const nama = document.getElementById('artinama-input').value.trim();
-            if (!nama) { showToast('Please enter a name!'); return; }
+            document.getElementById('superhd-btn').addEventListener('click', async function() {
+                const url = document.getElementById('superhd-input').value.trim();
+                if (!url) { showToast('Please paste an image URL!'); return; }
 
-            const loader = document.getElementById('artinama-loader');
-            const result = document.getElementById('artinama-result');
-            const btn = this;
-            
-            loader.style.display = 'block';
-            setTimeout(() => loader.classList.add('show'), 10);
-            result.classList.remove('show');
-            result.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Searching...`;
+                const loader = document.getElementById('superhd-loader');
+                const result = document.getElementById('superhd-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Enhancing...`;
 
-            try {
-                const apiUrl = `https://api-faa.my.id/faa/arti-nama?nama=${encodeURIComponent(nama)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/superhd?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
 
-                if (data.status) {
+                    if (data.status && data.result) {
+                        let imageUrl = data.result;
+                        if (typeof imageUrl === 'object') {
+                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                        }
+
+                        if (imageUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            document.getElementById('superhd-image').src = imageUrl;
+                            document.getElementById('superhd-save').onclick = () => downloadImage(imageUrl, `enhanced_image_${Date.now()}.jpg`, 'superhd-save', 'HD image downloaded!');
+                        } else {
+                            showToast('Failed to get enhanced image');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                    } else {
+                        showToast('Failed to enhance image');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
                     loader.classList.remove('show');
                     loader.style.display = 'none';
-                    result.style.display = 'block';
-                    setTimeout(() => result.classList.add('show'), 10);
-
-                    document.getElementById('arti-nama-display').textContent = data.nama || nama;
-                    document.getElementById('arti-text').textContent = data.arti || 'Tidak ditemukan arti untuk nama ini.';
-                    document.getElementById('arti-catatan').textContent = data.catatan || '';
-                } else {
-                    showToast('Failed to get meaning');
-                    loader.classList.remove('show');
-                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Enhance`;
                 }
-            } catch (e) {
-                console.error(e);
-                showToast('An error occurred');
-                loader.classList.remove('show');
-                loader.style.display = 'none';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search`;
-            }
-        });
+            });
+        }
 
-        console.log('VStudios Tools loaded!');
-        console.log('✅ 5 Tools: TikTok, Instagram, YouTube MP4, YouTube MP3, Arti Nama');
-        console.log('✅ Dark Purple Theme');
-        console.log('✅ TikTok icon FIXED');
+        // ============================================================
+        // ===== BRAT =====
+        // ============================================================
+        function initBrat(id, apiBase) {
+            const input = document.getElementById(id + '-input');
+            const btn = document.getElementById(id + '-btn');
+            const loader = document.getElementById(id + '-loader');
+            const result = document.getElementById(id + '-result');
+
+            if (input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') btn.click();
+                });
+            }
+
+            btn.addEventListener('click', async function() {
+                const text = input ? input.value.trim() : '';
+                if (!text) { showToast('Please enter some text!'); return; }
+
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Generating...`;
+
+                try {
+                    const apiUrl = `${apiBase}${encodeURIComponent(text)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result) {
+                        let mediaUrl = data.result;
+                        if (typeof mediaUrl === 'object') {
+                            mediaUrl = mediaUrl.url || mediaUrl.video || mediaUrl.image || Object.values(mediaUrl)[0];
+                        }
+
+                        if (mediaUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            if (id === 'bratvid') {
+                                document.getElementById('bratvid-video').src = mediaUrl;
+                                document.getElementById('bratvid-video').load();
+                            } else {
+                                document.getElementById('brat-image').src = mediaUrl;
+                            }
+
+                            document.getElementById(id + '-save').onclick = () => {
+                                const ext = id === 'bratvid' ? 'mp4' : 'jpg';
+                                downloadFile(mediaUrl, `brat_${Date.now()}.${ext}`, id + '-save', `${id === 'bratvid' ? 'Video' : 'Image'} downloaded!`);
+                            };
+                        } else {
+                            showToast('Failed to get result');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                    } else {
+                        showToast('Failed to generate');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== PINTEREST =====
+        // ============================================================
+        function initPinterest() {
+            document.getElementById('pinterest-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('pinterest-btn').click();
+            });
+
+            document.getElementById('pinterest-btn').addEventListener('click', async function() {
+                const query = document.getElementById('pinterest-input').value.trim();
+                if (!query) { showToast('Please enter a search query!'); return; }
+
+                const loader = document.getElementById('pinterest-loader');
+                const result = document.getElementById('pinterest-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Searching...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/pinterest?q=${encodeURIComponent(query)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result && data.result.length > 0) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        const grid = document.getElementById('pinterest-grid');
+                        grid.innerHTML = '';
+                        data.result.forEach((imgUrl, index) => {
+                            const item = document.createElement('div');
+                            item.className = 'img-item';
+                            item.innerHTML = `
+                                <img src="${imgUrl}" alt="Pinterest result ${index+1}" loading="lazy">
+                                <div class="img-actions">
+                                    <button class="save-btn-sm" onclick="downloadImage('${imgUrl}', 'pinterest_${Date.now()}_${index}.jpg', null, 'Image downloaded!')">
+                                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                                    </button>
+                                </div>
+                            `;
+                            grid.appendChild(item);
+                        });
+                    } else {
+                        showToast('No results found');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== QR CREATE =====
+        // ============================================================
+        function initQrCreate() {
+            document.getElementById('qrcreate-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('qrcreate-btn').click();
+            });
+
+            document.getElementById('qrcreate-btn').addEventListener('click', async function() {
+                const text = document.getElementById('qrcreate-input').value.trim();
+                if (!text) { showToast('Please enter text or URL!'); return; }
+
+                const loader = document.getElementById('qrcreate-loader');
+                const result = document.getElementById('qrcreate-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Generating...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/qr-create?text=${encodeURIComponent(text)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result) {
+                        let imageUrl = data.result;
+                        if (typeof imageUrl === 'object') {
+                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                        }
+
+                        if (imageUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            document.getElementById('qrcreate-image').src = imageUrl;
+                            document.getElementById('qrcreate-save').onclick = () => downloadImage(imageUrl, `qr_${Date.now()}.png`, 'qrcreate-save', 'QR code downloaded!');
+                        } else {
+                            showToast('Failed to generate QR code');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                    } else {
+                        showToast('Failed to generate QR code');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== QR DETECT =====
+        // ============================================================
+        function initQrDetect() {
+            document.getElementById('qrdetect-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('qrdetect-btn').click();
+            });
+
+            document.getElementById('qrdetect-btn').addEventListener('click', async function() {
+                const url = document.getElementById('qrdetect-input').value.trim();
+                if (!url) { showToast('Please paste an image URL with QR code!'); return; }
+
+                const loader = document.getElementById('qrdetect-loader');
+                const result = document.getElementById('qrdetect-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Detecting...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/qr-detect?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result) {
+                        let resultText = data.result;
+                        if (typeof resultText === 'object') {
+                            resultText = resultText.text || resultText.url || Object.values(resultText)[0];
+                        }
+
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        document.getElementById('qrdetect-result-text').textContent = resultText || 'No text found in QR code';
+                        document.getElementById('qrdetect-copy').onclick = () => {
+                            navigator.clipboard.writeText(resultText).then(() => {
+                                showToast('Copied to clipboard!');
+                            }).catch(() => {
+                                showToast('Failed to copy');
+                            });
+                        };
+                    } else {
+                        showToast('Failed to detect QR code');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Detect`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== RANDOM IMAGE =====
+        // ============================================================
+        function initRandomImage(id, apiUrl) {
+            function fetchRandom() {
+                const loader = document.getElementById(id + '-loader');
+                const result = document.getElementById(id + '-result');
+                const btn = document.getElementById(id + '-btn');
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Loading...`;
+                }
+
+                fetch(apiUrl)
+                    .then(r => r.json())
+                    .then(data => {
+                        let imageUrl = null;
+                        if (data.status && data.result) {
+                            imageUrl = data.result;
+                            if (typeof imageUrl === 'object') {
+                                imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                            }
+                        }
+
+                        if (imageUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            document.getElementById(id + '-image').src = imageUrl;
+                            document.getElementById(id + '-save').onclick = () => downloadImage(imageUrl, `${id}_${Date.now()}.jpg`, id + '-save', 'Image downloaded!');
+                            document.getElementById(id + '-next').onclick = fetchRandom;
+                        } else {
+                            showToast('Failed to get image');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                        if (btn) {
+                            btn.disabled = false;
+                            btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Get Random`;
+                        }
+                    })
+                    .catch(e => {
+                        console.error(e);
+                        showToast('An error occurred');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        if (btn) {
+                            btn.disabled = false;
+                            btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-random"/></svg> Get Random`;
+                        }
+                    });
+            }
+
+            const btn = document.getElementById(id + '-btn');
+            if (btn) btn.addEventListener('click', fetchRandom);
+            // Auto fetch on load
+            setTimeout(fetchRandom, 500);
+        }
+
+        // ============================================================
+        // ===== MEME GENERATOR =====
+        // ============================================================
+        function initMemeGen() {
+            document.getElementById('memegen-btn').addEventListener('click', async function() {
+                const top = document.getElementById('memegen-top').value.trim() || ' ';
+                const bottom = document.getElementById('memegen-bottom').value.trim() || ' ';
+                const bg = document.getElementById('memegen-bg').value.trim();
+                
+                if (!bg) { showToast('Please enter a background image URL!'); return; }
+
+                const loader = document.getElementById('memegen-loader');
+                const result = document.getElementById('memegen-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Generating...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/smeme?text_atas=${encodeURIComponent(top)}&text_bawah=${encodeURIComponent(bottom)}&background=${encodeURIComponent(bg)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result) {
+                        let imageUrl = data.result;
+                        if (typeof imageUrl === 'object') {
+                            imageUrl = imageUrl.url || imageUrl.image || Object.values(imageUrl)[0];
+                        }
+
+                        if (imageUrl) {
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                            result.style.display = 'block';
+                            setTimeout(() => result.classList.add('show'), 10);
+
+                            document.getElementById('memegen-image').src = imageUrl;
+                            document.getElementById('memegen-save').onclick = () => downloadImage(imageUrl, `meme_${Date.now()}.jpg`, 'memegen-save', 'Meme downloaded!');
+                        } else {
+                            showToast('Failed to generate meme');
+                            loader.classList.remove('show');
+                            loader.style.display = 'none';
+                        }
+                    } else {
+                        showToast('Failed to generate meme');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Generate Meme`;
+                }
+            });
+        }
+
+        // ============================================================
+        // ===== TIKTOK SEARCH =====
+        // ============================================================
+        function initTikTokSearch() {
+            document.getElementById('tiktoksearch-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('tiktoksearch-btn').click();
+            });
+
+            document.getElementById('tiktoksearch-btn').addEventListener('click', async function() {
+                const query = document.getElementById('tiktoksearch-input').value.trim();
+                if (!query) { showToast('Please enter a search query!'); return; }
+
+                const loader = document.getElementById('tiktoksearch-loader');
+                const result = document.getElementById('tiktoksearch-result');
+                const btn = this;
+                
+                loader.style.display = 'block';
+                setTimeout(() => loader.classList.add('show'), 10);
+                result.classList.remove('show');
+                result.style.display = 'none';
+                btn.disabled = true;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Searching...`;
+
+                try {
+                    const apiUrl = `https://api-faa.my.id/faa/tiktok-search?q=${encodeURIComponent(query)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status && data.result && data.result.length > 0) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        const grid = document.getElementById('tiktoksearch-grid');
+                        grid.innerHTML = '';
+                        
+                        data.result.forEach((video, index) => {
+                            const item = document.createElement('div');
+                            item.style.cssText = `
+                                background: rgba(255,255,255,0.015);
+                                border: 1px solid rgba(167,139,250,0.04);
+                                border-radius: 10px;
+                                padding: 0.8rem;
+                                margin-bottom: 0.8rem;
+                            `;
+                            
+                            const videoUrl = video.url_nowm || video.url_wm || null;
+                            const cover = video.cover || '';
+                            const title = video.title || 'No title';
+                            const author = video.author?.nickname || video.author?.username || 'Unknown';
+                            const stats = video.stats || {};
+                            
+                            item.innerHTML = `
+                                <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+                                    ${cover ? `<img src="${cover}" style="width:120px;height:80px;object-fit:cover;border-radius:8px;flex-shrink:0;" alt="Cover">` : ''}
+                                    <div style="flex:1;min-width:150px;">
+                                        <div style="font-size:0.8rem;font-weight:400;color:#f0ebff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${title}</div>
+                                        <div style="font-size:0.65rem;color:#5a4a7a;margin-top:0.2rem;">By: ${author}</div>
+                                        <div style="font-size:0.6rem;color:#4a3a6a;margin-top:0.2rem;">
+                                            👁 ${formatNumber(stats.views)} ❤ ${formatNumber(stats.likes)} 💬 ${formatNumber(stats.comments)}
+                                        </div>
+                                        ${videoUrl ? `
+                                            <div style="margin-top:0.4rem;display:flex;gap:0.4rem;flex-wrap:wrap;">
+                                                <button onclick="downloadFile('${videoUrl}', 'tiktok_search_${Date.now()}_${index}.mp4', null, 'Video downloaded!')" style="padding:0.2rem 0.8rem;border:none;border-radius:6px;font-size:0.6rem;cursor:pointer;background:rgba(16,185,129,0.06);color:#34d399;border:1px solid rgba(16,185,129,0.04);font-family:'Inter',sans-serif;display:flex;align-items:center;gap:0.3rem;">
+                                                    <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;"><use href="#icon-download"/></svg> Download
+                                                </button>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `;
+                            grid.appendChild(item);
+                        });
+                    } else {
+                        showToast('No results found');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('An error occurred');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search`;
+                }
+            });
+        }
+
+        console.log('VStudios Tools Super Loaded!');
+        console.log('✅ 20+ Tools Available');
+        console.log('✅ Search Function');
+        console.log('✅ Telegram Developer & Request Tool');
+        console.log('✅ All Download Buttons');
     </script>
 </body>
 </html>
