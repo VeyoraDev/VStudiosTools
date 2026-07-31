@@ -24,19 +24,11 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #060210;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(167, 139, 250, 0.15);
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #060210; }
+        ::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.15); border-radius: 4px; }
 
-        /* ===== LOADING SCREEN - NEW ANIMATION ===== */
+        /* ===== LOADING ===== */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -51,9 +43,7 @@
             transition: opacity 0.8s ease;
         }
 
-        .loader-wrapper {
-            text-align: center;
-        }
+        .loader-wrapper { text-align: center; }
 
         .loader-cube {
             position: relative;
@@ -72,44 +62,16 @@
             animation: cubeMove 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
         }
 
-        .loader-cube .cube:nth-child(1) {
-            top: 0;
-            left: 0;
-            animation-delay: 0s;
-        }
-        .loader-cube .cube:nth-child(2) {
-            top: 0;
-            right: 0;
-            animation-delay: 0.3s;
-        }
-        .loader-cube .cube:nth-child(3) {
-            bottom: 0;
-            left: 0;
-            animation-delay: 0.6s;
-        }
-        .loader-cube .cube:nth-child(4) {
-            bottom: 0;
-            right: 0;
-            animation-delay: 0.9s;
-        }
+        .loader-cube .cube:nth-child(1) { top: 0; left: 0; animation-delay: 0s; }
+        .loader-cube .cube:nth-child(2) { top: 0; right: 0; animation-delay: 0.3s; }
+        .loader-cube .cube:nth-child(3) { bottom: 0; left: 0; animation-delay: 0.6s; }
+        .loader-cube .cube:nth-child(4) { bottom: 0; right: 0; animation-delay: 0.9s; }
 
         @keyframes cubeMove {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            25% {
-                transform: scale(1.3) rotate(10deg);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(0.9) rotate(-5deg);
-                opacity: 0.6;
-            }
-            75% {
-                transform: scale(1.1) rotate(5deg);
-                opacity: 0.8;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            25% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+            50% { transform: scale(0.9) rotate(-5deg); opacity: 0.6; }
+            75% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
         }
 
         .loader-glow {
@@ -138,7 +100,6 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 8px;
             margin-top: 2.5rem;
-            position: relative;
         }
 
         .loader-text .brand::after {
@@ -159,29 +120,9 @@
             font-weight: 200;
         }
 
-        .loader-dots {
-            display: inline-block;
-            animation: dotsFade 1.5s steps(4) infinite;
-        }
-        @keyframes dotsFade {
-            0% { opacity: 0.2; }
-            25% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-            75% { opacity: 0.5; }
-            100% { opacity: 0.2; }
-        }
-
         /* ===== MAIN CONTENT ===== */
-        #main-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        #main-content.show {
-            display: block;
-            opacity: 1;
-        }
+        #main-content { display: none; opacity: 0; transition: opacity 0.8s ease; }
+        #main-content.show { display: block; opacity: 1; }
 
         /* ===== NAVBAR ===== */
         .navbar {
@@ -195,7 +136,6 @@
             z-index: 1000;
             padding: 0 2rem;
             height: 54px;
-            transition: background 0.3s ease;
         }
 
         .nav-container {
@@ -216,11 +156,7 @@
             letter-spacing: -0.5px;
         }
 
-        .nav-logo svg {
-            width: 20px;
-            height: 20px;
-        }
-
+        .nav-logo svg { width: 20px; height: 20px; }
         .logo-text {
             background: linear-gradient(135deg, #c4b5fd, #7c3aed);
             -webkit-background-clip: text;
@@ -241,9 +177,7 @@
             letter-spacing: 0.8px;
         }
 
-        .nav-links a:hover {
-            color: #a78bfa;
-        }
+        .nav-links a:hover { color: #a78bfa; }
 
         /* ===== BANNER ===== */
         .banner-section {
@@ -270,9 +204,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .banner-wrapper:hover img {
-            opacity: 1;
-        }
+        .banner-wrapper:hover img { opacity: 1; }
 
         .banner-overlay {
             position: absolute;
@@ -306,10 +238,7 @@
             background: rgba(0, 0, 0, 0.15);
         }
 
-        .tools-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .tools-container { max-width: 1100px; margin: 0 auto; }
 
         .tools-header {
             display: flex;
@@ -319,12 +248,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .tools-header svg {
-            width: 22px;
-            height: 22px;
-            opacity: 0.3;
-        }
-
+        .tools-header svg { width: 22px; height: 22px; opacity: 0.3; }
         .tools-header h2 {
             font-size: 1.3rem;
             font-weight: 300;
@@ -373,20 +297,13 @@
             transition: opacity 0.6s ease;
         }
 
-        .tool-card:hover::after {
-            opacity: 1;
-        }
+        .tool-card:hover::after { opacity: 1; }
 
         .tool-card:not(.coming-soon):hover {
             transform: translateY(-3px);
             border-color: rgba(167, 139, 250, 0.08);
             box-shadow: 0 20px 60px rgba(76, 29, 149, 0.04);
             background: rgba(255, 255, 255, 0.025);
-        }
-
-        .tool-card.coming-soon {
-            opacity: 0.25;
-            cursor: not-allowed;
         }
 
         .tool-card .icon-box {
@@ -453,11 +370,6 @@
             color: #a78bfa;
         }
 
-        .tool-card .btn:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
-        }
-
         /* ===== TOOL PAGE ===== */
         .tool-page {
             display: none;
@@ -475,10 +387,7 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .tool-page-inner {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .tool-page-inner { max-width: 700px; margin: 0 auto; }
 
         .tool-page-header {
             display: flex;
@@ -520,9 +429,7 @@
             transition: transform 0.4s ease;
         }
 
-        .back-btn:hover svg {
-            transform: translateX(-3px);
-        }
+        .back-btn:hover svg { transform: translateX(-3px); }
 
         .tool-page-title {
             font-size: 1.4rem;
@@ -633,9 +540,7 @@
             margin: 0 auto 1rem;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .loader-inline p {
             color: #4a3a6a;
@@ -644,6 +549,7 @@
             letter-spacing: 2px;
         }
 
+        /* ===== RESULT BOX ===== */
         .result-box {
             display: none;
             background: rgba(255, 255, 255, 0.01);
@@ -816,6 +722,39 @@
             stroke-width: 2;
         }
 
+        /* ===== ART NAMA RESULT ===== */
+        .arti-result {
+            padding: 0.5rem 0.3rem;
+        }
+
+        .arti-result .nama-display {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #c4b5fd;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .arti-result .arti-text {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: #c4b5fd;
+            font-weight: 300;
+            white-space: pre-wrap;
+            background: rgba(167, 139, 250, 0.02);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(167, 139, 250, 0.03);
+        }
+
+        .arti-result .catatan {
+            font-size: 0.7rem;
+            color: #5a4a7a;
+            margin-top: 0.8rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
         /* ===== TOAST ===== */
         #toast {
             position: fixed;
@@ -886,6 +825,8 @@
             .result-actions { flex-direction: column; }
             .video-info .stats { gap: 0.5rem; font-size: 0.6rem; }
             #toast { padding: 0.6rem 1.2rem; font-size: 0.75rem; bottom: 1.2rem; }
+            .arti-result .nama-display { font-size: 1.5rem; }
+            .arti-result .arti-text { font-size: 0.78rem; padding: 0.8rem; }
         }
 
         @media (max-width: 480px) {
@@ -918,7 +859,7 @@
                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
             </symbol>
 
-            <!-- ===== FIXED TIKTOK ICON ===== -->
+            <!-- ===== FIXED TIKTOK ICON - RE-DRAWN ===== -->
             <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19.59 6.87a4.43 4.43 0 0 1-2.75-2.27 4.42 4.42 0 0 0-1.19-1.01 4.53 4.53 0 0 0-1.51-.59c-1.11-.15-2.15.02-2.82.69-.51.51-.78 1.19-.78 1.89v9.43a3.34 3.34 0 0 1-1.46 2.74c-.61.42-1.37.65-2.19.65-.86 0-1.68-.29-2.36-.81a3.27 3.27 0 0 1-1.68-2.87 3.29 3.29 0 0 1 2.18-3.48c.75-.31 1.58-.39 2.38-.22.36.08.7.21 1.02.39v-4.4a4.11 4.11 0 0 0-1.17-.24 5.1 5.1 0 0 0-.69-.04c-2.07.1-3.87 1.14-4.73 2.75a5.11 5.11 0 0 0-.24 4.12c.17.67.52 1.28 1.03 1.78a5.2 5.2 0 0 0 1.92 1.17c.71.28 1.47.35 2.21.2.74-.15 1.42-.52 1.97-1.09.24-.24.44-.51.61-.81.17-.3.29-.61.36-.94.03-.17.05-.34.06-.51V3.78c.01-.07-.01-.13-.04-.19-.01-.03-.01-.05-.01-.08.03-.31.07-.62.07-.92v-.01c.21-1.02.72-1.96 1.43-2.66a4.62 4.62 0 0 1 1.98-1.19c.31-.1.62-.16.94-.17h.1c.88.04 1.72.39 2.42.98l.01.01c.16.14.31.28.45.43.12.13.23.27.33.41l.01.01c.33.47.57 1.01.72 1.56.15.57.22 1.14.2 1.72h-.01a4.2 4.2 0 0 0 1.38 3.16c.54.48 1.17.81 1.82 1 .2.06.41.1.62.13v3.13c-.52-.1-1.05-.18-1.57-.34a7.53 7.53 0 0 1-2.91-1.97z"/>
             </symbol>
@@ -927,6 +868,11 @@
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </symbol>
+
+            <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
             </symbol>
 
             <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -965,10 +911,15 @@
             <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12"/>
             </symbol>
+
+            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </symbol>
         </defs>
     </svg>
 
-    <!-- ===== LOADING SCREEN ===== -->
+    <!-- ===== LOADING ===== -->
     <div id="loading-screen">
         <div class="loader-wrapper">
             <div class="loader-cube">
@@ -980,17 +931,15 @@
             </div>
             <div class="loader-text">
                 <span class="brand">VStudios</span>
-                <span class="status">LOADING<span class="loader-dots">...</span></span>
+                <span class="status">LOADING</span>
             </div>
         </div>
     </div>
 
     <!-- ===== TOAST ===== -->
     <div id="toast">
-        <svg viewBox="0 0 24 24">
-            <use href="#icon-check"/>
-        </svg>
-        <span id="toast-message">Download successful!</span>
+        <svg viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+        <span id="toast-message">Success!</span>
     </div>
 
     <!-- ===== MAIN CONTENT ===== -->
@@ -1000,9 +949,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <svg viewBox="0 0 24 24">
-                        <use href="#icon-logo"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><use href="#icon-logo"/></svg>
                     <span class="logo-text">VStudios</span>
                 </div>
                 <div class="nav-links">
@@ -1012,9 +959,8 @@
             </div>
         </nav>
 
-        <!-- ===== HOME PAGE ===== -->
+        <!-- ===== HOME ===== -->
         <div id="home-page">
-
             <section class="banner-section">
                 <div class="banner-wrapper">
                     <img src="https://files.catbox.moe/mhcy1u.jpg" alt="VStudios Tools Banner" onerror="this.style.display='none'">
@@ -1028,9 +974,7 @@
             <section class="tools-section">
                 <div class="tools-container">
                     <div class="tools-header">
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-tools"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><use href="#icon-tools"/></svg>
                         <h2>Tools</h2>
                     </div>
                     <div class="tools-divider"></div>
@@ -1038,9 +982,7 @@
                         <!-- TikTok -->
                         <div class="tool-card" onclick="openTool('tiktok')">
                             <div class="icon-box">
-                                <svg viewBox="0 0 24 24">
-                                    <use href="#icon-tiktok"/>
-                                </svg>
+                                <svg viewBox="0 0 24 24"><use href="#icon-tiktok"/></svg>
                             </div>
                             <h3>TikTok Downloader</h3>
                             <p>Download videos without watermark</p>
@@ -1050,28 +992,47 @@
                         <!-- Instagram -->
                         <div class="tool-card" onclick="openTool('instagram')">
                             <div class="icon-box">
-                                <svg viewBox="0 0 24 24">
-                                    <use href="#icon-instagram"/>
-                                </svg>
+                                <svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
                             </div>
                             <h3>Instagram Downloader</h3>
                             <p>Download reels & videos</p>
                             <button class="btn">Open</button>
+                        </div>
+
+                        <!-- Arti Nama -->
+                        <div class="tool-card" onclick="openTool('artinama')">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><use href="#icon-user"/></svg>
+                            </div>
+                            <h3>Arti Nama</h3>
+                            <p>Discover the meaning of your name</p>
+                            <button class="btn">Open</button>
+                        </div>
+
+                        <!-- Coming Soon -->
+                        <div class="tool-card coming-soon">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" stroke="#6a5a8a" fill="none" stroke-width="1.8">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                            </div>
+                            <h3>More Tools</h3>
+                            <p>Coming soon</p>
+                            <button class="btn" disabled>Soon</button>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- ===== TOOL PAGE: TIKTOK ===== -->
+        <!-- ===== TIKTOK ===== -->
         <div id="tool-tiktok" class="tool-page">
             <div class="tool-page-inner">
                 <div class="tool-page-header">
                     <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-back"/>
-                        </svg>
-                        Back
+                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
                     </button>
                     <div>
                         <div class="tool-page-title">TikTok Downloader</div>
@@ -1083,10 +1044,7 @@
                     <div class="input-group">
                         <input type="text" id="tiktok-url" placeholder="Paste TikTok link here...">
                         <button id="tiktok-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-download"/>
-                            </svg>
-                            Download
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
                         </button>
                     </div>
                 </div>
@@ -1100,9 +1058,7 @@
                     <div class="video-wrapper">
                         <img id="tiktok-cover" class="cover-img" src="" alt="Video cover">
                         <div id="tiktok-play" class="play-overlay">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-play"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
                         </div>
                         <video id="tiktok-video" controls></video>
                     </div>
@@ -1119,25 +1075,19 @@
                     </div>
                     <div class="result-actions">
                         <button id="tiktok-save" class="save-btn">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-download"/>
-                            </svg>
-                            Download HD Video
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download HD Video
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== TOOL PAGE: INSTAGRAM ===== -->
+        <!-- ===== INSTAGRAM ===== -->
         <div id="tool-instagram" class="tool-page">
             <div class="tool-page-inner">
                 <div class="tool-page-header">
                     <button class="back-btn" onclick="showHome()">
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-back"/>
-                        </svg>
-                        Back
+                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
                     </button>
                     <div>
                         <div class="tool-page-title">Instagram Downloader</div>
@@ -1149,10 +1099,7 @@
                     <div class="input-group">
                         <input type="text" id="instagram-url" placeholder="Paste Instagram link here...">
                         <button id="instagram-download-btn" class="action-btn">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-download"/>
-                            </svg>
-                            Download
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
                         </button>
                     </div>
                 </div>
@@ -1166,9 +1113,7 @@
                     <div class="video-wrapper">
                         <img id="instagram-cover" class="cover-img" src="" alt="Video cover">
                         <div id="instagram-play" class="play-overlay">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-play"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24"><use href="#icon-play"/></svg>
                         </div>
                         <video id="instagram-video" controls></video>
                     </div>
@@ -1182,11 +1127,45 @@
                     </div>
                     <div class="result-actions">
                         <button id="instagram-save" class="save-btn">
-                            <svg viewBox="0 0 24 24">
-                                <use href="#icon-download"/>
-                            </svg>
-                            Download Video
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ARTI NAMA ===== -->
+        <div id="tool-artinama" class="tool-page">
+            <div class="tool-page-inner">
+                <div class="tool-page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                    </button>
+                    <div>
+                        <div class="tool-page-title">Arti Nama</div>
+                        <div class="tool-page-sub">Discover the meaning behind your name</div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="input-group">
+                        <input type="text" id="artinama-input" placeholder="Enter your name... e.g. maklu">
+                        <button id="artinama-search-btn" class="action-btn">
+                            <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
+                        </button>
+                    </div>
+                </div>
+
+                <div id="artinama-loader" class="loader-inline">
+                    <div class="spinner"></div>
+                    <p>Searching meaning...</p>
+                </div>
+
+                <div id="artinama-result" class="result-box">
+                    <div class="arti-result">
+                        <div class="nama-display" id="arti-nama-display">-</div>
+                        <div class="arti-text" id="arti-text">Loading...</div>
+                        <div class="catatan" id="arti-catatan"></div>
                     </div>
                 </div>
             </div>
@@ -1218,7 +1197,7 @@
         // ===== NAVIGATION =====
         function showHome() {
             document.getElementById('home-page').style.display = 'block';
-            ['tiktok', 'instagram'].forEach(tool => {
+            ['tiktok', 'instagram', 'artinama'].forEach(tool => {
                 const page = document.getElementById('tool-' + tool);
                 page.classList.remove('active');
                 page.style.display = 'none';
@@ -1237,13 +1216,14 @@
         }
 
         function resetTools() {
-            ['tiktok', 'instagram'].forEach(t => {
+            ['tiktok', 'instagram', 'artinama'].forEach(t => {
                 const result = document.getElementById(t + '-result');
                 const loader = document.getElementById(t + '-loader');
                 const video = document.getElementById(t + '-video');
                 const cover = document.getElementById(t + '-cover');
                 const play = document.getElementById(t + '-play');
                 const btn = document.getElementById(t + '-download-btn');
+                const searchBtn = document.getElementById(t + '-search-btn');
                 
                 if (result) {
                     result.classList.remove('show');
@@ -1260,10 +1240,13 @@
                 if (btn) {
                     btn.disabled = false;
                     btn.innerHTML = `
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-download"/>
-                        </svg>
-                        Download
+                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
+                    `;
+                }
+                if (searchBtn) {
+                    searchBtn.disabled = false;
+                    searchBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search
                     `;
                 }
             });
@@ -1335,10 +1318,7 @@
                     setTimeout(() => window.URL.revokeObjectURL(url), 5000);
                     showToast(toastMsg);
                     btn.innerHTML = `
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-download"/>
-                        </svg>
-                        Download Video
+                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
                     `;
                     btn.disabled = false;
                 })
@@ -1346,16 +1326,15 @@
                     window.open(videoUrl, '_blank');
                     showToast('Download started in new tab');
                     btn.innerHTML = `
-                        <svg viewBox="0 0 24 24">
-                            <use href="#icon-download"/>
-                        </svg>
-                        Download Video
+                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
                     `;
                     btn.disabled = false;
                 });
         }
 
+        // ============================================================
         // ===== TIKTOK =====
+        // ============================================================
         setupVideoPlayer('tiktok-cover', 'tiktok-play', 'tiktok-video');
 
         document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
@@ -1437,7 +1416,9 @@
             }
         });
 
+        // ============================================================
         // ===== INSTAGRAM =====
+        // ============================================================
         setupVideoPlayer('instagram-cover', 'instagram-play', 'instagram-video');
 
         document.getElementById('instagram-url').addEventListener('keypress', function(e) {
@@ -1519,10 +1500,62 @@
             }
         });
 
+        // ============================================================
+        // ===== ARTI NAMA =====
+        // ============================================================
+        document.getElementById('artinama-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('artinama-search-btn').click();
+        });
+
+        document.getElementById('artinama-search-btn').addEventListener('click', async function() {
+            const nama = document.getElementById('artinama-input').value.trim();
+            if (!nama) { showToast('Please enter a name!'); return; }
+
+            const loader = document.getElementById('artinama-loader');
+            const result = document.getElementById('artinama-result');
+            const btn = this;
+            
+            loader.style.display = 'block';
+            setTimeout(() => loader.classList.add('show'), 10);
+            result.classList.remove('show');
+            result.style.display = 'none';
+            btn.disabled = true;
+            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Searching...`;
+
+            try {
+                const apiUrl = `https://api-faa.my.id/faa/arti-nama?nama=${encodeURIComponent(nama)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status) {
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                    result.style.display = 'block';
+                    setTimeout(() => result.classList.add('show'), 10);
+
+                    document.getElementById('arti-nama-display').textContent = data.nama || nama;
+                    document.getElementById('arti-text').textContent = data.arti || 'Tidak ditemukan arti untuk nama ini.';
+                    document.getElementById('arti-catatan').textContent = data.catatan || '';
+                } else {
+                    showToast('Failed to get meaning');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('An error occurred');
+                loader.classList.remove('show');
+                loader.style.display = 'none';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-search"/></svg> Search`;
+            }
+        });
+
         console.log('VStudios Tools loaded!');
-        console.log('✅ TikTok + Instagram Downloader');
+        console.log('✅ TikTok + Instagram + Arti Nama');
         console.log('✅ Dark Purple Theme');
-        console.log('✅ Smooth Animations');
+        console.log('✅ TikTok icon FIXED');
     </script>
 </body>
 </html>
