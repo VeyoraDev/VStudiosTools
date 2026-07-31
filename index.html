@@ -370,6 +370,11 @@
             color: #a78bfa;
         }
 
+        .tool-card .btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
         /* ===== TOOL PAGE ===== */
         .tool-page {
             display: none;
@@ -564,6 +569,64 @@
             animation: fadeSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
+        /* YouTube Result */
+        .yt-result {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 0.3rem;
+        }
+
+        .yt-result .thumbnail {
+            width: 120px;
+            min-width: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0a0518;
+        }
+
+        .yt-result .thumbnail img {
+            width: 100%;
+            display: block;
+        }
+
+        .yt-result .info {
+            flex: 1;
+        }
+
+        .yt-result .info .title {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #f0ebff;
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+        }
+
+        .yt-result .info .duration {
+            font-size: 0.7rem;
+            color: #5a4a7a;
+            margin-bottom: 0.5rem;
+        }
+
+        .yt-result .info .meta {
+            font-size: 0.7rem;
+            color: #4a3a6a;
+        }
+
+        .yt-result .info .format-badge {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            background: rgba(167, 139, 250, 0.06);
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.04);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== VIDEO WRAPPER ===== */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -722,7 +785,7 @@
             stroke-width: 2;
         }
 
-        /* ===== ART NAMA RESULT ===== */
+        /* ===== ARTI NAMA RESULT ===== */
         .arti-result {
             padding: 0.5rem 0.3rem;
         }
@@ -827,6 +890,8 @@
             #toast { padding: 0.6rem 1.2rem; font-size: 0.75rem; bottom: 1.2rem; }
             .arti-result .nama-display { font-size: 1.5rem; }
             .arti-result .arti-text { font-size: 0.78rem; padding: 0.8rem; }
+            .yt-result { flex-direction: column; align-items: center; }
+            .yt-result .thumbnail { width: 100%; max-width: 200px; min-width: unset; }
         }
 
         @media (max-width: 480px) {
@@ -859,7 +924,7 @@
                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
             </symbol>
 
-            <!-- ===== FIXED TIKTOK ICON - RE-DRAWN ===== -->
+            <!-- ===== FIXED TIKTOK ICON ===== -->
             <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19.59 6.87a4.43 4.43 0 0 1-2.75-2.27 4.42 4.42 0 0 0-1.19-1.01 4.53 4.53 0 0 0-1.51-.59c-1.11-.15-2.15.02-2.82.69-.51.51-.78 1.19-.78 1.89v9.43a3.34 3.34 0 0 1-1.46 2.74c-.61.42-1.37.65-2.19.65-.86 0-1.68-.29-2.36-.81a3.27 3.27 0 0 1-1.68-2.87 3.29 3.29 0 0 1 2.18-3.48c.75-.31 1.58-.39 2.38-.22.36.08.7.21 1.02.39v-4.4a4.11 4.11 0 0 0-1.17-.24 5.1 5.1 0 0 0-.69-.04c-2.07.1-3.87 1.14-4.73 2.75a5.11 5.11 0 0 0-.24 4.12c.17.67.52 1.28 1.03 1.78a5.2 5.2 0 0 0 1.92 1.17c.71.28 1.47.35 2.21.2.74-.15 1.42-.52 1.97-1.09.24-.24.44-.51.61-.81.17-.3.29-.61.36-.94.03-.17.05-.34.06-.51V3.78c.01-.07-.01-.13-.04-.19-.01-.03-.01-.05-.01-.08.03-.31.07-.62.07-.92v-.01c.21-1.02.72-1.96 1.43-2.66a4.62 4.62 0 0 1 1.98-1.19c.31-.1.62-.16.94-.17h.1c.88.04 1.72.39 2.42.98l.01.01c.16.14.31.28.45.43.12.13.23.27.33.41l.01.01c.33.47.57 1.01.72 1.56.15.57.22 1.14.2 1.72h-.01a4.2 4.2 0 0 0 1.38 3.16c.54.48 1.17.81 1.82 1 .2.06.41.1.62.13v3.13c-.52-.1-1.05-.18-1.57-.34a7.53 7.53 0 0 1-2.91-1.97z"/>
             </symbol>
@@ -868,6 +933,17 @@
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </symbol>
+
+            <symbol id="icon-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2c.313-1.732.455-3.508.42-5.28a28.5 28.5 0 0 0-.42-5.28z"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+            </symbol>
+
+            <symbol id="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 17H5a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2"/>
+                <path d="M15 17h-4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2"/>
+                <path d="M21 17h-4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2"/>
             </symbol>
 
             <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -996,6 +1072,26 @@
                             </div>
                             <h3>Instagram Downloader</h3>
                             <p>Download reels & videos</p>
+                            <button class="btn">Open</button>
+                        </div>
+
+                        <!-- YouTube MP4 -->
+                        <div class="tool-card" onclick="openTool('ytmp4')">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+                            </div>
+                            <h3>YouTube MP4</h3>
+                            <p>Download YouTube videos (MP4)</p>
+                            <button class="btn">Open</button>
+                        </div>
+
+                        <!-- YouTube MP3 -->
+                        <div class="tool-card" onclick="openTool('ytmp3')">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><use href="#icon-music"/></svg>
+                            </div>
+                            <h3>YouTube MP3</h3>
+                            <p>Download YouTube audio (MP3)</p>
                             <button class="btn">Open</button>
                         </div>
 
@@ -1134,6 +1230,104 @@
             </div>
         </div>
 
+        <!-- ===== YOUTUBE MP4 ===== -->
+        <div id="tool-ytmp4" class="tool-page">
+            <div class="tool-page-inner">
+                <div class="tool-page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                    </button>
+                    <div>
+                        <div class="tool-page-title">YouTube MP4</div>
+                        <div class="tool-page-sub">Download YouTube videos in MP4 format</div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="input-group">
+                        <input type="text" id="ytmp4-url" placeholder="Paste YouTube link here...">
+                        <button id="ytmp4-download-btn" class="action-btn">
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
+                        </button>
+                    </div>
+                </div>
+
+                <div id="ytmp4-loader" class="loader-inline">
+                    <div class="spinner"></div>
+                    <p>Fetching video...</p>
+                </div>
+
+                <div id="ytmp4-result" class="result-box">
+                    <div class="yt-result">
+                        <div class="thumbnail">
+                            <img id="ytmp4-thumb" src="" alt="Thumbnail">
+                        </div>
+                        <div class="info">
+                            <div class="title" id="ytmp4-title">Loading...</div>
+                            <div class="duration" id="ytmp4-duration">-</div>
+                            <div class="meta">
+                                <span class="format-badge">MP4 Video</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button id="ytmp4-save" class="save-btn">
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== YOUTUBE MP3 ===== -->
+        <div id="tool-ytmp3" class="tool-page">
+            <div class="tool-page-inner">
+                <div class="tool-page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <svg viewBox="0 0 24 24"><use href="#icon-back"/></svg> Back
+                    </button>
+                    <div>
+                        <div class="tool-page-title">YouTube MP3</div>
+                        <div class="tool-page-sub">Download YouTube audio in MP3 format</div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="input-group">
+                        <input type="text" id="ytmp3-url" placeholder="Paste YouTube link here...">
+                        <button id="ytmp3-download-btn" class="action-btn">
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
+                        </button>
+                    </div>
+                </div>
+
+                <div id="ytmp3-loader" class="loader-inline">
+                    <div class="spinner"></div>
+                    <p>Fetching audio...</p>
+                </div>
+
+                <div id="ytmp3-result" class="result-box">
+                    <div class="yt-result">
+                        <div class="thumbnail">
+                            <img id="ytmp3-thumb" src="" alt="Thumbnail">
+                        </div>
+                        <div class="info">
+                            <div class="title" id="ytmp3-title">Loading...</div>
+                            <div class="duration" id="ytmp3-duration">-</div>
+                            <div class="meta">
+                                <span class="format-badge">MP3 Audio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button id="ytmp3-save" class="save-btn">
+                            <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- ===== ARTI NAMA ===== -->
         <div id="tool-artinama" class="tool-page">
             <div class="tool-page-inner">
@@ -1197,7 +1391,7 @@
         // ===== NAVIGATION =====
         function showHome() {
             document.getElementById('home-page').style.display = 'block';
-            ['tiktok', 'instagram', 'artinama'].forEach(tool => {
+            ['tiktok', 'instagram', 'ytmp4', 'ytmp3', 'artinama'].forEach(tool => {
                 const page = document.getElementById('tool-' + tool);
                 page.classList.remove('active');
                 page.style.display = 'none';
@@ -1216,7 +1410,7 @@
         }
 
         function resetTools() {
-            ['tiktok', 'instagram', 'artinama'].forEach(t => {
+            ['tiktok', 'instagram', 'ytmp4', 'ytmp3', 'artinama'].forEach(t => {
                 const result = document.getElementById(t + '-result');
                 const loader = document.getElementById(t + '-loader');
                 const video = document.getElementById(t + '-video');
@@ -1300,33 +1494,33 @@
             video.addEventListener('ended', showCover);
         }
 
-        function downloadVideo(videoUrl, buttonId, toastMsg = 'Download successful!') {
+        function downloadFile(url, filename, buttonId, toastMsg = 'Download successful!') {
             const btn = document.getElementById(buttonId);
             btn.textContent = 'Downloading...';
             btn.disabled = true;
 
-            fetch(videoUrl, { mode: 'cors', headers: { 'Accept': 'video/mp4,video/*' } })
+            fetch(url, { mode: 'cors' })
                 .then(r => { if (!r.ok) throw new Error('Network error'); return r.blob(); })
                 .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
+                    const urlBlob = window.URL.createObjectURL(blob);
                     const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `video_${Date.now()}.mp4`;
+                    a.href = urlBlob;
+                    a.download = filename;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    setTimeout(() => window.URL.revokeObjectURL(url), 5000);
+                    setTimeout(() => window.URL.revokeObjectURL(urlBlob), 5000);
                     showToast(toastMsg);
                     btn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
+                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
                     `;
                     btn.disabled = false;
                 })
                 .catch(() => {
-                    window.open(videoUrl, '_blank');
+                    window.open(url, '_blank');
                     showToast('Download started in new tab');
                     btn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download Video
+                        <svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download
                     `;
                     btn.disabled = false;
                 });
@@ -1394,7 +1588,7 @@
                         document.getElementById('tiktok-shares').textContent = formatNumber(stats.share);
                         document.getElementById('tiktok-duration').textContent = r.duration || '-';
 
-                        document.getElementById('tiktok-save').onclick = () => downloadVideo(videoUrl, 'tiktok-save');
+                        document.getElementById('tiktok-save').onclick = () => downloadFile(videoUrl, `tiktok_video_${Date.now()}.mp4`, 'tiktok-save');
                     } else {
                         showToast('Failed to get video URL');
                         loader.classList.remove('show');
@@ -1478,7 +1672,7 @@
                         document.getElementById('instagram-likes').textContent = likes;
                         document.getElementById('instagram-comments').textContent = comments;
 
-                        document.getElementById('instagram-save').onclick = () => downloadVideo(videoUrl, 'instagram-save', 'Instagram download successful!');
+                        document.getElementById('instagram-save').onclick = () => downloadFile(videoUrl, `instagram_video_${Date.now()}.mp4`, 'instagram-save', 'Instagram download successful!');
                     } else {
                         showToast('Failed to get video URL');
                         loader.classList.remove('show');
@@ -1497,6 +1691,144 @@
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download`;
+            }
+        });
+
+        // ============================================================
+        // ===== YOUTUBE MP4 =====
+        // ============================================================
+        document.getElementById('ytmp4-url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('ytmp4-download-btn').click();
+        });
+
+        document.getElementById('ytmp4-download-btn').addEventListener('click', async function() {
+            const url = document.getElementById('ytmp4-url').value.trim();
+            if (!url) { showToast('Please paste a YouTube link first!'); return; }
+            if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+                showToast('Please enter a valid YouTube link!');
+                return;
+            }
+
+            const loader = document.getElementById('ytmp4-loader');
+            const result = document.getElementById('ytmp4-result');
+            const btn = this;
+            
+            loader.style.display = 'block';
+            setTimeout(() => loader.classList.add('show'), 10);
+            result.classList.remove('show');
+            result.style.display = 'none';
+            btn.disabled = true;
+            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
+
+            try {
+                const apiUrl = `https://api-faa.my.id/faa/ytmp4?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status && data.result) {
+                    const r = data.result;
+                    const downloadUrl = r.download_url || null;
+                    const format = r.format || 'mp4';
+
+                    if (downloadUrl) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        document.getElementById('ytmp4-title').textContent = 'YouTube Video';
+                        document.getElementById('ytmp4-duration').textContent = `Format: ${format.toUpperCase()}`;
+                        document.getElementById('ytmp4-thumb').src = 'https://i.ytimg.com/vi/default/hqdefault.jpg';
+
+                        document.getElementById('ytmp4-save').onclick = () => downloadFile(downloadUrl, `youtube_video_${Date.now()}.mp4`, 'ytmp4-save', 'YouTube MP4 download successful!');
+                    } else {
+                        showToast('Failed to get download URL');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } else {
+                    showToast('Failed to process video');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('An error occurred');
+                loader.classList.remove('show');
+                loader.style.display = 'none';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP4`;
+            }
+        });
+
+        // ============================================================
+        // ===== YOUTUBE MP3 =====
+        // ============================================================
+        document.getElementById('ytmp3-url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('ytmp3-download-btn').click();
+        });
+
+        document.getElementById('ytmp3-download-btn').addEventListener('click', async function() {
+            const url = document.getElementById('ytmp3-url').value.trim();
+            if (!url) { showToast('Please paste a YouTube link first!'); return; }
+            if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+                showToast('Please enter a valid YouTube link!');
+                return;
+            }
+
+            const loader = document.getElementById('ytmp3-loader');
+            const result = document.getElementById('ytmp3-result');
+            const btn = this;
+            
+            loader.style.display = 'block';
+            setTimeout(() => loader.classList.add('show'), 10);
+            result.classList.remove('show');
+            result.style.display = 'none';
+            btn.disabled = true;
+            btn.innerHTML = `<svg viewBox="0 0 24 24" style="animation: spin 0.7s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="40 20"/></svg> Fetching...`;
+
+            try {
+                const apiUrl = `https://api-faa.my.id/faa/ytmp3?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status && data.result) {
+                    const r = data.result;
+                    const mp3Url = r.mp3 || null;
+                    const title = r.title || 'YouTube Audio';
+                    const duration = r.duration || '-';
+                    const thumbnail = r.thumbnail || 'https://i.ytimg.com/vi/default/hqdefault.jpg';
+
+                    if (mp3Url) {
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                        result.style.display = 'block';
+                        setTimeout(() => result.classList.add('show'), 10);
+
+                        document.getElementById('ytmp3-title').textContent = title;
+                        document.getElementById('ytmp3-duration').textContent = `Duration: ${duration}`;
+                        document.getElementById('ytmp3-thumb').src = thumbnail;
+
+                        document.getElementById('ytmp3-save').onclick = () => downloadFile(mp3Url, `youtube_audio_${Date.now()}.mp3`, 'ytmp3-save', 'YouTube MP3 download successful!');
+                    } else {
+                        showToast('Failed to get MP3 URL');
+                        loader.classList.remove('show');
+                        loader.style.display = 'none';
+                    }
+                } else {
+                    showToast('Failed to process audio');
+                    loader.classList.remove('show');
+                    loader.style.display = 'none';
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('An error occurred');
+                loader.classList.remove('show');
+                loader.style.display = 'none';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> Download MP3`;
             }
         });
 
@@ -1553,7 +1885,7 @@
         });
 
         console.log('VStudios Tools loaded!');
-        console.log('✅ TikTok + Instagram + Arti Nama');
+        console.log('✅ 5 Tools: TikTok, Instagram, YouTube MP4, YouTube MP3, Arti Nama');
         console.log('✅ Dark Purple Theme');
         console.log('✅ TikTok icon FIXED');
     </script>
